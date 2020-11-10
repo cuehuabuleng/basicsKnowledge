@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var isValid = function (s) {
+            if (s.length === 1) {
+                return false
+            }
+            let tem = [];
+            for (let i = 0; i < s.length; i++) {
+                debugger
+                switch (s[i]) {
+                    case '(': tem.push(')')
+                        break;
+                    case '{': tem.push('}')
+                        break;
+                    case '[': tem.push(']')
+                        break;
+                    case ')': if (tem.length <= 0 || tem.pop() !== ')') return false
+                    else if (i === s.length - 1 && tem.length === 0) return true
+                        break;
+                    case '}': if (tem.length <= 0 || tem.pop() !== '}')  return false 
+                    else if (i === s.length - 1 && tem.length === 0) return true
+                        break;
+                    case ']': if (tem.length <= 0 || tem.pop() !== ']') return false
+                    else if (i === s.length - 1 && tem.length === 0) return true
+                        break;
+                    default:
+                        break;
+                }
+            }
+            if (tem.length > 0) {
+                return false
+            }
+        };
+        var str = "([]"
+        var res = isValid(str)
+        console.log(res)
+    </script>
+</body>
+
+</html>

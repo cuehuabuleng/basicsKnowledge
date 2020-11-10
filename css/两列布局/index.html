@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrapper {}
+
+        /* 方法一，左边使用float:left 右边设置overfloat：auto隐藏溢出的内容 */
+        .left{
+            height: 100vh;
+            width: 340px;
+            background-color: blue;
+            float: left;
+        }
+
+        .right{
+            height: 100vh;
+            background-color: yellow;
+            overflow: hidden;
+        }
+
+
+        /* 方法二、 左边使用posision：absolute布局，右边margin-left */
+        /* .left{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 340px;
+            background-color: blue;
+            float: left;
+        }
+
+        .right{
+            height: 100vh;
+            background-color: yellow;
+            margin-left: 340px;
+        }  */
+
+
+        /* 方法三、表格布局 */
+        /* 
+         .wrapper{
+            display: table;
+            width: 100%;
+
+        }
+       .left{
+            display: table-cell;
+            height: 100vh;
+            width: 340px;
+            background-color: blue;
+        }
+
+        .right{
+            display: table-cell;
+            height: 100vh;
+            background-color: yellow;
+            overflow: auto;
+        }  */
+
+
+        /* 使用cal() */
+        /* .wrapper{
+            overflow: hidden;
+
+        }
+        .left {
+            float: left;
+            height: 100vh;
+            width: 340px;
+            background-color: blue;
+        }
+
+        .right {
+            float: left;
+            width: calc(100% - 340px);
+            height: 100vh;
+            background-color: yellow;
+        } */
+
+        /* 使用flex */
+        /* .wrapper {
+            display: flex;
+        }
+
+        .left {
+            height: 100vh;
+            width: 340px;
+            background-color: blue;
+        }
+
+        .right {
+            flex: 1;
+            height: 100vh;
+            background-color: yellow;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="left">
+            左边内容
+        </div>
+        <div class="right">
+            右边内容
+        </div>
+    </div>
+</body>
+
+</html>

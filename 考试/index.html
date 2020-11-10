@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let st = '111000111'
+        let n = 9;
+        let str = st.split('');
+
+        let day = 1, peple = 0;
+
+        //用flg变量来判断是否还有需要换衣服的情况
+        let flg = true;
+
+        //保存需要换衣服的下标
+        let index = [];
+
+        //用来作为 计算天数的条件
+        let t = []
+        if (eval(str.join('+')) === 0 || eval(str.join('+')) === n) {
+            day = -1;
+            peple = -1;
+        } else {
+            while (flg) {
+                for (let i = 0; i < str.length; i++) {
+                    if (i === 0) {
+                        if (str[i] === str[n - 1] && str[i] === str[i + 1]) {
+                            flg = true;
+                            index.push(i)
+                            t.push(i)
+                        } else {
+                            flg = false
+                        }
+                    } else if (i === n - 1) {
+                        if (str[i] === str[0] && str[i] === str[i - 1]) {
+                            flg = true;
+                            index.push(i)
+                            t.push(i)
+                        } else {
+                            flg = false
+                        }
+                    } else {
+                        if (str[i] === str[i - 1] && str[i] === str[i + 1]) {
+                            flg = true;
+                            index.push(i)
+                            t.push(i)
+                        } else {
+                            flg = false
+                        }
+                    }
+                }
+                while (index.length > 0) {
+                    let idx = index.shift();
+                    if (str[idx] === '0') {
+                        str[idx] = '1'
+                    } else {
+                        str[idx] = '0'
+                    }
+                }
+                if(t.length > 0){
+                    day ++
+                }
+                t = [];
+            }
+            for (let i = 0; i < n; i++) {
+                if (i === 0) {
+                    if (str[i] != str[n - 1] && str[i] != str[i + 1]) {
+                        peple += 1;
+
+                    }
+                } else if (i === n - 1) {
+                    if (str[i] != str[0] && str[i] != str[i - 1]) {
+                        peple += 1;
+
+                    }
+                } else {
+                    if (str[i] != str[i - 1] && str[i] != str[i + 1]) {
+                        peple += 1;
+
+                    }
+                }
+            }
+        }
+
+        console.log(day, peple)
+    </script>
+</body>
+
+</html>

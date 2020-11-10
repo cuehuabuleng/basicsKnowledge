@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作对象的的方法</title>
+</head>
+<body>
+    <script>
+        // ECMAScript 委员会 操作对象  14种
+        
+        var obj = {a:1, b:2};
+
+// 1、获取原型 [[getPrototypeOf]]
+        // var proto = Object.getPrototypeOf(obj);
+        // console.log(proto);
+        // console.log(obj.__proto__)
+        // console.log(Object.prototype)
+
+// 2、设置原型 [[setPrototypeOf]]
+        // Object.setPrototypeOf(obj, {
+        //     c:3,
+        //     d:4
+        // });
+        // console.log(obj)
+
+
+//3、 获取原型的可扩展行性 [[isExtensible]]
+   
+//         console.log(obj)
+//         // 封闭对象
+//         Object.seal(obj);
+//         obj.a = 3;   //可修改
+//         obj.c = 3; //不可以增加
+//         delete obj.a; //不可以操作
+//          // 可枚举
+//         for (const key in obj) {
+//             console.log(obj[key])
+//         }    
+//         console.log(obj);
+//      var extensible = Object.isExtensible(obj);
+//         console.log(extensible)//false
+        // 冻结对象
+        // Object.freeze(obj);
+        // obj.a = 3;   //不可以修改
+        // obj.c =3;     //不可以增加
+        // delete obj.a;  //不可以删除 /操作
+        //                 // 可枚举
+        // for (const key in obj) {
+        //     console.log(obj[key])
+        // }
+        // console.log(obj)
+
+//  4、获取自由属性 [[getOwnpropertyNames]]
+    // Object.setPrototypeOf(obj, {
+    //     c:3,
+    //     d:4
+    // })
+    // console.log(Object.getOwnPropertyNames(obj)) //返回对象上面的自由属性
+    // console.log(obj)
+
+// 5、禁止扩展对象[[PreventExtensions]]
+    // Object.preventExtensions(obj);
+    // obj.c = 3;
+    // console.log(obj) //禁止扩展
+    // delete obj.a;  //但是可以删除
+    // console.log(obj) 
+
+//6、拦截对象 [[DefinOwnProperty]]
+    // Object.defineProperties(obj,{
+    //     // .....
+    // })
+
+//     
+
+//7、判断是否是自身属性[[hasProperty]] -->深拷贝的时候用到
+    // console.log(obj.hasOwnProperty('a'))
+
+//8、取值 [[GET]]   
+        // 无论是判断或者是获取，都是底层get方法去去实现的
+        // console.log(obj.a)
+        // console.log('a' in obj)
+
+//9、设值  [[SET]]
+        // obj.a = 3;
+        // obj['b'] = 4;
+        // console.log(obj)
+//10、 删除  [[DELETE]]
+        // delete obj.a;
+        // console.log(obj)
+
+//11、枚举 [[Enumerate]]
+        // for(var i in obj){
+        //     console.log(obj[i])
+        // }
+
+// 12、获取键集合 [[OwnpropertyKeys]]    取得自身属性的key，返回一个key数组
+        // console.log(Object.keys(obj))
+
+// 13、方法调用 
+    //   function test(){}  test();
+    //   obj.test = function (){};   obj.test().call/aplly
+
+//14、对象实例化操作 
+            // function Test () {}
+            // new Test();
+    </script>
+</body>
+</html>

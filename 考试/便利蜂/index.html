@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function fn(target, arr) {
+            if(arr.length === 0) return 0
+            let map = new Map()
+            map.set(target)
+            arr = arr.map((item) => {
+                return item.split('->')
+            })
+            let count = 0;
+            let fn1 = function (target, arr) {
+                if (arr.length === 0) {
+                    return
+                }
+                for (let i = 0; i < arr.length; i++) {
+                    if (arr[i][0] === target) {
+                        count = count + 1;
+                        let newtarget = arr.splice(i, 1)[0][1]
+                        if(map.has(newtarget)){
+                            count = count - 1
+                        }
+                        map.set(newtarget)
+                        fn1(newtarget, arr)
+                        break;
+                    }
+                }
+            }
+            fn1(target, arr)
+            return count
+          }
+
+        let target = 'A'
+        let arr = ['A->B','C->A','B->D','D->B']
+        let res = fn(target, arr)
+        console.log(res)
+
+
+        function fn (sum, k){
+            if(k > sum){
+                return 0
+            }
+            let arr = [];
+            arr.push(1)
+            arr.push(new Map().set(1,1))
+            arr.push(new Map().set(1,1), new Map().set(2,1))
+            let fib = function(sum){
+                if(k === 1 || k === sum){
+                    arr[sum] = new Map().set(k,1)
+                }
+                if(sum === 1 || sum === 2){
+                    return arr[sum].get(k)
+                }
+                if(sum >= 3 && k > 1 && k < sum){
+                    arr[sum] = new Map().set(k, fib(sum - 1) + fib(sum - 2))
+                }
+            }
+            fib(sum)
+            return arr[sum].get(k)
+        }
+
+
+        let sum = 5
+        let k = 2
+        let res = fn(sum,k)
+        console.log(res)
+
+    </script>
+</body>
+
+</html>

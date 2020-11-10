@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function filter(url) {
+        //     let res = {};
+        //     if (~url.indexOf('?')) {
+        //         let tem = url.split('?')[1].split('&');
+        //         for (let i = 0; i < tem.length; i++) {
+        //             let item = tem[i].split('=');
+        //             res[item[0]] = item[1]
+        //         }
+        //         return res
+        //     }
+        //     return {}
+        // }
+
+
+        // let url = "https://www.baidu.com/?a=1&b=2"
+        // let res = filter(url)
+        // console.log(res)
+
+        // decodeURIComponent()  可以将uerl后面的参数编码转换成正常的字符串
+        //encodeURIComponent()  用来编码url
+         const testURL =
+            'https://www.youzan.com?name=coder&age=20&callback=https%3A%2F%2Fyouzan.com%3Fname%3Dtest&list[]=a&list[]=b&json=%7B%22str%22%3A%22abc%22,%22num%22%3A123%7D&illegal=C%9E5%H__a100373__b4';
+
+        function parseQueryString(url) {
+            let res = Object.create(null);
+            let tem = url.split('?')[1].split('&');
+            for (let i = 0; i < tem.length; i++) {
+                let item = tem[i].split('=');
+
+                if (item[0].indexOf('[]') > 0) {
+                    let key = item[0].replace('[]', '');
+                    if (key in res) {
+                        res[key].push(item[1])
+                    } else {
+                        res[key] = [];
+                        res[key].push(item[1])
+                    }
+
+                } else if (item[0] === 'json') {
+                    res[item[0]] = Object.create(null)
+                    res[item[0]]['num'] = JSON.parse(decodeURIComponent(item[1])).num
+                    res[item[0]]['str'] = JSON.parse(decodeURIComponent(item[1])).str
+
+                } else if (item[0] === 'illegal') {
+                    res[item[0]] = ''
+                } else {
+                    res[item[0]] = decodeURIComponent(item[1])
+                }
+            }
+            return res;
+        }
+
+        let res = parseQueryString(testURL)
+        console.log(res)
+
+    </script>
+</body>
+
+</html>

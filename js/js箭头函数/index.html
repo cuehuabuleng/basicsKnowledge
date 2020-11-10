@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let obj2 = {
+        //     a: 10,
+        //     b: function (n) {
+        //         let f = (n) => n + this.a;
+        //         return f(n);
+        //     },
+        //     c: function (n) {
+        //         let f = (n) => n + this.a;
+        //         let m = {
+        //             a: 20
+        //         };
+        //         return f.call(m, n);
+        //     }
+        // };
+        // console.log(obj2.b(1)) // 11
+        // console.log(obj2.c(1)); // 11
+
+        // var a = 10;
+        // let b = (n) => {
+        //     console.log(this)
+        //     console.log(n)
+        // }
+        // var c = function(){
+
+        // }
+        // var m = {
+        //     a: 1
+        // }
+        // var d = new b();
+        // b.call(2,1);
+
+        var arrow = (...n) => {
+            console.log(n)
+        }
+
+        arrow(1,2,3)
+    </script>
+</body>
+
+</html>

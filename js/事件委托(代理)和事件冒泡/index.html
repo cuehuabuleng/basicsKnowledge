@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="div1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <button id="btn">加载更多</button>
+    </div>
+    <script>
+        var btn = document.getElementById('btn');
+        var div1 = document.getElementById('div1');
+        let count = 7;
+        bindEvent(btn,'click', function (e) {
+            e.stopPropagation();
+            var li = document.createElement('li');
+            li.innerHTML = count++;
+            div1.appendChild(li)
+        })
+
+        bindEvent(div1, 'click', 'li', function (e) {
+            let target = e.target;
+            console.log(this)
+            console.log(this.innerHTML)
+        })
+
+        // 手写绑定函数
+        function bindEvent(elem, type, selector, fn) {
+            if (fn == null) {
+                fn = selector;
+                selector = null;
+            }
+            elem.addEventListener(type, (event) => {
+                const target = event.target;
+                if (selector) {
+                    // 代理绑定
+                    if (target.matches(selector)) {
+                        fn.call(target, event)
+                    }
+                } else {
+                    // 普通绑定
+                    fn.call(target, event)
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

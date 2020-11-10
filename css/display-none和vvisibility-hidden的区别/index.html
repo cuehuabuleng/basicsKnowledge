@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .start {
+
+        counter-reset: son0;
+
+    }
+
+    .son {
+
+        counter-increment: son1;
+
+    }
+
+    .son::before {
+
+        content: counter(son)".";
+
+    }
+</style>
+
+<body>
+    　<div class="start">
+        　　<div class="son">son1</div>
+        　　<div class="son" style="display:none">son2</div>
+        　　<div class="son">son3</div>
+    </div>
+
+    <script>
+        var dom = document.getElementsByClassName('div2');
+        var dom1 = document.getElementsByClassName('div1');
+        console.log(dom1)
+        document.addEventListener('click', function () {
+            alert('visibility')
+        })
+    </script>
+</body>
+
+</html>

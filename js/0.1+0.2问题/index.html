@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 可以先*10，变成整数再计算
+        // function add(a,b){
+        //     return (a*10 + b*10) / 10
+        // }
+        // var a = 0.1;
+        // var b = 0.2
+        // var res = add(a,b)
+        // console.log(res)
+
+
+        // 使用toFixed，来保留小数
+        function add(a, b) {
+            var res = (a + b).toFixed(1)
+            return Number(res);
+        }
+        var a = 0.1;
+        var b = 0.2
+        var res = add(a, b)
+        console.log(res)
+    </script>
+</body>
+
+</html>

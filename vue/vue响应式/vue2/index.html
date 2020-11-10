@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <p>0</p>
+        <button id="change">change</button>
+    </div>
+</body>
+<script>
+
+    // function defineProperty() {
+    //     var obj = {};
+
+    //     // 每定义一个属性的时候， getter， setter机制
+    //     Object.defineProperties(obj, {
+    //         a: {
+    //             value: 1,
+    //             writable: true, //可写属性.
+    //             enumerable: false,//可枚举属性
+    //             configurable: true // 可操作的，比如删除
+    //         },
+    //         b: {
+    //             value: 2
+    //         }
+    //     })
+    //     return obj
+    // }
+
+    // var obj = defineProperty();
+    // obj.a = 2;
+
+    function defineProperty() {
+        var obj = {};
+        var b = 1;
+        Object.defineProperties(obj, {
+            a: {
+                // value: 1,
+                // writable: true,  //当vaule和writable任意一项出现的时候，都不可以使用get或则set
+                get() {
+                    console.log('取值', b)
+                    return b
+                },
+                set(newVal) {
+                    console.log('设值', newVal)
+                    b = newVal;
+                    var op = document.getElementsByTagName('p')[0];
+                    op.innerHTML = b
+                }
+            },
+            b: {
+                get() {
+                    console.log('b get');
+                    return 10
+                }
+            }
+        })
+        return obj;
+    }
+
+    var obj = defineProperty();
+    document.getElementById('change').onclick = function () {
+        obj.a = 3;
+    }
+
+    console.log(obj.a)
+
+// 数据劫持
+
+// vue的2.x版本都是使用defineProperty来实现数据的双向绑定、响应式
+</script>
+
+</html>

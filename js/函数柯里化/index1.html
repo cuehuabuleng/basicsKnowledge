@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function add(){
+        //     let args = [].slice.call(arguments);
+        //     let adder = function(){
+        //         let _adder = function(){
+        //             args.push(...arguments);
+        //             return _adder
+        //         }
+        //         _adder.toString = function (){
+        //             return args.reduce((a,b) => a+b)
+        //         }
+        //         return _adder;
+        //     }
+        //     return adder(...args)
+        // }
+
+        // function add(){
+        //     let args = Array.prototype.slice.call(arguments);
+        //     let adder = function (){
+        //         let _adder = function(){
+        //             args.push(...arguments);
+        //             return _adder
+        //         }
+        //         _adder.toString = function(){
+        //             return args.reduce((a,b) => {
+        //                 return a + b
+        //             })
+        //         }
+        //         return _adder;
+        //     }
+        //     return adder(...args)
+        // }
+
+        // console.log(add(1,2,3,4,5).toString())
+
+
+
+
+        // function add(){
+        //     return [].slice.call(arguments).reduce((a,b) => a + b)
+        // }
+        // function currying(fn){
+        //     let arg = Array.prototype.slice.call(arguments,1);
+        //     let _adder = function(){
+        //         let _arg = Array.prototype.slice.call(arguments);
+        //         if(_arg.length === 0){
+        //             return fn.apply(this, arg)
+        //         }else{
+        //             Array.prototype.push.call(arg, ..._arg)
+        //             return _adder;
+        //         }
+        //     }
+
+        //     _adder.toString = function(){
+        //         return _adder()
+        //     }
+        //     return _adder;
+        // }
+
+        function add() {
+            return [].slice.call(arguments).reduce((a,b) => a+b)
+        }
+
+        function currying(fn) {
+            let args = Array.prototype.slice.call(arguments,1);
+            let adder = function () {
+                let _args = Array.prototype.slice.call(arguments);
+                if (_args.length === 0) {
+                    return fn.apply(this, args)  //注意这里使用call的话，那么就要对args进行 ...
+                } else {
+                    Array.prototype.push.call(args, ..._args);
+                    return adder
+                }
+            }
+            adder.toString = function () {
+                return adder();
+            }
+            return adder;
+        }
+        let ADD = currying(add)
+        let res = ADD(1)(2)
+        console.log(res)
+    </script>
+</body>
+
+</html>

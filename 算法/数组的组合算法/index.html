@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var array = [1, 2, 3, 4, 5];
+        // for (var i = 0, len1 = array.length; i < len1; i++) {
+        //     var a2 = array.concat();
+        //     /*
+        //     排除之前已经组合过的数据
+        //     比如：第一次的时候，i[0] = 1, 这个时候2层循环, 只循环 2~5, 
+        //     第二次的时候, i[1] = 2, 这个时候2层循环, 只循环 3~5
+        //     同理：3层循环也是相比于2层循环来
+        //     */
+        //     a2.splice(0, i + 1);
+        //     for (var j = 0, len2 = a2.length; j < len2; j++) {
+        //         var a3 = a2.concat();
+        //         a3.splice(0, j + 1);
+        //         for (var k = 0, len3 = a3.length; k < len3; k++) {
+        //             console.log(array[i] + ' ' + a2[j] + ' ' + a3[k]);
+        //         }
+        //     }
+        // }
+
+        // function combinations(num){
+        //     let res = [];
+        //     res.push([num.shift()])
+        //     while(num.length > 0){
+        //         let item = num.shift(), tem = [];
+        //         for(let i = 0; i < res.length; i ++){
+        //             tem.push([...res[i], item])
+        //         }
+        //         console.log(tem)
+        //         res.push(...tem)
+        //         res.push([item])
+        //         tem = [];
+        //     }
+        //     res.push([])
+        //     return res
+        // }
+
+        // function combinations(nums){
+        //     var strarr = nums.join(',').split(',')
+        //     var res = [];
+        //     for(let i = 0; i < strarr.length; i ++){
+        //         let item = strarr[i],tem = [];
+        //         for(let j = 0; j < res.length; j ++){
+        //             tem.push(res[j] + ',' + item)
+        //         }
+        //         res.push(...tem);
+        //         res.push(item)
+        //         tem = [];
+        //     }
+        //     res = res.map((item) => {
+        //         return  item.split(',').map((item) => Number(item))
+        //     })
+        //     return res
+        // }
+
+
+        // var arr = [1,2,3,12]
+        // console.log(combinations(arr))
+
+
+        //当数组有重复元素的情况
+        /**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+        var subsetsWithDup = function (nums) {
+            nums = nums.sort((a, b) => a - b)
+            let map = new Map();
+            let res = [];
+            res.push([nums.shift()]);
+            map.set(res[0].toString())
+            while (nums.length > 0) {
+                let item = nums.shift();
+                let tem = []
+                for (let i = 0; i < res.length; i++) {
+                    let s = [item, ...res[i]]
+                    if (!map.has(s.toString())) {
+                        map.set(s.toString());
+                        tem.push(s)
+                    }
+                }
+                if (!map.has(item.toString())) {
+                    map.set(item.toString())
+                    res.push([item])
+                }
+                res.push(...tem)
+                tem = [];
+            }
+            res.push([])
+            return res
+        };
+        let a = [4, 4, 4, 1, 4]
+        let res = subsetsWithDup(a)
+        console.log(res)
+    </script>
+</body>
+
+</html>

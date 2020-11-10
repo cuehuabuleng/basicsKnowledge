@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // for (let i = 0; i < 10; i++) {
+        //     (function (e) {
+        //         setTimeout(() => {
+        //             console.log(e)
+        //         })
+        //     })(i)
+        // }
+
+        var name = 'hello';
+        (
+            function () {
+                console.log(name)
+                if (typeof name === 'undefined') {
+                    name = 'nono'
+                    console.log('1',name)
+                } else {
+                    console.log('3',name)
+                }
+            }
+        )()
+    </script>
+</body>
+
+</html>

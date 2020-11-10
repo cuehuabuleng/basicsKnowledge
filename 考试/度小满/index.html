@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function color(colors, colored) {
+        //     var res = [];
+        //     for(let i = 0; i < colors.length; i ++){
+        //         let color = colors[i]
+        //         for(let j = 0; j < colored.length; j ++){
+        //             if(color === colored[j]){
+        //                 colored.splice(j,1);
+        //                 res.push(color)
+        //                 break
+        //             }
+        //         }
+        //     }
+        //     return res.length
+        // }
+
+        // var colors = ['A', 'A', 'B']
+        // var colored = ['A','B','C', 'A']
+        // var res = color(colors, colored)
+        // console.log(res)
+
+        function find(str) {
+            var res = [],
+                newStr = [];
+            for(let i = 0;  i < str.length; i ++){
+                let item = str[i].split(''),
+                    tem = [],j=0;
+                while(item.length > 0){
+                    tem.push(item.splice(j,j+3));
+                    j + 3;
+                }
+                newStr.push(tem)
+            }
+            for(let i = 0; i < newStr.length; i ++){
+                let item = newStr[i],sum = 0;
+                for(let j = 0; j < item.length; j ++){
+                    let jStr = item[j]
+                    for(let k = j + 1; k < item.length; k ++){
+                        let kStr = item[k], count = 0;
+                        for(let n = 0; n < jStr.length; n ++){
+                            if(jStr[n] !== kStr[n]){
+                                count = count + 1;
+                            }
+                            if(count > 1){
+                                sum = sum + 1;
+                            }
+                        }
+                    }
+                }
+                if(sum >= 1){
+                    res.push('No')
+                }else{
+                    res.push('Yes')
+                }
+            }
+            return res
+        }
+
+        var str = ['ABCABDABDABEABEABF', 'ABCABDAEC']
+        var res = find(str)
+        console.log(res)
+    </script>
+</body>
+
+</html>

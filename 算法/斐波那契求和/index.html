@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let fibonacci = function () {
+        //     let temp = [0, 1];
+        //     return function (n) {
+        //         let result = temp[n];
+        //         if (typeof result != 'number') {
+        //             result = fibonacci(n - 1) + fibonacci(n - 2);
+        //             temp[n] = result; // 将每次 fibonacci(n) 的值都缓存下来
+        //         }
+        //         console.log(result)
+        //         return result;
+        //     }
+        // }(); // 外层立即执行
+
+        var fib = function (n) {
+            if(n === 0){
+                return 0
+            }else  if(n === 1){
+                return 1
+            }else{
+                return fib(n-1) + fib(n-2)
+            }
+        };
+        console.log(fib(2))
+    </script>
+</body>
+
+</html>

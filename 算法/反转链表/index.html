@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+let reverseList =  (head) => {
+    if (!head)
+        return null;
+    let pre = null, cur = head;
+    while (cur) {
+        // 关键: 保存下一个节点的值
+        let next = cur.next;
+        cur.next = pre;
+        pre = cur;
+        cur = next;
+    }
+    return pre;
+};
+reverseList();
+</script>
+</html>

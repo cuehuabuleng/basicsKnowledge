@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        /*
+        快排
+        对冒泡的一种改进，第一趟将数组分为大小的两部分。然后递归调用，知道最后，排序成功。
+        */
+
+        //    阮一峰老师的快排思想
+
+        // function quickSort(arr) {
+        //     if (arr.length <= 1) {
+        //         return arr
+        //     }
+        //     // 组队对半开，向下取整
+        //     var index = Math.floor(arr.length / 2);
+        //     var point = arr.splice(index, 1)[0];
+        //     let left = [],
+        //         right = []
+        //     for (let i = 0; i < arr.length; i++) {
+        //         if (arr[i] < point) {
+        //             left.push(arr[i])
+        //         } else {
+        //             right.push(arr[i])
+        //         }
+        //     }
+
+        //     return quickSort(left).concat(point, quickSort(right))
+        // }
+        // var arr = [2, 5, 7, 86, 4, 8, 12, 3, 45, 22, 55]
+        // console.log(quickSort(arr))
+
+
+        // 快排改进
+        // var devide_Xin = function (array, start, end) {
+        //     if (start >= end) return array;
+        //     var baseIndex = Math.floor((start + end) / 2), // 基数索引
+        //         i = start,
+        //         j = end;
+
+        //     while (i <= j) {
+        //         while (array[i] < array[baseIndex]) {
+        //             i++;
+        //         }
+        //         while (array[j] > array[baseIndex]) {
+        //             j--;
+        //         }
+        //         if (i <= j) {
+        //             var temp = array[i];
+        //             array[i] = array[j];
+        //             array[j] = temp;
+        //             i++;
+        //             j--;
+        //         }
+        //     }
+        //     return i;
+        // }
+
+        // var quickSort_Xin = function (array, start, end) {
+        //     if (array.length < 1) {
+        //         return array;
+        //     }
+        //     var index = devide_Xin(array, start, end);
+        //     if (start < index - 1) {
+        //         quickSort_Xin(array, start, index - 1);
+        //     }
+        //     if (end > index) {
+        //         quickSort_Xin(array, index, end);
+        //     }
+
+        //     return array;
+        // }
+
+
+
+
+        // function quickSort(elements) {
+        //     if (elements.length <= 1) {
+        //         return elements;
+        //     }
+        //     var pivotIndex = Math.floor(elements.length / 2);
+        //     var pivot = elements.splice(pivotIndex, 1)[0];
+        //     var left = [];
+        //     var right = [];
+        //     for (var i = 0; i < elements.length; i++) {
+        //         if (elements[i] < pivot) {
+        //             left.push(elements[i]);
+        //         } else {
+        //             right.push(elements[i]);
+        //         }
+        //     }
+        //     return quickSort(left).concat([pivot], quickSort(right));
+        // };
+        // var elements = [5, 6, 2, 1, 3, 8, 7, 1.2, 5.5, 4.5];
+        // console.log(quickSort(elements));
+
+        // var sortArray = function (nums) {
+        //     quick(nums, 0, nums.length - 1)
+        //     return nums
+        // };
+
+        // function quick(list, left, right) {
+        //     let index = 0  
+        //     if (list.length > 1) {
+        //         index = partition(list, left, right)             // 帮助我们将子数组分离为较小值数组和较大值数组
+        //         left < index - 1 && quick(list, left, index - 1)
+        //         index < right && quick(list, index, right)
+        //     }
+        // }
+
+        // function partition(list, left, right) {
+        //     let mid = list[Math.floor((right+left)/2)]
+        //     while (left <= right) {
+        //         while (list[left] < mid) {
+        //             left++
+        //         }
+        //         while (list[right] > mid) {
+        //             right--
+        //         }
+        //         if (left <= right) {
+        //             [list[left], list[right]] = [list[right], list[left]]
+        //             left++
+        //             right--
+        //         }
+        //     }
+        //     return left
+        // }
+
+        var sortArray = function(nums){
+            quick(nums, 0, nums.length - 1)
+            return nums
+        }
+        function quick(list, left, right){
+            let index = 0;
+            if(list.length > 1){
+                index = partition(list, left, right);
+                left < index - 1 && quick(list, left, index - 1)
+                right > index && quick(list, index, right);
+            }
+        }
+
+        function partition(list, left, right){
+            let mid = list[Math.floor((left + right)/2)]
+            while(left <= right){
+                while(list[left] < mid){
+                    left ++
+                }
+                while(list[right] > mid){
+                    right --
+                }
+                if(left <= right){
+                    [list[left], list[right]] = [list[right], list[left]];
+                    right --;
+                    left ++
+                }
+            }
+            return left
+        }
+        let arr = [1,2,5,7,52,1,2,8,72,7]
+        console.log(sortArray(arr))
+    </script>
+</body>
+
+</html>

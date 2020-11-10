@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+        <ul>
+            <li>
+                <a href="">
+                    <img src="" alt="">
+                </a>
+            </li>
+            <li>
+                <span></span>
+            </li>
+            <li>
+            </li>
+        </ul>
+        <p></p>
+        <button></button>
+    </div>
+</body>
+<script>
+
+    // 这两中非递归算法的区别是在于读取数组的方法不一样。他们都是用到了两个数组。
+    // 深度优先非递归的话，每一层遍历，会将遍历到的每个children，从后面的位置开始，按照后序来push放进数组，然后下一层遍历再使用pop，读取数组的最后一个元素放到最终的数组
+    // 广度优先非递归：每一层遍历，会将遍历到的每个children，按序排到数组的后面，然后下一次的遍历，重第一个数组开始读，放到最总的数组。(关键的数组操作 unshift shift push)
+
+
+    // 非递归深度遍历
+    // function deepFirstSearch(node) {
+    //     debugger
+    //     var nodes = [];
+    //     if (node != null) {
+    //         var stack = [];
+    //         stack.push(node);
+    //         while (stack.length != 0) {
+    //             var item = stack.pop();
+    //             nodes.push(item);
+    //             var children = item.children;
+    //             for (var i = children.length - 1; i >= 0; i--)
+    //                 stack.push(children[i]);
+    //         }
+    //     }
+    //     return nodes;
+    // }
+    // let root = document.getElementById('root')
+    // let res = deepFirstSearch(root, nodeList = [])
+    // console.log(res)
+
+    // 深度遍历递归
+    function deepFirstSearch(node, nodeList) {
+        if (node) {
+            nodeList.push(node);
+            var children = node.children;
+            for (var i = 0; i < children.length; i++)
+                //每次递归的时候将 需要遍历的节点 和 节点所存储的数组传下去
+                deepFirstSearch(children[i], nodeList);
+        }
+        return nodeList;
+    }
+    let root = document.getElementById('root')
+    let res = deepFirstSearch(root, nodeList = [])
+    console.log(res)
+
+    // 非递归广度优先
+    //     function breadthFirstSearch(node) {  
+    //         debugger;
+    //     var nodes = [];  
+    //     if (node != null) {  
+    //         var queue = [];  
+    //         queue.unshift(node);  
+    //         while (queue.length != 0) {  
+    //             var item = queue.shift();  
+    //             nodes.push(item);  
+    //             var children = item.children;  
+    //             for (var i = 0; i < children.length; i++)  
+    //                 queue.push(children[i]);  
+    //         }  
+    //     }  
+    //     return nodes;  
+    // }
+
+    //     let root = document.getElementById('root');
+    //     let res = breadthFirstSearch(root)
+    //     console.log(res)
+
+    // 广度优先递归
+    // function wideTraversal(node) {
+    //     debugger;
+    //     let _node = node;
+    //     let nodes = [], i = 0;
+    //      var map = (node) => {
+    //         if (node != null) {
+    //             nodes.push(node);
+    //             map(node.nextElementSibling);
+    //             node = nodes[i++];
+    //             map(node.firstElementChild);
+    //         }
+    //         return nodes;
+    //     }
+    //     return map(_node)
+    // }
+    // let root = document.getElementById('root');
+    // let res = wideTraversal(root)
+    // console.log(res)
+
+</script>
+
+</html>

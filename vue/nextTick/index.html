@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app">
+        <div ref="msgDiv">{{msg}}</div>
+        <div v-if="msg1">Message got outside $nextTick: {{msg1}}</div>
+        <div v-if="msg2">Message got inside $nextTick: {{msg2}}</div>
+        <div v-if="msg3">Message got outside $nextTick: {{msg3}}</div>
+        <button @click="changeMsg">
+            Change the Message
+        </button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '.app',
+            data: {
+                msg: 'Hello Vue.',
+                msg1: '',
+                msg2: '',
+                msg3: ''
+            },
+            methods: {
+                changeMsg() {
+                    this.msg = "Hello world."
+                    this.msg1 = this.$refs.msgDiv.innerHTML
+                    console.log('1')
+                    this.$nextTick(() => {
+                        console.log('2')
+                        this.msg2 = this.$refs.msgDiv.innerHTML
+                    })
+                    console.log('3')
+                    this.msg3 = this.$refs.msgDiv.innerHTML
+                    console.log('改变', this.$refs.msgDiv.innerHTML)
+                }
+            },
+            created() {
+                this.$nextTick(() => {
+                    console.log('created',this.$refs.msgDiv.innerHTML)
+                })
+            },
+            mounted() {
+                console.log('mounted', this.$refs.msgDiv.innerHTML)
+            },
+            updated() {
+                console.log('更新', this.$refs.msgDiv.innerHTML)
+            },
+        })
+    </script>
+</body>
+
+</html>

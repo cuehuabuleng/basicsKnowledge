@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Solution(S) {
+            let s = S.split('');
+            let start, end;
+            for (let i = 0; i < s.length; i++) {
+                if (s[i] === '.') {
+                    start = i;
+                    while (s[i + 1] === '.') {
+                        i++;
+                    }
+                    end = i;
+                    if (start === end) {
+                        if(i <= 0 && s[i+1] === 'L'){
+                            s.splice(i,1,'L')
+                        }else if(i > 0 && s[i+1] === 'L' && s[i-1] === 'L'){
+                            s.splice(i,1,'L')
+                        }else if(i > 0 && s[i+1] === 'R' && s[i-1] === 'R'){
+                            s.splice(i,1,'R')
+                        }else if(i === s.length - 1 && s[i-1] === 'R'){
+                            s.splice(i,1,'R')
+                        }
+                    }else{
+                        let len = end - start + 1;
+                        if(start <= 0 && s[end + 1] === 'L'){
+                            while(start <= end){
+                                s[start] = 'L'
+                                start ++;
+                            }
+                        }else if(len%2 === 0){
+                            if(s[start - 1] === 'R' && s[end + 1] === 'R'){
+                                while(start <= end){
+                                    s[start] = 'R'
+                                    start ++;
+                                }
+                            }else if(s[start - 1] === 'L' && s[end + 1] === 'L'){
+                                while(start <= end){
+                                    s[start] = 'L'
+                                    start ++;
+                                }
+                            }else if(s[start - 1] === 'R' && s[end + 1] === 'L'){
+                                while(start <= end){
+                                    s[start] = 'R'
+                                    s[end] = 'L'
+                                    start ++;
+                                    end --;
+                                }
+                            }else if(s[start - 1] === 'R' && s[end + 1] == undefined){
+                                console.log('1')
+                                while(start <= end){
+                                    s[start] = 'R'
+                                    start ++;
+                                }
+                            }
+                        }else{
+                            let mid = start + (end - start)/2;
+                            console.log(start,end,mid)
+                            if(s[start - 1] === 'R' && s[end + 1] === 'L'){
+                                while(start < mid && end > mid){
+                                    s[start] = 'R'
+                                    s[end] = 'L'
+                                    start ++;
+                                    end --;
+                                }
+                            }else if(s[start - 1] === 'R' && s[end + 1] === 'R'){
+                                while(start <= end){
+                                    s[start] = 'R'
+                                    start ++;
+                                }
+                            }else if(s[start - 1] === 'L' && s[end + 1] === 'L'){
+                                while(start <= end){
+                                    s[start] = 'L'
+                                    start ++;
+                                }
+                            }else if(s[start - 1] === 'R' && s[end + 1] == undefined){
+                                console.log('1')
+                                while(start <= end){
+                                    s[start] = 'R'
+                                    start ++;
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+            return s.join('')
+        }
+        var str = "R.......L.R........."
+        var res = Solution(str)
+        console.log(res)
+        var ress = 'LL.RR.LLRRLL..'
+    </script>
+</body>
+
+</html>

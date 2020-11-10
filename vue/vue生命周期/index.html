@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item, index) of list" :key="index">
+                {{item}}---{{messge}}
+            </li>
+        </ul>
+        <p>p1</p>
+        <p>p2</p>
+        <p>p3</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    list: ['aaaa', 'bbbbb', 'cccccc'],
+                    messge: 'helloword'
+                }
+            },
+            // beforeCreate() {
+            //     console.log('before created')
+            // },
+            created() {
+                setTimeout(() => {
+                    this.list = ['111', '2222', '33333', '444444']
+                    console.log('created异步0', document.getElementsByTagName('li').length);
+                    this.$nextTick(() => {
+                        console.log('created&nextTick',  document.getElementsByTagName('li').length)
+                    })
+                }, 0)
+
+
+                setTimeout(() => {
+                    this.list = [',,,,,,', '.....', '//////', '\\\\\\','aisdyiu']
+                    console.log('created异步1000', document.getElementsByTagName('li').length);
+                    this.$nextTick(() => {
+                        console.log('created&nextTick100',  document.getElementsByTagName('li').length)
+                    })
+                }, 1000)
+            },
+            // beforeMount() {
+            //     console.log('beforeMount')
+            // },
+            mounted() {
+                console.log('mounted', document.getElementsByTagName('li').length)
+            },
+            updated() {
+                console.log('update',document.getElementsByTagName('li').length)
+            },
+
+            // 被 <keep-alive/>包裹的动态组件会被缓存，他是一个抽象组，他自身不会渲染一个dom元素，
+            // 也不会出现在父组件中链中， 当组件在<keep-alive/>内被切换他的两个生命周期函数就会被执行 activated, deactivated
+            // activated() {
+            //     console.log('activated')
+            // },
+            // deactivated() {
+            //     console.log('deactivated')
+            // }
+        })
+    </script>
+</body>
+
+</html>

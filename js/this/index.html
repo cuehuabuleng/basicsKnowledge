@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // var a = 10;
+        // var obj = {
+        //     a:20,
+        //     say:()=>{
+        //         console.log(this.a)
+        //     }
+        // }
+        // obj.say(); //20
+        // var obj2 = {a:30}
+        // obj.say.apply(obj2); //30
+
+        // function User(name) {
+        //     this.name = name;
+        // }
+        // User.prototype.getname = function(){
+        //     console.log(this.name)
+        // }
+
+        // let user = new User('jhon');
+
+        // user.getname()
+        // setTimeout(() => {
+        //     user.getname()
+        // }, 1000)
+
+        // var a = 5;
+        // class A{
+        //     a = 4;
+        //     fn(){
+        //         console.log(this)
+        //     }
+        // }
+
+        // // let b = new A().fn
+        // // b();
+        // let b = new A()
+        // b.fn()
+        // console.log(globalThis)
+
+        
+        function bar() {
+            console.log('bar',this, myName)
+        }
+
+        function foo() {
+            this.myName = 'foo'
+            console.log('foo', this, myName)
+            bar()
+        }
+
+        var myName = 'window'
+        foo();
+        console.log('window', this, myName)
+    </script>
+</body>
+
+</html>

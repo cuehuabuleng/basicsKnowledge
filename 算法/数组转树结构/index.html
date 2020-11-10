@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var arr3 = [
+            {
+                menuId: 1,
+                name: '系统管理1',
+                parentMenu: null
+            },
+            {
+                menuId: 2,
+                name: '系统管理2',
+                parentMenu: null
+            },
+            {
+                menuId: 3,
+                name: '系统管理1_0',
+                parentMenu: 1
+            },
+            {
+                menuId: 4,
+                name: '系统管理1_1',
+                parentMenu: 1
+            },
+            {
+                menuId: 5,
+                name: '系统管理2_0',
+                parentMenu: 2
+            },
+            {
+                menuId: 6,
+                name: '系统管理5_0',
+                parentMenu: 5
+            },
+            {
+                menuId: 7,
+                name: '系统管理3',
+                parentMenu: null
+            }
+        ]
+
+        function turnToTreeOfManyRootPlus(arr) {
+            var arrs = []
+            arr.forEach(item => {
+                if (!item.parentMenu) {
+                    arrs.push(item)
+                }
+            })
+
+            return arr.reduce((h, m) => {
+                if (m.parentMenu) {
+                    foo(h, m)
+                }
+
+                function foo(arr, cur) {
+                    arr.forEach(item => {
+                        if (item.menuId === cur.parentMenu) {
+                            if (!item.children) {
+                                item.children = []
+                            }
+                            item.children.push(cur)
+                        } else if (item.children) {
+                            foo(item.children, cur)
+                        }
+                    })
+                }
+
+                return h
+            }, arrs)
+        }
+
+        var res = turnToTreeOfManyRootPlus(arr3)
+        console.log(res)
+
+        var v = 'hello';
+        (function(){
+            console.log(v)
+            function v(){
+                var v = 'happy'
+                console.log(v)
+            }
+            v();
+        })()
+    </script>
+</body>
+
+</html>

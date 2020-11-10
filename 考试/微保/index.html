@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // var xor = 0;
+        // debugger
+        // for (let i = 0; i < arr.length; i++) {
+        //     xor ^= arr[i]
+        // }
+
+
+        function singleNumbers(nums) {
+            if (nums.length < 2 || !nums) {
+                return
+            }
+            if (nums.length === 2) {
+                return nums
+            }
+            let xor = 0
+            for (let i = 0; i < nums.length; i++) {
+                xor ^= nums[i]
+            }
+            let lastOne = -xor & xor
+            let numOne = 0
+            let numTwo = 0
+            debugger
+            for (let i = 0; i < nums.length; i++) {
+                let item = nums[i]
+                if ((item & lastOne) === 0) {
+                    numOne ^= item
+                } else {
+                    numTwo ^= item
+                }
+            }
+            return [numOne, numTwo]
+        };
+        var arr = [4, 1, 4, 6]
+        var res = singleNumbers(arr)
+        console.log(res)
+    </script>
+</body>
+
+</html>

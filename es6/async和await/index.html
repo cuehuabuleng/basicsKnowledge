@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let promise1 = new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         resolve(1)
+        //     }, 10)
+        // })
+
+
+        // let promise2 = new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         resolve(2)
+        //     }, 10)
+        // })
+
+
+        // let promise3 = new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         resolve('err')
+        //     }, 10)
+        // })
+
+        // Promise.all([promise1, promise2, promise3]).then((res) => {
+        //     console.log(res)
+        // }).catch(e => {
+        //     console.error(e)
+        // })
+
+        console.log('script start')
+        async function async1() {
+            await async2()
+            console.log('async1 end')
+        }
+        async function async2() {
+            console.log('async2 end')
+            return Promise.resolve().then(()=>{
+                console.log('async2 end1')
+            })
+        }
+        async1()
+        setTimeout(function() {
+            console.log('setTimeout')
+        }, 0)
+        new Promise(resolve => {
+            console.log('Promise')
+            resolve()
+        }).then(function() {
+            console.log('promise1')
+        }).then(function() {
+            console.log('promise2')
+        }).then(function() {
+            console.log('promise3')
+        }).then(function() {
+            console.log('promise4')
+        })
+        async function async3() {
+            await async4()
+            console.log('async3 end')
+        }
+        async function async4() {
+            console.log('async4 end')
+            return Promise.resolve().then(()=>{
+                console.log('async4 end1')
+            })
+        }
+        async3()
+        console.log('script end')
+
+
+        /*
+        cmd：
+        script start
+        async2 end
+        Promise
+        async4 end
+        script end
+        async2 end1
+        promise1
+        async4 end1
+        promise2
+        async1 end
+        promise3
+        async3 end
+        promise4
+        setTimeoutz
+
+
+        microTask:
+         console.log('async2 end1')
+          console.log('promise1')
+          console.log('async4 end1')
+          放一个undefied得微任务
+          console.log('promise2')
+          放一个undefied得微任务
+         console.log('async1 end')
+         console.log('promise3')
+        console.log('async3 end')
+         console.log('promise4')
+
+        macroTask:
+        console.log('setTimeout')
+
+
+        */
+
+        // async function async1() {
+        //     console.log("async1 start");
+        //     await async2();
+        //     console.log("async1 end");
+        // }
+
+        // async function async2() {
+        //     console.log("async2");
+        // }
+
+        // console.log("script start");
+
+        // setTimeout(function () {
+        //     console.log("setTimeout");
+        // }, 0);
+
+        // async1();
+
+        // new Promise(function (resolve) {
+        //     console.log("promise1");
+        //     resolve();
+        // }).then(function () {
+        //     console.log("promise2");
+        // });
+
+        // console.log("script end");
+
+
+        /*
+
+
+        script start
+        async1 start
+        async2
+        promise1
+        script end
+        promise2
+        async1 end
+        setTimeout
+
+
+        '开始了'
+        同步代码
+        c.......
+        3
+        undefied
+        then....返回了一个值
+        1
+
+        microTask:
+        console.log('c.......');
+        console.log(3)
+        console.log(res);
+        console.log('then....' + res)
+        console.log(1)
+
+
+        macroTask
+
+
+
+
+
+cmd:
+script start
+async2 end
+Promise
+async4 end
+script end
+async2 end1
+promise1
+async4 end1
+promise2
+async1 end
+async3 end
+setTimeout
+
+microTask:
+console.log('async2 end1')
+console.log('promise1')
+console.log('async4 end1')
+console.log('promise2')
+console.log('async1 end')
+  console.log('async3 end')
+macroTask:
+console.log('setTimeout')
+
+
+
+
+
+
+cmd:
+script start
+async2 end
+Promise
+async4 end
+script end
+promise1
+async4 end1
+promise2
+async1 end
+async3 end
+setTimeout
+
+microTask:
+ console.log('promise1')
+console.log('async4 end1')
+console.log('promise2')
+
+macroTask:
+console.log('setTimeout')
+
+
+
+09/04
+
+运行结果：
+script start
+async2 end
+Promise
+async4 end
+script end
+async2 end1
+promise1
+async4 end1
+promise2
+async1 end
+promise3
+async3 end
+promise4
+
+
+microTask：
+console.log('async2 end1')
+console.log('promise1')
+console.log('async4 end1')
+
+console.log('promise2')
+console.log('async1 end')
+console.log('promise3')
+console.log('async3 end')
+console.log('promise4')
+
+
+
+macroTask：
+ console.log('setTimeout')
+
+
+
+
+
+10/5
+运行结果：
+script start
+async2 end
+Promise
+async4 end
+script end
+async2 end1
+promise1
+async4 end1
+promise2
+async1 end
+promise3
+async3 end
+promise4
+
+
+
+
+
+
+
+microTask：
+console.log('async2 end1')
+console.log('promise1')
+
+console.log('async4 end1')
+放一个undefined返回值的promise(async1)
+console.log('promise2')
+放一个undefined返回值的promise(async2)
+console.log('async1 end')
+console.log('promise3')
+console.log('async3 end')
+console.log('promise4')
+
+
+macroTask：
+console.log('setTimeout')
+
+
+
+
+        */
+    </script>
+</body>
+
+
+</html>

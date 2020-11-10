@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        /*
+        javascript预编译
+
+        变量提升规则： 1：函数声明提升，整体提升到最前面  
+                       2：变量申明提升，把变量提升到最前面，值为 undefined, 解释阶段才进行初始化。
+                       ps:  还有就是匿名函数不参见预编译。
+
+        javascript代码运行的3大步骤：
+                        1、语法分析：检查js代码里面的语法是否正确，期间不会执行代码
+                        2、预编译：发生在代码执行的前一刻，在内存里面创建一个空间，用来存放定义的变量和函数
+                        3、解释执行：代码执行
+        全局变量：
+                1、任何变量未经过声明就进行赋值，此变量就成为全局对象所有。
+                2、一切全局声明的变量，全是window的属性，window就是全局的域
+        Global Object和Activation Object:
+                JS代码执行之前会产生一个GO， 即全局作用域。 当一个方法被调用时， 会形成一个局部作用域AO。
+        */
+
+
+        /*
+        预编译的执行步骤：主要分为创建Ao对象过程和创建GO对象的过程。
+        */
+
+        // 创建AO示例：
+        /*
+        1.寻找函数的形参和变量声明，将变量和形参作为AO对象的属性名，值设定为undefined
+        2.将形参和实参相统一，即便改形参后的undefined为具体的实参值
+        3。寻找函数中的函数声明，将函数名作为AO属性名，值为函数题。
+        至此，预编译环节结束，函数中变量按照AO对象中的值开始执行
+        */
+
+        // 示例1 
+
+        // var a;
+        // function fn(a) {
+        //     /**
+        //     创建Activation Object
+        //         1.创建
+        //         AO = {
+        //             a:function a() { }
+        //             b：undefined,
+        //             d: fn
+        //         }
+        //     */
+        //     a = 123;
+        //     console.log(a) //函数 function a() {}
+
+        //     console.log(a); //123
+        //     function c() { } //提升上去了
+        //     console.log(a)  //123
+        //     var b = function () { };
+        //     console.log(b)  //函数  匿名函数
+
+        //     function d() { }
+        // }
+        // fn(1)
+        // console.log(a) //123
+
+
+        // 示例2
+        // function test(a, b) {
+        //     /**
+        //     创建AO
+        //     AO = {
+        //         a:1,
+        //         b:function b(){},
+        //         c:undefined
+        //     }
+        //     */
+
+
+        //     console.log(a); //1
+        //     c = 0;
+        //     var c = 0;
+        //     a = 3;
+        //     b = 2;
+        //     console.log(b); //2
+        //     function b() { };
+        //     function d() { };
+        //     console.log(b) //2
+        // }
+        // test(1);
+
+
+        // 创建Go对象示例：
+        /*
+        1、寻找变量声明，值设定为undefined
+        2、寻找函数中的函数声明，将函数名作为GO属性名，值为函数体。
+        至此 预编译环节结束
+        */
+
+        // 示例1
+
+        /*
+           GO{
+               a:undefined，
+               demo:function demo(){....}
+           }
+           */
+        // function demo() {
+
+        //     /*
+        //     AO{
+        //         b:undefied
+        //     }
+        //     */
+
+        //     console.log(b); //undefined
+        //     if (a) {
+        //         var b = 100;
+        //     }
+        //     console.log(b); //undefined
+        //     c = 234;
+        //     console.log(c);//234   这里提升为全局的变量
+        // }
+        // var a;
+        // demo();
+        // a = 10;
+        // console.log(c);  //234
+
+        // 示例2
+        a = 100;
+        function demo(e) {
+           /*
+           OA = {
+               e:2
+               b:3
+               c:function(){}
+               a:10
+
+           }
+           */     
+
+            function a() {
+
+            }
+            arguments[0] = 2;
+            console.log(e) //2
+            if (a) {
+                var b = 123;
+                var c = function () {
+
+                }
+            }
+            var c;
+            a = 10;
+            var a;
+            console.log(b); //123
+            f = 123;
+            console.log(c) //fn() {}
+            console.log(a) //10
+        }
+
+        var a;
+        demo(1);
+        console.log(a) //100
+        console.log(f) //123
+
+        // function setname(name) {
+        //     this.name = name
+        // }
+        // setname.prototype.printName = function () { console.log(this.name) }
+        // let a = new setname("cc")
+        // a.name = "dd"
+        // a.__proto__.name = "ee"
+
+        // a.__proto__.printName()  // ?
+        // a.printName() // ?
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Animal(name) {
+            this.name = name;
+        }
+        Animal.prototype.color = "black";
+        Animal.prototype.say = function () {
+            console.log("I'm " + this.name);
+        };
+        var cat = new Animal("cat");
+
+        console.log(
+            cat.name, //cat
+            cat.color //undefined
+        );
+        cat.say(); //I'm cat
+
+        console.log(
+            Animal.name, //Animal
+            Animal.color //back
+        );
+        Animal.say(); //Animal.say is not a function
+    </script>
+</body>
+
+</html>

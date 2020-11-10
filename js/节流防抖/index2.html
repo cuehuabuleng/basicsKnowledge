@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input v-model="test">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./index.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                test: '1',
+                a: Object
+            },
+            watch: {
+                test() {
+                    // this.a()
+                    this.onSearch()
+                },
+            },
+            methods: {
+                onSearch: debounce(function () {
+                        console.log(1)
+                    }, 200)
+            },
+            created() {
+                this.a = debounce(this.onSearch, 500);
+            },
+        });
+    </script>
+</body>
+
+</html>

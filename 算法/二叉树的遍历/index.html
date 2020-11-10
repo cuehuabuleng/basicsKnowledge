@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function BinarySearchTree() {
+        //     var Node = function (key) {
+        //         this.key = key,
+        //             this.left = null,
+        //             this.right = null
+        //     }
+        //     var _this = this;
+        //     this.root = null
+        //     this.inOrderList = []
+        //     this.preOrderList = []
+        //     this.lastOrderList = [];
+        //     //插入节点
+        //     this.insert = function (key) {
+        //         var newNode = new Node(key)
+        //         if (this.root === null) {
+        //             this.root = newNode
+        //         } else {
+        //             insertNode(this.root, newNode)
+        //         }
+        //     }
+
+        //     var insertNode = function (node, newNode) {
+        //         if (newNode.key <= node.key) {
+        //             if (node.left === null) {
+        //                 node.left = newNode
+        //             } else {
+        //                 insertNode(node.left, newNode)
+        //             }
+        //         } else {
+        //             if (node.right === null) {
+        //                 node.right = newNode
+        //             } else {
+        //                 insertNode(node.right, newNode)
+        //             }
+        //         }
+        //     }
+
+
+
+        //     //实现中序遍历
+
+        //     this.inOrderTraverse = function () {
+        //         inOrderTraverseNode(this.root)
+        //     }
+        //     var inOrderTraverseNode = function (node) {
+        //         if (node !== null) {
+        //             inOrderTraverseNode(node.left)
+        //             _this.inOrderList.push(node.key)
+        //             inOrderTraverseNode(node.right)
+        //         }
+        //     }
+
+        //     // 实现先序遍历
+        //     this.preOrderTraverse = function () {
+        //         return preOrderTraverseNode(this.root)
+        //     }
+        //     var preOrderTraverseNode = function (node) {
+        //         if (node !== null) {
+        //             _this.preOrderList.push(node.key)
+        //             preOrderTraverseNode(node.left)
+        //             preOrderTraverseNode(node.right)
+        //         }
+        //     }
+
+
+
+        //     // 实现后序遍历
+        //     this.postOrderTraverse = function () {
+        //         postOrderTraverseNode(this.root)
+        //     }
+        //     var postOrderTraverseNode = function (node) {
+        //         if (node !== null) {
+        //             postOrderTraverseNode(node.left)
+        //             postOrderTraverseNode(node.right)
+        //             _this.lastOrderList.push(node.key)
+        //         }
+        //     }
+        // }
+        // var arr = [9, 6, 3, 8, 12, 15]
+        // var tree = new BinarySearchTree()
+        // arr.map(item => {
+        //     tree.insert(item)
+        // })
+        // console.log(tree.inOrderList)
+
+        // tree.inOrderTraverse()
+        // tree.preOrderTraverse()
+        // tree.postOrderTraverse()
+        // console.log(tree.preOrderList)
+        // console.log(tree.inOrderList)
+        // console.log(tree.lastOrderList)
+
+        // 创建一个二叉查找树
+        // function Node(value) {
+        //     this.key = value,
+        //         this.left = null,
+        //         this.right = null
+        // }
+
+        // function creatBinaryTree(arr) {
+        //     var addNode = function (root, newNode) {
+        //         if (root.key >= newNode.key) {
+        //             if (root.left === null) {
+        //                 root.left = newNode
+        //             } else {
+        //                 addNode(root.left, newNode)
+        //             }
+        //         } else {
+        //             if (root.right === null) {
+        //                 root.right = newNode
+        //             } else {
+        //                 addNode(root.right, newNode)
+        //             }
+        //         }
+        //     }
+        //     var root = null;
+        //     arr.forEach(item => {
+        //         var newNode = new Node(item)
+        //         if (root == null) {
+        //             root = newNode;
+        //         } else {
+        //             addNode(root, newNode)
+        //         }
+        //     });
+        //     return root
+        // }
+
+
+        // // 前序遍历
+        // function prevenOrder(root) {
+        //     var func = function (root) {
+        //         if (root !== null) {
+        //             res.push(root.key);
+        //             func(root.left);
+        //             func(root.right)
+        //         }
+        //     }
+        //     var res = [];
+        //     func(root)
+        //     return res;
+        // }
+
+        // // 中序遍历
+        // function inOrder(root) {
+        //     var func = function (root) {
+        //         if (root !== null) {
+        //             func(root.left)
+        //             res.push(root.key);
+        //             func(root.right)
+        //         }
+        //     }
+        //     var res = [];
+        //     func(root);
+        //     return res;
+        // }
+
+        // // 后序遍历
+        // function lastOrder(root){
+        //     var func = function (root){
+        //         if (root !== null) {
+        //             func(root.left)
+        //             func(root.right)
+        //             res.push(root.key)
+        //         }
+        //     }
+        //     var res = [];
+        //     func(root);
+        //     return res;
+        // }
+
+        // // 查找某个值
+        // function searchVal(root,val){
+        //     if (root === null) {
+        //         return false;
+        //     }
+        //     if (root.key === val) {
+        //         return true
+        //     }else if(root.key > val){
+        //        return searchVal(root.left, val)
+        //     }else{
+        //         return searchVal(root.right, val)
+        //     }
+        // }
+
+        // var arr = [9, 6, 3, 8, 12, 15]
+        // var tree = creatBinaryTree(arr)
+        // console.log(tree)
+
+        // var preRes = prevenOrder(tree);
+        // console.log('前序遍历',preRes)
+        // var inRes = inOrder(tree);
+        // console.log('中序遍历',inRes)
+
+        // var lastRes = lastOrder(tree);
+        // console.log('后续遍历',lastRes)
+
+        // console.log('是否存在某个数',searchVal(tree, 12))
+
+        var root = {
+            val:3,
+            left:{
+                val:9,
+                left:null,
+                right:null
+            },
+            right:{
+                val:20,
+                left:{
+                    val:15,
+                    left:null,
+                    right:null
+                },
+                right:{
+                    val:7,
+                    left:null,
+                    right:null
+                }
+            }
+        }
+
+        var levelOrder = function (root) {
+            const ret = [];
+            if (!root) {
+                return ret;
+            }
+
+            const q = [];
+            q.push(root);
+            while (q.length !== 0) {
+                const currentLevelSize = q.length;
+                ret.push([]);
+                for (let i = 1; i <= currentLevelSize; ++i) {
+                    const node = q.shift();
+                    ret[ret.length - 1].push(node.val);
+                    if (node.left) q.push(node.left);
+                    if (node.right) q.push(node.right);
+                }
+            }
+
+            return ret;
+        };
+
+        var res = levelOrder(root);
+        console.log(res)
+
+    </script>
+</body>
+
+</html>

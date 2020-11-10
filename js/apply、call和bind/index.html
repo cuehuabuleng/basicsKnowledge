@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+//  function sum(num1, num2) {
+//     return num1 + num2;
+// }
+ 
+// function callSum1(num1, num2) {
+//     return sum.call(this,arguments);  //传入arguments对象
+// }
+ 
+// function callSum2(num1, num2) {
+//     return sum.apply(this, [num1, num2]);
+// }
+// console.log((callSum1(10, 10)));  //20
+
+// console.log((callSum2(10, 10)));  //20
+
+// arguments 是一个函数的局部变量。 它可以被用作被调用对象的所有未指定的参数。 使用apply函数的时候就不需要知道被调用对象的所有参数
+// 可以使用arguments来把所有的参数传递给被调用对象。 被调用对象接下来就负责处理这些参数。
+
+
+// var name = '小玉',age = 17;
+// var obj = {
+//     name : '小张',
+//     objAge:this.age, //这里的this指向window
+//     myFun: function (){
+//         console.log(this.name + '年龄' + this) //这里的this指向obj
+//     }
+// }
+
+// console.log(this.obj) 
+// obj.myFun();
+
+// 手写bin函数
+// Function.prototype.bind2 = function () {
+//     debugger;
+//     // 见参数拆解成数组
+//     var args = Array.prototype.slice.apply(arguments);
+
+//     // 获取第一个参数  this
+//     var t = args.shift();
+
+//     // fn1.bind2(...)  中的fn1 ,因为fn1调用了bind2，所以bind2中的this指向就是 fn1这个实例
+//     var selft = this;
+
+//     // 返回一个函数
+//     return function () {
+//         return selft.apply(t, args)
+//     }
+// }
+
+
+
+
+Function.prototype.bin1 = function(){
+    let args = Array.prototype.slice.call(arguments);
+    let contex = args.shift();
+    let fn = this
+    return function(){
+        return fn.apply(contex,args)
+    }
+}
+// function fn1 (a,b) {
+//     console.log(this)
+//     console.log(this.x,a,b)
+// }
+
+// var obj = {
+//     x:12
+// }
+
+// var newfn = fn1.bind2(obj, 1,2)
+// newfn();
+
+
+
+// 手写apply
+Function.prototype.call1 = function(contex = window){
+    contex.fn = this;
+    let arg = [...arguments].slice(1);
+    let result = contex.fn(...arg);
+    delete contex.fn;
+    return result;
+}
+let foo = {
+    value:1
+}
+
+
+//手写apply
+Function.prototype.apply1 = function(contex = window){
+    contex.fn = this;
+    let result;
+    if(arguments[1]){
+        result = contex.fn(...arguments[1])
+    }else{
+        result = contex.fn()
+    }
+    delete contex.fn
+    return result;
+}
+function bar(name, age){
+    console.log(name,age)
+    console.log(this.value)
+}
+bar.apply1(foo,['b','a'])
+
+
+
+
+
+    </script>
+</body>
+
+</html>

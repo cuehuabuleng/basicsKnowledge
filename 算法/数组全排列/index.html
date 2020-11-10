@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    力扣46/47题
+    https://leetcode-cn.com/problems/permutations/submissions/
+    https://leetcode-cn.com/problems/permutations-ii/
+
+    <script>
+
+        // 数字不重复
+        var permute = function (nums) {
+            let res = [];
+            let use = [];
+            var fn = function (path) {
+                if (path.length === nums.length) {
+                    res.push([...path])
+                    return
+                }
+                for (let i = 0; i < nums.length; i++) {
+                    if (path.includes(nums[i])) {
+                        continue;
+                    }
+                    path.push(nums[i])
+                    fn(path)
+                    path.pop();
+                }
+
+            }
+            fn([])
+            return res
+        };
+
+        //数字重复
+        var permuteUnique = function (nums) {
+            var res = [];
+            let use = new Array(nums.length);
+            nums.sort((a, b) => {
+                return b - a
+            })
+            fn([])
+            function fn(path) {
+                if (path.length === nums.length) {
+                    res.push([...path]);
+                    return;
+                }
+                for (let i = 0; i < nums.length; i++) {
+                    if (nums[i] === nums[i - 1] && i - 1 >= 0 && !use[i - 1]) {
+                        continue
+                    }
+                    if (use[i]) {
+                        continue
+                    }
+                    path.push(nums[i])
+                    use[i] = true
+                    fn(path)
+                    path.pop()
+                    use[i] = false
+                }
+            }
+            return res
+        };
+        var arr = [1, 1, 1, 2]
+        var res = permuteUnique(arr)
+        console.log(res)
+    </script>
+</body>
+
+</html>

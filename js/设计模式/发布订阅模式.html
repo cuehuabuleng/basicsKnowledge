@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>发布订阅模式实例</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .main {
+            display: flex;
+        }
+
+        .msg-item {
+            width: 300px;
+            border-right: 3px solid #d3d3d3;
+            min-height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="msg-item">
+            <div>
+                <input type="text" id="subject" placeholder="输入订阅主题" style="width: 150px">
+                <button onclick="subscribe()">订阅消息</button>
+            </div>
+            <h3>已订阅消息列表</h3>
+            <ul id="subscribe_list">
+            </ul>
+            <h3>接收到消息列表</h3>
+            <ul id="message_list">
+            </ul>
+        </div>
+        <div class="msg-item">
+            <input type="text" id="pub_subject" placeholder="输入发布主题" style="width: 150px">
+            <input type="text" id="pub_message" placeholder="输入发布消息" style="width: 200px">
+            <button onclick="publishMsg()">发布消息</button>
+            <h3>发布消息列表</h3>
+            <ul id="publish_list">
+            </ul>
+        </div>
+    </div>
+    <script>
+        //调度中心算法实现
+    //     function pubsub() {
+    //         //主题列表
+    //         this.subjects = {};
+    //     };
+
+    //     //发布消息
+    //     pubsub.prototype.publish = function (type, message) {
+    //         if (this.subjects[type]) {
+    //             this.subjects[type].list.map(item => {
+    //                 //异步调用
+    //                 setTimeout(function () {
+    //                     item.fn && item.fn(type, message);
+    //                 }, 0);
+    //             });
+    //         }
+    //     }
+
+    //     //订阅消息
+    //     pubsub.prototype.subscribe = function (type, callback) {
+    //         if (!this.subjects[type]) {
+    //             this.subjects[type] = {
+    //                 count: 0,
+    //                 list: []
+    //             }
+    //         }
+    //         let subId = type + '-' + this.subjects[type].count++;
+    //         this.subjects[type].list.push({
+    //             fn: callback,
+    //             id: subId
+    //         })
+    //         return subId;
+    //     }
+
+    //     //移除订阅,参数为订阅时返回的id
+    //     pubsub.prototype.remove = function (id) {
+    //         let arr = id.split('-');
+    //         if (arr.length > 1) {
+    //             if (this.subjects[arr[0]]) {
+    //                 let len = this.subjects[arr[0]].list.length;
+    //                 for (let i = 0; i < len; i++) {
+    //                     if (this.subjects[arr[0]].list[i].id === id) {
+    //                         this.subjects[arr[0]].list.splice(i, 1);
+    //                         return true;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //         return false;
+    //     }
+
+    //     ///
+    //     //以上是调度中心的代码
+
+    //     /**
+    //      * 订阅函数
+    //      * 三个参数，pubsub调度中心实例，type订阅主题，callback订阅回调函数
+    //      * */
+    //     function subscriber(pubsub, type, callback) {
+    //         if (pubsub && pubsub.subscribe) {
+    //             return pubsub.subscribe(type, callback);
+    //         }
+    //         return false;
+    //     }
+
+    //     /**
+    //     * 发布消息函数
+    //     * 三个参数，pubsub调度中心实例，type发布主题，message发布消息
+    //     * */
+    //     function publish(pubsub, type, message) {
+    //         if (pubsub && pubsub.publish) {
+    //             pubsub.publish(type, message);
+    //         }
+    //     }
+    // </script>
+    // <script>
+    //     //调度中心实例
+    //     const pubsubInstance = new pubsub();
+    //     //数据全局类，存储页面要展现的变量等数据
+    //     const global = {
+    //         subscribeList: [], //订阅消息列表
+    //         publishList: []
+    //     };
+
+    //     //订阅按钮处理函数
+    //     function subscribe() {
+    //         let type = document.getElementById('subject').value;
+    //         if (global.subscribeList.indexOf(type) === -1) {
+    //             if (subscriber(pubsubInstance, type, handleMsg)) {
+    //                 global.subscribeList.push(type);
+    //                 let subscribeList = document.getElementById('subscribe_list');
+    //                 subscribeList.innerHTML += `<li>${type}</li>`;
+    //             }
+    //         }
+    //     }
+
+    //     //发布按钮处理函数
+    //     function publishMsg() {
+    //         let type = document.getElementById('pub_subject').value;
+    //         let message = document.getElementById('pub_message').value;
+    //         publish(pubsubInstance, type, message);
+    //         let publishList = document.getElementById('publish_list');
+    //         publishList.innerHTML += `<li>${type}: ${message}</li>`;
+    //     }
+
+    //     //订阅消息的回调函数
+    //     function handleMsg(type, msg) {
+    //         let messageList = document.getElementById('message_list');
+    //         messageList.innerHTML += `<li>${type}: ${msg}</li>`;
+    //     }
+
+    // class Event{
+    //     constructor(){}
+    //     handlers = {}
+    //     // 订阅函数
+    //     addEventlistener(type, fn){
+    //         if(!(type in this.handlers)){
+    //             this.handlers[type] = []
+    //         }
+    //         this.handlers[type].push(fn)
+    //     }
+
+    //     //触发函数
+    //     dispatchEvent(type, ...args){
+    //         if(!(type in this.handlers)){
+    //             throw new Error('事件未注册')
+    //         }
+    //         this.handlers[type].forEach(fn => {
+    //             fn(...args)
+    //         });
+    //     }
+
+    //     //取消订阅
+    //     removeEvent(type, fn){
+    //         //判断是否有改类型事件
+    //         if(!(type in this.handlers)){
+    //             return new Error('无该事件')
+    //         }
+    //         if(!fn){
+    //             delete this.handlers[type]
+    //         }else{
+    //             let index = this.handlers[type].indexOf(fn)
+    //             if(index === -1){
+    //                 return new Error('没有绑定该事件')
+    //             }
+    //             this.handlers[type].splice(index, 1)
+    //             if(this.handlers[type].length === 0){
+    //                 delete this.handlers[type]
+    //             }
+    //         }
+    //     }
+    // }
+
+
+    class Event{
+        constructor(){}
+        handlers = {};
+
+        //订阅事件
+        addEventlistener(type, fn){
+            if(!(type in this.handlers)){
+                this.handlers[type] = []; 
+            }
+            this.handlers[type].push(fn)
+        }
+
+        //触发事件
+        dispatchEvent(type, ...arg){
+            if(!(type in handlers)){
+                throw new Error('该类型事件未注册')
+            }
+            this.handlers[type].forEach((fn) => {
+                fn(...arg)
+            })
+        }
+
+        //取消订阅
+        removeEvent(type, fn){
+            if(!(type in this.handlers)){
+                return new Error('没有该类型事件')
+            }
+            if(!fn){
+                delete this.handlers[type]
+            }else{
+                let index = this.handlers[type].indexOf(fn)
+                if(index === -1){
+                    return new Error('没有绑定该事件')
+                }
+                this.handlers[type].splice(index, 1)
+                if(this.handlers[type] === 0){
+                    delete this.handlers[type]
+                }
+            }
+        }
+    }
+
+    let event = new Event();
+
+    function load (arg){
+        console.log('load',arg)
+    }
+    
+    function load1(arg){
+        console.log('load1',arg)
+    }
+
+    console.log(event)
+    event.addEventlistener('load',load)
+    event.addEventlistener('load1',load1)
+
+    event.dispatchEvent('load', 'load触发')
+    event.dispatchEvent('load1', 'load1触发')
+
+
+
+
+
+    </script>
+</body>
+
+</html>

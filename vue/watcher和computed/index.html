@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="example">
+        <input v-model="message">
+        <p>{{ message }}</p>
+        <p>132：{{other}}</p>
+        <p>计算后的翻转message是："{{reversedMessage}}"</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                message: 'Hello',
+                other:'123'
+            },
+            computed: {
+                reversedMessage(){
+                    console.log('computed')
+                    return this.message.split('').reverse().join('')
+                }
+            },
+            watch: {
+                message(val) {
+                    setTimeout(() => {
+                        this.other = val           
+                    }, 1000);
+  
+                    console.log('watcher',val)
+                }
+            },
+            mounted() {
+                new Promise((resolve, reject) => {
+                    resolve('91')
+                }).then((data) => {
+                    this.message = data
+                })
+            },
+        })
+    </script>
+    </body>
+</html>

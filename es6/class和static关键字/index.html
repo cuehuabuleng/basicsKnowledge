@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // class Sea {
+        //     static classMethod() {
+        //         return 'hello'
+        //     }
+        // }
+        // class Ocean extends Sea {
+        //     static classMethod() {
+        //         return super.clsassMethod() + ',too'
+        //     }
+        // }
+        // Ocean.classMethod();
+
+        function Man(name, age) {
+            //定义实例属性
+            this.name = name;
+            this.age = age;
+        }
+
+        
+        //定义静态属性。默认性别是男，不排除变性，^v^
+        Man.sex = '男';
+        //定义原型属性
+        Man.prototype.phone = '123456';
+
+        console.log(Man.sex + "-----" + Man.prototype.phone + "--" + Man.name + "--" + Man.age + "--" + Man.phone) //男-----123456--Man--undefined--undefined
+        var man = new Man("Tom", 24);
+        console.log(man.sex + "--" + man.name + "--" + man.age + "--" + man.phone) //undefined--Tom--24--123456
+    </script>
+</body>
+
+</html>

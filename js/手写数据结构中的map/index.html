@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+
+        /**
+         * js实现的map
+         */
+
+        // 定义hashcode算法
+        function hashCode(str) {
+            let h = 0;
+            for (let i = 0; i < str.length; i++) {
+                h = 31 * h + str.charCodeAt(i)
+            }
+            return h
+        }
+
+
+        //取模运算  得到hash桶号
+        function getTableindex(hashCode, size) {
+            return hashCode % size
+        }
+
+        // 定义map 初始化的大小是16
+        function Map(size) {
+            this.arr = new Array(size ? size : 16);
+            this.size = 0;
+        }
+
+
+        function Node(key, value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        // 将key-value放入map中  
+        Map.prototype.set = function (key, value) {
+            let index = getTableindex(hashCode(key), this.arr.length);
+            if (this.arr[index]) {
+                this.arr[index].value = value
+                this.size += 1;
+            } else {
+                this.arr[index] = new Node(key, value)
+                this.size += 1;
+            }
+        };
+
+
+        // 根据key从map中取出对应的value  
+        Map.prototype.get = function (key) {
+            let index = getTableindex(hashCode(key), this.arr.length);
+            if (this.arr[index]) {
+                return this.arr[index].value
+            } else {
+                return undefined;
+            }
+        };
+
+        // 判断map中是否包含指定的key  
+        Map.prototype.has = function (key) {
+            let index = getTableindex(hashCode(key), this.arr.length);
+            if (this.arr[index]) {
+                return true
+            }
+            return false
+        }
+
+        // 删除map中指定的key  
+        Map.prototype.delete = function (key) {
+            let index = getTableindex(hashCode(key), this.arr.length);
+            if(this.arr[index]){
+                this.arr.splice(index, 1)
+                this.size -= 1;
+                return true
+            }
+            return false
+        };
+
+        Map.prototype.size = function(){
+            return this.size;
+        }
+      
+        var map = new Map()
+        console.log(map)
+    </script>
+</body>
+
+</html>

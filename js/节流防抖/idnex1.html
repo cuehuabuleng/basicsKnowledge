@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">
+        click
+    </button>
+    <script>
+        var btn = document.getElementById('btn');
+        
+        function click(){
+            console.log('123')
+        }
+
+        // 防抖函数
+        // function debounce(fn,delay){
+        //     let timer = null
+        //     return function(arg){
+        //         let _this = this;
+        //         if(timer){
+        //             clearTimeout(timer)
+        //         }
+        //         timer = setTimeout(() => {
+        //             fn.call(_this, arg);
+        //             timer = null
+        //         },delay)
+        //     }
+        // }
+
+
+        // // 节流函数
+        // function throttle(fn, delay){
+        //     let last,timer;
+        //     return function (arg){
+        //         let _this = this;
+        //         let now = + new Date();
+        //         if(last && now - last < delay){
+        //             clearTimeout(timer)
+        //             timer = setTimeout(() => {
+        //                 last = now;
+        //                 fn.call(_this, arg)
+        //             },delay)
+        //         }else{
+        //             last = now;
+        //             fn.call(_this, arg)
+        //         }
+        //     }
+        // }
+
+
+        // debounce
+        // function debounce(fn, delay){
+        //     let timer = null;
+        //     return function(arg){
+        //         let _this = this;
+        //         if(timer){
+        //             clearTimeout(timer)
+        //         }
+        //         timer = setTimeout(() => {
+        //             fn.call(_this, arg)
+        //         }, delay)
+        //     }
+        // }
+
+            function throttle(fn,delay){
+                let last, timer = null;
+                return function(arg){
+                    let now = + new Date();
+                    let _this = this;
+                    if(last && (now - last) < delay){
+                        
+                        clearTimeout(timer)
+                        timer = setTimeout(() => {
+                            last = now
+                            fn.call(_this, arg)
+                        }, delay)
+                    }else{
+                        last = now
+                        fn.call(_this, arg)
+                    }
+                }
+            }
+
+        var debounceCLick = throttle(click, 500)
+        btn.onclick = debounceCLick
+    </script>
+</body>
+</html>

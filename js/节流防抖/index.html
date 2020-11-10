@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="click">click</button>
+    <script>
+
+
+        // 防抖
+        function debounce(fn, delay) {
+            let timer = null;
+            return function () {
+                let args = arguments;
+                let _this = this;
+                if (timer) {
+                    clearTimeout(timer)
+                }
+                timer = setTimeout(() => {
+                    fn.apply(_this, args);
+                }, delay)
+            }
+        }
+
+        // 节流
+        function throttle(fn, delay) {
+            let timer = null;
+            return function () {
+                let args = arguments;
+                let _this = this;
+                if (!timer) {
+                    timer = setTimeout(() => {
+                        timer = null;
+                        fn.apply(this, args)
+                    }, delay)
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

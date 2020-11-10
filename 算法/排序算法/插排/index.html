@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插排</title>
+</head>
+
+<body>
+    <script>
+
+        /*
+        插排
+        思路：想先从数组中取出一项，使用splice方法，->letf数组
+             然后遍历剩下的数组arr,跟left数组比较，冲后往前比，如果比left[i]小，则继续比较，知道找到一项小于等于他的，就把他插在i+1的位置
+             要是比较完了，都没有发现比他小的数，那么他就是最小的了，直接放在最前面
+        */
+        function inserSort(arr) {
+
+            var left = arr.splice(0, 1);
+            for (let i = 0; i < arr.length; i++) {
+                let cur = arr[i]
+                for (let j = left.length - 1; j >= 0;) {
+                    if (cur < left[j]) {
+                        j--
+                        if (j === -1) {
+                            left.splice(0, 0, cur)
+                        }
+                    } else {
+                        left.splice(j + 1, 0, cur);
+                        break;
+                    }
+                }
+            }
+            return left;
+        }
+        var ary = [4, 22, 1, 2, 4, 5, 63, 2, 6, 7, 4, 8, 0];
+        console.log(inserSort(ary))
+
+        // // 插排算法
+        // var ary = [4, 22, 1, 2, 4, 5, 63, 2, 6, 7, 4, 8, 0];
+
+        // function inserSort(ary) {
+        //     //从原始数组中获取任意一项
+        //     var left = ary.splice(0, 1);
+        //     //遍历原始数组，让其每一项与left从后向前比较
+        //     for (var i = 0; i < ary.length; i++) {
+        //         // 用一个变量承接原始数组的比较项
+        //         var cur = ary[i];
+        //         //遍历left数组，获取left数组中的项
+        //         for (var j = left.length - 1; j >= 0;) {
+        //             if (cur < left[j]) {//小于表示原始数组项继续向前比较
+        //                 j--;
+        //                 if (j == -1) { //当 j 为 -1 时，表示原始项已经比较到left数组项的第一位
+        //                     left.splice(0, 0, cur);
+        //                 }
+        //             } else {
+        //                 left.splice(j + 1, 0, cur);
+        //                 break;
+        //             }
+        //         }
+        //     }
+        //     return left;
+
+        // }
+        // var res = insertSort(ary);
+    </script>
+</body>
+
+</html>

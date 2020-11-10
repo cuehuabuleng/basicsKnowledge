@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function TreeNode(val) {
+            this.val = val;
+            this.left = this.right = null;
+        }
+        var buildTree = function (preorder, inorder) {
+            if (!preorder.length || !inorder.length) {
+                return null
+            }
+            var parent = preorder[0];
+            var node = new TreeNode(parent);
+            let i = 0;   //代表根节点在中序遍历的下标， 也代表着左树的节点个数
+            for (; i < inorder.length; i++) {
+                if (parent === inorder[i]) {
+                    break;
+                }
+            }
+            node.left = buildTree(preorder.slice(1, i + 1), inorder.slice(0, i));
+            node.right = buildTree(preorder.slice(i + 1, preorder.length - 1), inorder.slice(i + 1, preorder.length - 1))
+            return node;
+        };
+        var res = buildTree([3, 9, 10, 20, 15, 7], [10, 9, 3, 15, 20, 7]);
+        console.log(res)
+    </script>
+</body>
+
+</html>

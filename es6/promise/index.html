@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./index.js"></script>
+    <script>
+        // debugger
+        // new HD((resolve, reject) => {
+        //     setTimeout(() => {
+        //         resolve('解决');
+        //         console.log('456')
+        //     }, 1000)
+        // }).then((res) => {
+        //     console.log('resolve' + res)
+        //     return '解决 - 再次调用'
+        // }, (err) => {
+        //     console.log(err)
+        //     return 'reject - 再次调用'
+
+        // }).then((res) => {
+        //     console.log('第二个then ' + res)
+        // })
+        // console.log('132')
+
+
+        // function fn1(callback) {
+        //     console.log('1传进来的函数', callback)
+        //     setTimeout(() => {
+        //         console.log('1')
+        //         callback()
+        //     }, 150)
+        // }
+        // function fn2(callback) {
+        //     console.log('2传进来的函数', callback)
+        //     setTimeout(() => {
+        //         console.log('2')
+        //         callback()
+        //     }, 250)
+        // }
+
+        // function fn3(callback) {
+        //     console.log('3传进来的函数', callback)
+        //     setTimeout(() => {
+        //         console.log('3')
+        //         callback()
+        //     }, 300)
+        // }
+        // function fn4(callback) {
+        //     console.log('4传进来的函数', callback)
+        //     setTimeout(() => {
+        //         console.log('4')
+        //         callback()
+        //     }, 200)
+        // }
+
+
+
+        // function queue(list, count) {
+
+        // }
+
+        // queue([fn1, fn2, fn3, fn4], 2)
+        // // 'use strict'
+        // var a = 1;
+        // var obj = {
+        //     a: 2,
+        //     b: function () {
+        //         this.a = 3
+        //     },
+        //     print: function () {
+        //         console.log(this.a)
+        //     }
+        // }
+        // obj.print();
+        // var print = obj.print;
+        // print();
+
+
+        new Promise(function (resolve) {
+            debugger
+
+            resolve();
+        }).then(function () {
+            return new Promise((r) => {
+                r(4);
+            })
+        }).then(function (r) {
+            console.log(r);
+        });
+
+        new Promise(function (resolve) {
+            resolve(2);
+        }).then(function () {
+            console.log(1);
+        }).then(function () {
+            console.log(2);
+        }).then(function () {
+            console.log(3);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //正则匹配
+        function trim(str) {
+            return str.replace(/(^\s*)|(\s*$)/g, "");
+        }
+        //         　　这段代码看似简单，却内蕴玄机，首先利用/  /来将正则表达式围起来，/g表示全局进行匹配，匹配完成后将内容替换成"";便可以消除空格；
+
+        // 　　而考虑到可能只有头部有空格，或者只有尾部有空格，或者都有空格，所以采用 | （或）来进行逻辑判断；
+
+        // 　　在这里^代表开始处，$代表结尾处；
+
+        // 　　s代表空格，\s代表对空格的匹配；
+
+        // 　　考虑到头部或尾部可能不止有一个空格，所以用 * 。
+
+        var str = ' 123   '
+        var res = trim(str)
+        console.log(res.length)
+    </script>
+</body>
+
+</html>

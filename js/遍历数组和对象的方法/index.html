@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        forEarch，三个参数：
+        item:当前元素；
+        index：当前元素的下标；
+        arr：当前遍历的数组
+        */
+        // var  a = [1,2,3,4,5]
+        // a.forEach((item, index, arr) => {
+        //     console.log(item)
+        // })
+        // // 1 2 3 4 5
+
+        // // 但是不能遍历对象
+        // var obj = { a: 1, b: 2, c: 3}
+        // obj.forEach((item, index, arr) => {
+        //     console.log(item)
+        // })
+        // 输出： Uncaught TypeError: obj.forEach is not a function
+
+        /*
+        for in
+        */
+
+        // var arr = [1,2,3,4]
+        // var obj = {a:1, b:2, c:3}
+        // for (let index in arr){
+        //     console.log(index)
+        // }
+        // //0 1 2 3
+        // for(let index in obj){
+        //     console.log(index)
+        // }
+        // //a b c
+
+
+        // /*
+        // for of
+        // */
+
+        // var  forofArr = [1,2,4,5,6]
+        // var forofObj = {a:1,b:2,c:3}
+        // for (let iterator of forofArr) {
+        //     console.log(iterator)
+        // }//1 2 3 4 5 6
+
+        // for (let iterator of forofObj) {
+        //     console.log(iterator)
+        // }// Uncaught TypeError: forofObj is not iterable
+
+
+        /*
+        for
+        */
+
+        // let Objec = {name:'132', age:'25',sex:'男'}
+        // let objKeys = Object.keys(Objec)
+        // for(let i = 0; i < objKeys.length; i ++){
+        //     console.log(objKeys[i])
+        // }
+
+        //     let obj = {
+        //     id:1,
+        //     name:'xcxx',
+        //     age:18
+        // }
+        // obj.xx = 123;
+        // Object.setPrototypeOf(obj,{
+        //     a:1,
+        //     b:2
+        // })
+        // for(let index in obj){
+        //     console.log(index)
+        // }
+        //id name age xx a b
+
+
+        // var obj = {
+        //        id:1,
+        //        name:'javascript',
+        //        age:88
+        //    }
+        //    console.log(Object.keys(obj))  //['id','name','age']
+        //    console.log(Object.values(obj)) //[1, 'javascript', 88]
+
+        //    var obj = {
+        //       id:1,
+        //       name:'javascript',
+        //       age:18
+        //   }
+        //   Object.getOwnPropertyNames(obj).forEach((item, index) =>{
+        //       console.log(item)   //id name age
+        //       console.log(obj[item])  // 1 javascript 18
+        //   })
+
+
+        //方法一：
+        // var obj = {
+        //     a:1,
+        //     b:2,
+        //     c:3
+        // };
+
+        // obj[Symbol.iterator] = function(){
+        // 	var keys = Object.keys(this);
+        // 	var count = 0;
+        // 	return {
+        // 		next(){
+        //             debugger;
+        // 			if(count<keys.length){
+        //                 var a = obj[keys[count++]]
+        // 				return {value: obj[keys[count++]],done:false};
+        // 			}else{
+        // 				return {value:undefined,done:true};
+        // 			}
+        // 		}
+        // 	}
+        // };
+        // for(var k of obj){
+        // 	console.log(k);
+        // }
+
+        // 为对象添加迭代器  for of遍历
+        // var obj = {
+        //     a:1,
+        //     b:2,
+        //     c:3
+        // }
+
+        // obj[Symbol.iterator] = function(){
+        //     var keys = Object.keys(this);
+        //     var count = 0;
+        //     return {
+        //         next(){
+        //             if (count < keys.length) {
+        //                 return {
+        //                     value:obj[keys[[count++]]],  //后面的循环打印出什么值，取决于这里的value
+        //                     done:false
+        //                 }
+        //             }else{
+        //                 return{
+        //                     value:undefined,
+        //                     done:true
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        // for(let index of obj){
+        //     console.log(index)
+        // }
+        // //  1 2 3 
+
+
+        // var obj = {
+        //     0: 'onde',
+        //     1: 'two',
+        //     2: 'three',
+        //     length:3
+        // }
+        // obj = Array.from(obj);
+        // console.log(obj)
+        // for (let k of obj) {
+        //     console.log(k)
+        // }
+
+        // var arr = [1,2,3,4,5]
+        // var newarr = arr.map((item, index, arr) => {
+        //     return item * 2;  //在里面可以做一些判断，进行筛选返回
+        // })
+        // console.log(newarr) //[a,b,c,d,e]
+
+
+        var arr = [1,2,3,4,5]
+                var newarr = arr.map((item, index, arr) => {
+                    return item > 2; 
+                })
+                console.log(newarr) //[a,b,c,d,e]
+    </script>
+</body>
+
+</html>

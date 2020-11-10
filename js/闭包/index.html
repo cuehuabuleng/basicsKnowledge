@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var result = [], a = 5, total = 0
+
+        // function f(a) {
+        //     var i = 0;
+        //     for (; i < 3; i = i + 1) {
+        //         result[i] = function () {
+        //             total += a * i
+        //         }
+        //     }
+        // }
+
+        // f(2)
+        // 当开始执行函数的时候，i的值为3 a传进去为3 total这时候为0；
+        // result[0]() // ?
+        // console.log(total) //6
+        // result[1]() // ?
+        // console.log(total) //12
+        // result[2]() // ?
+        // console.log(total) //18
+
+
+        let a = 0,
+            b = 0;
+            function A(a){
+                console.log('1a',a)
+                A = function (b) {
+                    console.log('a + b',a + b ++)
+                }
+                console.log('a', a++)
+            }
+            A(1)
+            A(2)
+
+
+
+        // function create() {
+        //     let a = 100;
+        //     return function () {
+        //         console.log(a)
+        //     }
+        // }
+        // let fn = create();
+        // let a = 200;
+        // fn();  //100
+
+        // 函数作为参数被传递
+
+        // function print() {
+        //     let a = 200;
+        //     fn()
+        // }
+        // let a = 100;
+        // function fn() {
+        //     console.log(a)
+        // }
+        // print(a) //100
+
+
+
+        // function fn(){
+        //     var i = 1;
+        //     return function(){
+        //         return i ++
+        //     }
+        // }
+        // console.log(fn()) //ƒ (){return i ++}
+        // console.log(fn()())  //1
+        // console.log(fn()()) //1
+        // // 上面每执行一次，就会形成一个新的环境，这个环境就是闭包环境。所以就会每次都会输出=>  1
+
+
+
+        // // 声明一个全局变量，来接受父函数执行后返回的匿名函数，此时test也就是一个函数了。
+
+        // // 上面将讲fn函数每执行一次，都会形成一个新的环境，这个新的环境被全局变量test保存下来，
+        // // test和子函数建立引用关系，子函数和父函数中的局部变量有事存在着引用关系
+        // // 而上面说两个以上存在引用关系的对象，只要有一个是全局的，那么其他的就不会被回收。
+        // var test = fn();
+        // console.log(test) //ƒ (){return i ++}
+        // console.log(test()) //1
+        // console.log(test()) //2
+
+        // //因为fn没执行一次就会生成一个新的环境， 这个环境就成为闭包。所以这个test2对上面的那个test没有任何影响。
+        // var test2 = fn();
+        // console.log(test2)  //ƒ (){return i ++}
+        // console.log(test2())  //1
+        // console.log(test2())   //2
+        
+
+
+    </script>
+</body>
+
+</html>

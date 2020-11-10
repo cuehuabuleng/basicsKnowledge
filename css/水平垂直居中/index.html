@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>垂直水平居中</title>
+</head>
+<style>
+    /*  */
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 在已经 知道居中元素的宽高下 使用绝对定位 */
+    /* .box {
+        background-color: #FF8C00;
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .content {
+        background-color: #F00;
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        left: 50%;
+        top: 50%;
+        position: absolute;
+        margin: -50px 0px 0px -50px;
+    } */
+
+
+    /*
+    -50%绝对定位法
+     未知匡元素宽高下  将margin: -50px 0px 0px -50px;切换成 trnasform:translate(-50%,-50%)
+    优点：高大上,可以在webkit内核的浏览器中使用
+    缺点：不支持IE9以下不支持transform属性
+    */
+    /* .box {
+        background-color: #FF8C00;
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .content {
+        background-color: #F00;
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        left: 50%;
+        top: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+    } */
+
+    /* flex布局 */
+    /*     
+    .box{
+        background-color: #FF8C00;
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+
+    }
+
+    .content{
+        background-color: #F00;
+        
+    } */
+
+
+
+    /*绝对定位法 父元素设置使用相对定位/绝对定位 子元素设置
+        position：absolute
+        top bottom left right设置未0
+        margin 0
+
+        缺点是要知道子元素的宽高
+    */
+    .box{
+        background-color: #FF8C00;
+        position: relative;
+        width: 300px;
+        height: 300px;
+
+    }
+    .content{
+        background-color: white;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        margin: auto;
+        text-align: center;
+        line-height: 100px;
+    }
+
+
+    /*
+     table表格法
+     */
+
+    /* .box {
+        background-color: #FF8C00;
+        width: 300px;
+        height: 300px;
+        display: table;
+
+    }
+
+    .content {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    } */
+
+
+
+    /*
+ 空元素法 
+ */
+
+    /* .box {
+        background-color: #FF8C00;
+        width: 300px;
+        height: 300px;
+        text-align: center;
+
+    }
+
+    .box span {
+        display: inline-block;
+        width: 0;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+    .content {
+        display: inline-block;
+        color: #fff;
+    } */
+</style>
+
+<body>
+    <div class="box">
+        <div class="content">
+            我要居中
+        </div>
+    </div>
+
+</body>
+
+</html>

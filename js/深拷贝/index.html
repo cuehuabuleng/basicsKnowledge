@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        // 一、浅拷贝
+
+        //1、 object.assign
+        // var cloneObj = Object.assign({},obj);
+
+        // 2、自定义函数实现浅拷贝
+        // function shallowClone(soure = {}) {
+        //     let result = {},
+        //         key;
+        //     for(key in soure){
+        //         if (soure.hasOwnProperty(key)) {
+        //             result[key] = soure[key]
+        //         }
+        //     }
+        //     return result;
+        // }
+
+        // var obj1 = shallowClone(obj);
+        // obj.a = '我是b'
+
+        // console.log(obj.a)  //我是b
+        // console.log(obj1.a) //我是a
+        // 拷贝成功
+
+
+
+        // 深拷贝
+        // var cloneObject = JSON.parse(JSON.stringify(obj))
+        // obj.newObj.color = 'white'
+
+        // console.log(obj)  //  里面的 obj.newObj.color = 'white'
+        // console.log(cloneObject) // obj.newObj.color = 'black'(深拷贝成功)             与上面对比发现没有讲func拷贝下来
+
+        // 1、深度优先遍历
+        /**
+ * 深拷贝-DFS
+ * 
+ * 使用WeakMap来解决对象环绕问题
+ */
+
+        // const deep_clone_dfs = function (obj) {
+        //     // 声明一个结构用于存储已访问过的节点
+        //     // 因为节点之间可能存在循环引用的情况
+        //     const visited = new WeakMap()
+        //     function dfs(obj, prev = {}) {
+        //         // 函数类型 直接返回函数的拷贝
+        //         if (typeof obj === 'function') return obj.bind(prev)
+        //         // 基本类型 直接返回值
+        //         if (typeof obj !== 'object') return obj
+        //         // 若该节点已访问过 直接返回
+        //         if (visited.has(obj)) return visited.get(obj)
+        //         // 结果变量
+        //         let ans
+        //         // 不考虑WeapMap 和 WeakSet 类型 因为无法遍历
+        //         switch (Object.prototype.toString.call(obj)) {
+        //             // 处理 Array 类型
+        //             case '[object Array]': {
+        //                 ans = new Array()
+        //                 visited.set(obj, ans)
+        //                 // 数组用 for 循环(效率最高)
+        //                 for (let i = 0, len = obj.length; i < len; i++) {
+        //                     ans.push(dfs(obj[i], ans))
+        //                 }
+        //                 break
+        //             }
+        //             // 处理 Map 类型
+        //             case '[object Map]': {
+        //                 ans = new Map()
+        //                 visited.set(obj, ans)
+        //                 // Map 结构用 for of 循环
+        //                 for (let i of obj) {
+        //                     ans.set(i[0], dfs(i[1], ans))
+        //                 }
+        //                 break
+        //             }
+        //             // 处理 Set 类型
+        //             case '[object Set]': {
+        //                 ans = new Set()
+        //                 visited.set(obj, ans)
+        //                 // Set 结构跟 Map 一样 使用 for of 循环
+        //                 for (let i of obj) {
+        //                     ans.add(dfs(i, ans))
+        //                 }
+        //                 break
+        //             }
+        //             // 处理 Object 类型
+        //             case '[object Object]': {
+        //                 ans = new Object()
+        //                 visited.set(obj, ans)
+        //                 // 这里对象只拷贝自身可枚举属性
+        //                 // 遍历使用 Object.entries()
+        //                 // 如需拷贝原型上的可枚举属性
+        //                 // 可以使用 for in 代替
+        //                 const entries = Object.entries(obj)
+        //                 for (let i = 0, len = entries.length; i < len; i++) {
+        //                     const temp = entries[i]
+        //                     ans[temp[0]] = dfs(temp[1], ans)
+        //                 }
+        //                 break
+        //             }
+        //         }
+        //         return ans
+        //     }
+        //     return dfs(obj)
+        // }
+
+
+        // // 可以解决对象环绕问题 Map记录
+        // function deepClone(originObj, map = new WeakMap()) {
+        //     if (!originObj || typeof originObj !== 'object') return originObj;  //空或者非对象则返回本身
+
+        //     //如果这个对象已经被记录则直接返回
+        //     if (map.get(originObj)) {
+        //         return map.get(originObj);
+        //     }
+        //     //这个对象还没有被记录，将其引用记录在map中，进行拷贝    
+        //     let result = Array.isArray(originObj) ? [] : {};  //拷贝结果
+        //     map.set(originObj, result); //记录引用关系
+        //     let keys = Object.keys(originObj); //originObj的全部key集合
+        //     //拷贝
+        //     for (let i = 0, len = keys.length; i < len; i++) {
+        //         let key = keys[i];
+        //         let temp = originObj[key];
+        //         result[key] = deepClone(temp, map);
+        //     }
+        //     return result;
+        // }
+
+
+        // 简单版深度遍历拷贝(不能姐解决对象环绕问题)
+
+        // function deepClone(obj = {}) {
+        //     if (!obj || typeof obj !== 'object' || obj == null) {
+        //         return obj;
+        //     }
+        //     var res;
+        //     if (obj instanceof Array) {
+        //         res = [];
+        //     }
+        //     if (obj instanceof Object) {
+        //         res = {}
+        //     }
+        //     for (let key in obj) {
+        //         res[key] = deepClone(obj[key])
+        //     }
+        //     return res
+        // }
+        // var newobj = deepClone(obj)
+
+        // 利用map或者WeakMap来记录仪已经访问过的节点
+
+        // function deepClone(src = {}, map = new Map()){
+        //     if (typeof src !== 'object' || src == null) {
+        //         return src
+        //     }
+
+        //     // 这里判断是否已经记录过此对象
+        //     if (map.has(src)) {
+
+        //         // 如果记录过的话那就直接从map里面取出来
+        //         return map.get(src)
+        //     }
+        //     let res;
+        //     if (src instanceof Array) {
+        //         res = [];
+        //     }else{
+        //         res = {};
+        //     }
+        //     map.set(src,res)
+        //     for(let key in src){
+        //         res[key] = deepClone(src[key], map)
+        //     }
+        //     return res
+        // }
+
+        // function deepClone(src = {}, map = new Map()){
+        //     if(typeof src !== 'object' || src == null){
+        //         return src
+        //     }
+
+        //     if(map.has(src)){
+        //         return map.get(src)
+        //     }
+        //     let res;
+        //     if(src instanceof Array){
+        //         res = []
+        //     }else{
+        //         res = {}
+        //     }
+        //     map.set(src, res)
+        //     for(let key in src){
+        //         res[key] = deepClone(src[key], map)
+        //     }
+        //     return res
+        // }
+
+        var obj = {
+            a: '我是a',
+            b: '我是b',
+            newObj: {
+                color: 'black',
+            },
+            color: ['red', 'blue', 'green', 'yellow'],
+            func: function () {
+
+            }
+        }
+        obj.c = obj  //对象环绕问题
+
+        function deepClone(obj = {}, map = new Map()) {
+            debugger
+            if (typeof obj != 'object' || obj == null) {
+                return obj
+            }
+            if (map.has(obj)) {
+                return map.get(obj)
+            }
+            var res;
+            if (obj instanceof Array) {
+                res = [];
+            } else {
+                res = {}
+            }
+            map.set(obj, res)
+            for (let key in obj) {
+                res[key] = deepClone(obj[key], map)
+            }
+            return res;
+        }
+        var newobj = deepClone(obj)
+        console.log(newobj)
+    </script>
+</body>
+
+</html>

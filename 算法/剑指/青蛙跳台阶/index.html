@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var climbStairs = function (n) {
+            if (n === 1 || n === 0) {
+                return 1
+            }
+            if (n === 2) {
+                return 2
+            }
+            let cur = 1, pre = 2, tem = 0;
+            for (let i = 3; i <= n; i++) {
+                tem = pre + cru;
+                cur = pre;
+                pre = tem;
+            }
+            return pre
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var lengthOfLongestSubstring = function (s) {
+            // if(s.length === 0){
+            //     return 0
+            // }
+            // let max = 0;
+            // let res = []
+            // let i = 0;
+            // while (i < s.length) {
+            //     let index = res.indexOf(s[i]);
+            //     if(index >= 0){
+            //         res.splice(0, index + 1)
+            //     }
+            //     res.push(s[i])
+            //     max = Math.max(max, res.length)
+            //     i ++
+            //  }
+            // return max
+
+            let map = new Map();
+            let max = 0;
+            for(let i = 0, j = 0; i < s.length; i ++){
+                if(map.has(s[i])){
+                    j = Math.max(map.get(s[i]) + 1, j)
+                }
+                max = Math.max(max, i - j + 1)
+                map.set(s[i], i)
+            }
+            return max
+        };
+        let st = "pwwkew"
+        console.log(lengthOfLongestSubstring(st))
+    </script>
+</body>
+
+</html>

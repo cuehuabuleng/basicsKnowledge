@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三行布局</title>
+</head>
+<style>
+
+    body, html{
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        position: relative;
+    }
+    .header{
+        background: red;
+        height: 150px;
+        width: 100%;
+        position: fixed;
+
+    }
+    .content{
+        background: yellow;
+        position: absolute;
+        width: 100%;
+        top: 150px;
+        z-index: -1;
+    }
+    .footer{
+        background: green;
+        height: 150px;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+    }
+</style>
+<body>
+    <div class="header">
+        头部
+    </div>
+    <div class="content">
+        内容
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        45454>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        45454<br>
+        <br>
+        <br>
+        <br>
+        <br>
+        45454
+        <br>
+        <br>
+        <br>
+        <br>
+        45454
+    </div>
+    <div class="footer">
+        尾部
+    </div>
+</body>
+</html>

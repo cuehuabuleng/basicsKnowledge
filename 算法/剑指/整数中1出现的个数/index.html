@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function NumberOf1Between1AndN_Solution(n) {
+            // write code here
+            var str = '';
+            var count = 0;
+            for (let i = 1; i <= n; i++) {
+                str += i;
+            }
+            str.split('').map((item) => {
+                if(item === '1'){
+                    count ++;
+                }
+            })
+            return count;
+        }
+        
+        var res =  NumberOf1Between1AndN_Solution(13)
+        console.log(res)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //颜色16进制
+        // function chansform(str) {
+        //     var colorStr = str.replace('#', '');
+        //     var rex = /^([0-9|a-f]{3}|[0-9|a-f]{6})$/
+        //     if (!rex.test(colorStr)) {
+        //         return str
+        //     }else if (colorStr.length === 3 || colorStr.length === 6) {
+        //         if(colorStr.length === 3){
+        //             let tem = [];
+        //             tem = colorStr.split('');
+        //             let res = tem.map((item) => {
+        //                 return parseInt(`${item}${item}`,16)
+        //             })
+        //             return `rgb(${res.join(', ')})`
+        //         }else{
+        //             let tem = []; 
+        //             for(let i = 0; i < colorStr.length; i += 2){
+        //                 tem.push(parseInt(colorStr.slice(i ,i+2),16))
+        //             }
+        //             return `rgb(${tem.join(', ')})`
+        //         }
+        //     }else{
+        //         return str
+        //     }
+        // }
+
+        // // var str = readline();
+        // // var res = chansform(str);
+        // // print(res)
+
+        // var str = '#ffffff'
+        // var res = chansform(str);
+        // console.log(res)
+
+
+        // 寻找目录
+        // function find(str) {
+        //     var res = [];
+        //     res = str.split(',').map((item) => {
+        //         return item.split('/').join('')
+        //     })
+        //     var tem = [];
+        //     for (let i = 0; i < res.length; i++) {
+        //         let item = res[i]
+        //         for (let j = 0; j < res.length; j++) {
+        //             if (item !== res[j] && res[j].indexOf(item) === 0) {
+        //                 if (tem.indexOf(item) < 0) {
+        //                     tem.push(item)
+        //                 }
+        //             }
+        //         }
+        //     }
+        //    console.log(tem)
+        //    res = tem.map((item) => {
+        //         return '/' + item.split('').join('/')
+        //     })
+        //     return res.join(',')
+        // }
+
+        // var str = '/a/c,/a/d,/x/y/z/b,/x/y/z,/x/y'
+        // var res = find(str)
+        // console.log(res)`    
+
+
+        // let x = {
+        //     toString(){
+        //         console.log('toString')
+        //         return 20
+        //     },
+        //     valueOf(){
+        //         console.log('valueOf')
+        //         return '30'
+        //     }
+        // }
+        // console.log(x=='20')
+        // console.log(x==30)
+
+        Function.prototype.sangfor = function (){
+            return Function.prototype.call.bind(this)
+        }
+        console.log(Array.prototype.push.sangfor()([],0,1,2,2))
+
+
+        var A = function(){}
+        A.prototype.name = 'name'
+        var B = Object.create(A)
+        
+
+    </script>
+</body>
+
+</html>

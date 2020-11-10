@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var findNumberIn2DArray = function (matrix, target) {
+            let m = matrix.length;
+            if (!m) return false
+            let n = matrix[0].length;
+            for (let i = 0; i < m; i++) {
+                let item = matrix[i];
+                if (target >= item[0]) {
+                    if (bsSearch(item, target)) return true
+                } else {
+                    return false
+                }
+            }
+            return false
+        };
+
+        function bsSearch(arr, t) {
+            let start = 0;
+            let end = arr.length - 1;
+            let mid;
+            let item;
+            while (start < end) {
+                mid = Math.floor((end - start) / 2);
+                item = arr[mid];
+                if (item === t) {
+                    return true
+                } else if (item < t) {
+                    start = mid + 1
+                } else {
+                    end = mid
+                }
+            }
+            return false
+        }
+
+        let arr = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]]
+        let res = findNumberIn2DArray(arr)
+        console.log(res)
+    </script>
+</body>
+
+</html>

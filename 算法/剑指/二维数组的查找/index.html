@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。
+        请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数
+        */
+
+        function Find(target, array) {
+            // write code here
+            let lenX = array.length;
+            let lenY = array[0].length;
+            let i = 0, j = lenY - 1;
+            while(i < lenX && j >= 0){
+                if (array[i][j] === target) {
+                    return true;
+                }else if(array[i][j] > target){
+                    j --
+                }else{
+                    i ++;
+                }
+            }
+            return false
+        }
+
+        var target = 11;
+        var array = [
+            [1,2,3,4,5,6],
+            [2,3,4,5,6,7],
+            [3,4,5,6,7,8],
+            [4,5,6,7,8,9],
+            [5,6,7,8,9,10]
+        ]
+        var res = Find(target, array);
+        console.log(res)
+    </script>
+</body>
+
+</html>

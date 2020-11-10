@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function maxInWindows(num, size) {
+            // write code here
+            var tem = [];
+            var i = 0;
+            while(i <= num.length - size){
+                var j = i + size;
+                tem[i] = num.slice(i,j).sort((a,b) => {
+                    return b - a;
+                });
+                i ++;
+            }
+            var res = [];
+            res = tem.map((item) => {
+                return item[0]
+            })
+            return res;
+        }
+        var nums = [2,3,4,2,6,2,5,1]
+        var size = 3;
+        var res = maxInWindows(nums, size)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 原型式继承
+        // 原型式继承
+        // function CreateObj(o) {
+        //     function F() { }
+        //     F.prototype = o;
+        //     console.log(o.__proto__ === Object.prototype);
+        //     console.log(F.prototype.constructor === Object); // true
+        //     return new F();
+        // }
+
+        // var person = {
+        //     name: 'xiaopao',
+        //     friend: ['daisy', 'kelly']
+        // }
+
+        // var person1 = CreateObj(person);
+        // var person2 = CreateObj(person);
+
+        // person1.name = 'person1';
+        // // console.log(person2.name); // xiaopao
+        // person1.friend.push('taylor');
+        // console.log(person2.friend); // ["daisy", "kelly", "taylor"]
+        // console.log(person); // {name: "xiaopao", friend: Array(3)}
+        // person1.friend = ['lulu'];
+        // // console.log(person1.friend); // ["lulu"]
+        // // console.log(person2.friend)//  ["daisy", "kelly", "taylor"]
+        // // console.log(person.friend); //  ["daisy", "kelly", "taylor"]
+        // // 注意： 这里修改了person1.name的值，person2.name的值并未改变，并不是因为person1和person2有独立的name值，而是person1.name='person1'是给person1添加了name值，并非修改了原型上的name值
+        // // 因为我们找对象上的属性时，总是先找实例上对象，没有找到的话再去原型对象上的属性。实例对象和原型对象上如果有同名属性，总是先取实例对象上的值
+        // function Animal() {
+        //     this.name = "Animal";
+        //     this.showName = function () {
+        //         console.log(this.name);
+        //     };
+        // }
+
+        // function Cat() {
+
+        //     this.name = "Cat";
+        //     this._super = Cat.prototype;
+
+        //     this.showName1 = function () {
+        //         console.log(this.name);
+        //     };
+
+        //     this.showName2 = function () {
+        //         console.log(this.name);
+        //     };
+
+        //     this.showName3 = function () {
+        //         console.log(this._super.name + "=>" + this.name);
+        //     };
+        // }
+        // Cat.prototype = new Animal();
+        // var cat = new Cat();
+        // console.log(cat instanceof Animal);   //true
+        // cat.showName1();     //"Cat"
+        // cat.showName2.call(Cat.prototype);   //"Animal"
+        // cat.showName3();    //"Animal" => "Cat"
+
+        // // 原型链继承
+        // function Person(){
+        //     this.name = 'xiaoqiao';
+        //     this.colors = ['red', 'blue', 'green']
+        // }
+
+        // Person.prototype.getName = function (){
+        //     console.log(this.name)
+        // }
+
+        // function Children(){}
+
+        // Children.prototype = new Person();
+        // var chil1 = new Children();
+        // var chil2 = new Children();
+
+        // chil1.colors.push('black')
+        // console.log(chil1.colors)  //["red", "blue", "green", "black"]
+        // console.log(chil2.colors)  //["red", "blue", "green", "black"]
+
+        // // 借用构造函数继承
+        //  function Person(name){
+        //     this.name = name;
+        //     this.colors = ['red', 'blue', 'green']
+        // }
+
+        // Person.prototype.getName = function (){
+        //     console.log(this.name)
+        // }
+        // function Child(name){
+        //     Person.call(this, name)
+        // }
+
+        // var chil1 = new Child('xiaoqiao');
+        // var chil2 = new Child('daqiao');
+        // // 可以向Person传参
+        // console.log(chil1.name); //xiaoqiao
+        // console.log(chil2.name) //daqiao
+        // chil1.colors.push('black')
+        // console.log(chil1.colors)  //["red", "blue", "green", "black"]
+        // console.log(chil2.colors)  //["red", "blue", "green"]
+
+
+        // 组合继承
+        // function Person(name) {
+        //     this.name = name;
+        //     this.colors = ['red', 'blue', 'green']
+        // }
+
+        // Person.prototype.getName = function () {
+        //     console.log(this.name)
+        // }
+        // function Child(name) {
+        //     Person.call(this, name)  //第二次调用
+        // }
+
+        // Child.prototype = new Person(); //第一次调用
+
+        // var chil1 = new Child('xiaoqiao');
+        // var chil2 = new Child('daqiao');
+        // // 可以向Person传参
+        // console.log(chil1.name); //xiaoqiao
+        // console.log(chil2.name) //daqiao
+        // chil1.colors.push('black')
+        // console.log(chil1.colors)  //["red", "blue", "green", "black"]
+        // console.log(chil2.colors)  //["red", "blue", "green"]
+        // console.log(chil1 instanceof Person); // true   说明可以访问父类原型上的属性
+
+
+        //  原型式继承
+        // function objCreate(o) {
+        //     function fn() { }
+        //     fn.prototype = o;
+        //     return new fn();
+        // }
+
+        // var Person = {
+        //     name:'xiaoqiao',
+        //     friends:['cc','aa','bb']
+        // }
+
+        // var person1 = objCreate(Person);
+        // var person2 = objCreate(Person);
+
+        // // person1.friends = ['']    这里是直接在person1的实例上添加friends的属性  并不影响person2.frieds
+        // // console.log(person1.friends) // ['']
+        // // console.log(person2.friends) // ["cc", "aa", "bb"]
+
+        // person1.friends.push('ff')    //这里是直接操作父类的frieds数组，因为存在共享问题所有就会影响person2.frieds
+        // console.log(person1.friends) // ["cc", "aa", "bb", "ff"]
+        // console.log(person2.friends) // ["cc", "aa", "bb", "ff"]
+
+        // person1.name = 'xxx'
+
+        // console.log(person1.name) //xxx
+        // console.log(person2.name)  //xiaoqiao
+
+
+        // // 寄生式继承
+        // function objCreate(o) {
+        //     function fn() { }
+        //     fn.prototype = o;
+        //     return new fn();
+        // }
+        // // 上面的函数其实在ECMAScript中有一新法人规范写法，Object.create(ob),效果是一样的
+
+        // var Person = {
+        //     name: 'xiaoqiao',
+        //     friends: ['cc', 'aa', 'bb']
+        // }
+
+        // function Obcreate(o) {
+        //     var prototype = objCreate(o);
+        //     prototype.getname = function(){  //增强对象
+        //         console.log(this.name)
+        //     }
+        //     return prototype;
+        // }
+
+        // var person1 = Obcreate(Person)
+
+        // person1.getname()  //xiaoqiao
+
+
+        // // 寄生组合继承
+        //  function objCreate(o) {
+        //     function fn() { }
+        //     fn.prototype = o;
+        //     return new fn();
+        // }
+        // // 上面的函数其实在ECMAScript中有一新法人规范写法，Object.create(ob),效果是一样的
+
+        // function Person(name){
+        //     this.name = name;
+        //     this.color = ['red','black','blue']
+        // }
+
+        // Person.prototype.sayName = function(){
+        //     console.log(this.name)
+        // }
+
+        // function child(name, age) {
+        //     Person.call(this, name)
+        //     this.age = age;
+        // }
+
+        // function prototype(children, parenr) {
+        //     var prototype = objCreate(parenr.prototype);
+        //     prototype.constructor = children;
+        //     children.prototype = prototype;
+        // }
+        // prototype(child, Person);
+        // var child1 = new child('jack', 18);
+        // var child2 = new child('wen', 18);
+
+        // child1.sayName();  //jack
+        // console.log(child1.age) //18
+        // child1.color.push('yellow') 
+        // console.log(child1.color)//["red", "black", "blue", "yellow"]
+        // console.log(child2.color) //["red", "black", "blue"]
+
+        // // console.log(child1)
+        // // console.log(child2)
+
+        class Point { // 定义了一个名字为Point的类
+            constructor(x, y) { // constructor是一个构造方法，用来接收参数
+                this.x = x;
+                this.y = y;
+                this.z = 1;
+                this.a = 3;
+            }
+            toString() {
+                return "颜色";
+            }
+            print() {
+                console.log('print',this.z);
+            }
+
+            myMethod(msg) {
+                console.log('instance', msg);
+            }
+            static myMethod(msg) {
+                console.log('static', msg);
+            }
+
+        }
+        class ColorPoint extends Point {
+            constructor(x, y, color) {
+                super(x, y); // 调用父类的constructor(x,y)
+                this.z = 2;
+                this.a = 4;
+                super.a = 5;
+                this.color = color;
+                console.log('super a',super.a);
+                console.log('this a',this.a);
+            }
+            toString() { // 这是一个类的方法,注意前面没有function
+                return this.color + ' ' + super.toString(); // 调用父类的toString()
+            }
+            m() {
+                super.print();
+            }
+            static myMethod(msg) {
+                super.myMethod(msg);
+            }
+            myMethod(msg) {
+                super.myMethod(msg);
+            }
+        }
+        let color1 = new ColorPoint(1, 1, "red");
+        let color2 = new ColorPoint(2, 2, "blue");
+        console.log(color1);
+        console.log(color1.toString());
+        color1.m();
+        ColorPoint.myMethod("你好");
+        color1.myMethod("你好");
+        console.log("===================");
+        console.log(color2);
+        console.log(color2.toString());
+        color2.m();
+
+    </script>
+</body>
+
+</html>

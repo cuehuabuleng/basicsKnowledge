@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function Person(name){
+        //     this.name = name;
+        //     this.age = '18'
+        // }
+        // Person.prototype.sayname = function(){
+        //     console.log(this.name)
+        // }
+
+        // let person = new Person('jhon');
+        // person.sayname.call(person);
+        // setTimeout(person.sayname.call(person) ,1000)
+
+        // function talk(){
+        //     console.log(this)
+        // }
+        // var obj = {
+        //     say: () => {
+        //         setTimeout(function(){
+        //             talk.call(obj)
+        //         }, 0)
+        //     }
+        // }
+        // obj.say()
+
+
+        // function Foo() {
+        //     this.value = 42;
+        //     this.method = function () {
+        //         // this 指向全局对象
+        //         console.log(this)   // 输出window  第二个this
+        //         console.log(this.value); // 输出：undefined   第二个this
+        //     };
+        //     setTimeout(this.method, 500);  // this指向Foo的实例对象  第一个this
+        // }
+        // new Foo();
+
+
+        // var value = 33;
+
+        // function Foo() {
+        //     this.value = 42;
+        //     setTimeout(function () { console.log(this); console.log(this.value) }, 500);  // 先后输出 window   33  这里是第二个this
+        // }
+        // new Foo();
+
+
+        // function method() {
+        //     console.log(this.value);  // 输出 42  第二个this
+        // }
+
+        // function Foo() {
+        //     console.log('foo', this)
+        //     this.value = 42;
+        //     setTimeout(this.method, 500);  // 这里this指向window   第一个this
+        // }
+
+        // Foo();
+
+
+        // var test = "in the window";
+
+        // setTimeout(function () { alert('outer ' + test) }, 0); // 输出 outer in the window ，默认在window的全局作用域下 
+
+
+        // function f() {
+        //     console.log('f',this)
+        //     var test = 'in the f!';  // 局部变量，window作用域不可访问
+        //     console.log(test)
+        //     setTimeout('alert("inner " + test)', 0);  // 输出 outer in the window, 虽然在f方法的中调用，但执行代码(字符串形式的代码)默认在window全局作用域下，test也指向全局的test
+        // }
+
+        // f()
+
+        // var value = 33;
+
+        // function Foo() {
+        //     function ff() {  
+        //         var value = 42;
+        //         console.log(value);   // 输出33
+        //         console.log(this.value);  // 输出33  this指向window
+        //     }
+        //     setTimeout(ff, 500);  // 先后输出 33  33
+        // }
+        // Foo();
+
+        // var test = "in the window";
+
+        // setTimeout(function () { alert('outer ' + test) }, 0); // 输出 outer in the window ，默认在window的全局作用域下
+
+        // function f() {
+        //     var test = 'in the f!';  // 局部变量，window作用域不可访问
+        //     setTimeout('console.log("inner " + test)', 0);  // 输出 outer in the window, 虽然在f方法的中调用，但执行代码(字符串形式的代码)默认在window全局作用域下，test也指向全局的test
+        // }
+
+        // f();
+
+        // var obj = {
+        //     fn:function(){
+        //         setTimeout(() => {
+        //             console.log(this)
+        //         }, 0);
+        //     }
+        // }
+        // obj.fn();
+
+        // var obj = {
+        //     fn:function(){
+        //         setTimeout(function(){
+        //             console.log(this)
+        //         }, 0);
+        //     }
+        // }
+        // obj.fn()
+
+        function func(name){
+            this.name = name || 'sapi'
+            function say(){
+                console.log('hello' + this.name)
+            }
+        }
+
+        func.prototype.say = function(prefix){
+            console.log(prefix+this.name)
+        }
+
+        new func().say('132')
+        
+        // https://www.cnblogs.com/hutaoer/p/3423782.html
+
+    </script>
+</body>
+
+</html>

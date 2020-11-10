@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // var a = 10
+    // function fn() {
+    //   var b = 20
+    //   function bar() {
+    //     console.log(a + b) //30
+    //   }
+    //   return bar
+    // }
+    // var x = fn(),
+    //   b = 200
+    // x() //bar()
+    // let a;
+    // for(let i =0; i < 10; i ++){
+    //   a = document.createElement('a');
+    //   a.innerHTML = i + '<br>'
+    //   a.addEventListener('click', function (e) {
+    //     e.preventDefault();
+    //     alert(i)
+    //   })
+    //   document.body.appendChild(a)
+    // }
+
+    //  a = 1;
+    //   function aa(){
+
+    //     console.log(a)
+    //   }
+
+
+    //   aa()
+    // console.log(a)
+    var scope = "global";
+
+    function scopeTest() {
+      console.log(scope);
+      var scope = "local";
+      console.log(scope);
+    }
+    scopeTest();
+  </script>
+</body>
+
+</html>

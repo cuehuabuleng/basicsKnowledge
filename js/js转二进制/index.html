@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let dec = 14;
+        // let bin = "";
+        // while (dec > 0) {
+        //     if (dec % 2 != 0) {
+        //         bin = "1" + bin;
+        //     }else {
+        //         bin = "0" + bin;
+        //     }
+        //     dec = parseInt(dec / 2);
+        // }
+        // console.log(bin)
+
+        // function transForm(num){
+        //     let res = ''
+        //     while(num > 0){
+        //         if(num % 2 != 0){
+        //             res = '1' + res
+        //         }else{
+        //             res = '0' + res
+        //         }
+        //         num = parseInt(num/2)
+        //     }
+        //     return res
+        // }
+
+        function tranSform(num){
+            let res = '';
+            while(num > 0){
+                if(num % 2 != 0){
+                    res = '1' + res
+                }else{
+                    res = '0' + res
+                }
+                num = parseInt(num/2)
+            }
+            return res
+        }
+        let res = tranSform(25)
+        console.log(res)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //   function getGroup(data){
+        //       var res = data.sort((a, b) => {
+        //           return  b - a;
+        //       })
+        //       var count = [];
+        //       for(let i = 0; i < res.length; i ++){
+        //           for(let j = res.length - 1; j >= i; j --){
+        //               var index = j + 1
+        //               let val = res.slice(i,index).reduce((a,b) => a + b);
+        //                   count.push(val)
+        //           }
+        //       }
+        //       console.log(count)
+        //     //   count = count.sort((a, b) => b - a)
+        //       if(count.length > 0){
+        //           return count[0]
+        //       }
+        //       return -1
+        //   }
+        function getGroup() {
+            var res = [];
+            var tem = [];
+            for (let i = 0; i < data.length; i++) {
+                for (let j = 0; j < res.length; j++) {
+                    tem.push(data[i] + res[j])
+                }
+                tem.push(data[i])
+                res.push(...tem)
+                tem = []
+            }
+            let result = -1;
+            res = res.sort((a,b) => b-a);
+            for(let  i = 0; i < res.length; i ++){
+                if(res[i] % 7 === 0){
+                    result = res[i]
+                    break
+                }
+            }
+            return result
+        }
+        var data = [12,456,7896,465,789,87];
+        console.log(getGroup(data));
+
+
+        // function strBack(data) {
+        //     var res = [];
+        //     for (let i = 0; i < data.length - 1; i++) {
+        //         for (let j = data.length; j > i; j--) {
+        //             let item = data.slice(i, j).join('');
+        //             let newitem = data.slice(i,j).reverse().join('')
+        //             if(item === newitem){
+        //                 res.push(item)
+        //             }
+        //         }
+        //     }
+        //     var newres = [];
+        //     for(let i = 0; i< res.length; i ++){
+        //         if(res[i].length > 1){
+        //             newres.push(res[i])
+        //         }
+        //     }
+        //     return newres
+        // }
+
+        // var str = 'abbcbb'
+        // var arr = str.split('')
+        // var res = strBack(arr)
+        // console.log(res)
+    </script>
+</body>
+
+</html>

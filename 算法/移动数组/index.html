@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 通过反转数组来实现位移
+        // num是负数的话代表想左移动，正数的话代表向右移动。
+        function arrMove(arr, num){
+            let arr1 = [],
+                arr2 = [];
+            if(num === 0){
+                return arr
+            }else if(num > 0){
+                arr1 = arr.slice(0,num).reverse();
+                arr2 = arr.slice(num, arr.length).reverse();
+                return arr1.concat(arr2).reverse()
+            }else{
+                num = Math.abs(num)
+                arr.reverse();
+                arr1 = arr.slice(0,num).reverse();
+                arr2 = arr.slice(num, arr.length).reverse();
+                return arr1.concat(arr2)
+            }
+        }
+
+        var arr = [1,2,3,4,5,6]
+        var res = arrMove(arr, -2)
+        console.log(res)
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var canCompleteCircuit = function (gas, cost) {
+        //     let ans = [];
+        //     for (let i = 0; i < gas.length; i++) {
+        //         ans.push({
+        //             index: i,
+        //             gas: gas[i],
+        //             cost: cost[i],
+        //             gascount: gas[i] - cost[i]
+        //         })
+        //     }
+        //     ans.sort((a, b) => {
+        //         if (b.gascount === a.gascount) {
+        //             return a.cost - b.cost
+        //         }
+        //         return b.gascount - a.gascount
+        //     })
+        //     let count = 0;
+        //     if (ans[0].gascount < 0) return -1
+        //     for (let i = 0; i < ans.length; i++) {
+        //         let index = ans[i].index, times = 1;
+        //         count = count + ans[i].gascount;
+        //         while (times < ans.length) {
+        //             if(count < 0) break;
+        //             index++;
+        //             if (index > ans.length - 1) index = 0;
+        //             count = count + (gas[index] - cost[index]);
+        //             times++;
+        //         }
+        //         if (count >= 0) {
+        //             return ans[i].index
+        //         }
+        //         count = 0;
+        //         times = 1;
+        //     }
+        //     return -1
+        // };
+
+        var canCompleteCircuit = function (gas, cost) {
+            let count = 0;
+            for (let i = 0; i < gas.length; i++) {
+                let index = i, times = 0;
+                if (gas[i] - cost[i] >= 0) {
+                    while (times < gas.length && count >= 0) {
+                        if(i > gas.length - 1) i = 0;
+                        count += gas[i] - cost[i];
+                        i++;
+                        times++;
+                    }
+                    if (count >= 0) {
+                        return index;
+                    }
+                    count = 0;
+                    times = 0;
+                    i = index
+                }
+            }
+            
+            return -1
+        };
+
+        var gas = [3,3,4]
+        var cost =[3,4,4]
+        var res = canCompleteCircuit(gas, cost)
+        console.log(res)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .photo-item,
+        .photo-add {
+            position: relative;
+            float: left;
+            width: 120px;
+            height: 90px;
+            margin-bottom: 52px;
+            margin-right: 16px;
+        }
+        .item-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="photo-add">
+            <input type="file" accept="image/*" name="uploader-input" class="uploader-file" id="upload">
+            <input type="number" id="number">
+            <button id="submit">提交</button>
+        </div>
+
+        <div id="box"></div>
+    </div>
+    <script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.js"></script>
+    <script>
+        var formData = new FormData(), file;
+        $('#upload')[0].addEventListener('change', function (event) {
+            var $file = event.currentTarget;
+            file = $file.files;
+            formData = new FormData();
+            formData.append(file[0].name, file[0]);
+        });
+
+        $('#submit')[0].addEventListener('click', function () {
+            let nums = $('#number')[0].value;
+            formData.append('nums', nums);
+            if (file) {
+                if (nums) {
+                    $.ajax({
+                        url: 'http://linkworld.natapp1.cc/upload',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: formData,
+                        contentType: false,
+                        processData: false
+                    }).done(data => {
+                        console.log('返回的数据', data)
+                        $('#box').append(`<div class="photo-item">
+                                        <img class="item-image" width="100%" height="100%" src="${data[0].url}"/>
+                                        <img class="item-image" width="100%" height="100%" src="${data[1].url}"/>
+                                      </div>`);
+                    }).fail(data => {
+                        console.log(data);
+                    });
+                } else {
+                    alert('请输入数字')
+                }
+            } else {
+                alert('请选择照')
+            }
+        })
+
+    </script>
+</body>
+
+</html>

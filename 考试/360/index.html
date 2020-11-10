@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function check(strArr) {
+            var rC = {
+                lW: new RegExp('[a-z]'),
+                uW: new RegExp('[A-Z]'),
+                nW: new RegExp('[0-9]'),
+                sW: new RegExp('[\\u0020-\\u002F\\u003A-\\u0040\\u005B-\\u0060\\u007B-\\u007E]')
+            }
+            var res = [];
+            for (let i = 0; i < strArr.length; i++) {
+                let item = strArr[i]
+                if (item.length < 8) {
+                    res.push('Irregular password');
+                    continue;
+                }else if(!rC.lW.test(item)){
+                    res.push('Irregular password');
+                    continue;
+                }else if(!rC.uW.test(item)){
+                    res.push('Irregular password');
+                    continue;
+                }else if(!rC.nW.test(item)){
+                    res.push('Irregular password');
+                    continue;
+                }else if(!rC.sW.test(item)){
+                    res.push('Irregular password');
+                    continue;
+                }else{
+                    res.push('OK')
+                }
+            }
+            return res;
+        }
+        var arr = ['12_Aaqq12', 'Password123', 'PASSWORD_123', 'PaSS^word', '12_Aaqq']
+        var res = check(arr)
+        res.forEach((item) => {
+            console.log(item)
+        })
+    </script>
+</body>
+
+</html>

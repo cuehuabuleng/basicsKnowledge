@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function getRepeatCharLength(str) {
+            // write code here
+            let res = [];
+            for (let i = 0; i < str.length; i++) {
+                for (let j = i + 1; j < str.length; j++) {
+                    let len = j - i;
+                    if (str.slice(i, len + 1) === str.slice(j + 1, len + 1)) {
+                        res.push(len)
+                    }
+                }
+            }
+            res.sort((a, b) => {
+                return b - a
+            })
+            if(res.length === 0) return 0
+            return res[0]
+        }
+
+        let str = 'asdsadaasdasdas'
+        let res = getRepeatCharLength(str)
+        console.log(res)
+
+        
+    </script>
+</body>
+
+</html>

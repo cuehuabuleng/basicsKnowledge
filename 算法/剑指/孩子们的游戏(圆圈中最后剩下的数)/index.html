@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function LastRemaining_Solution(n, m) {
+            // write code here
+            //首先创建一个数组
+            var childs = [];
+            for (let i = 0; i < n; i++) {
+                childs.push(i);
+            }
+            let index = 0, count = 0;
+            while (childs.length > 1) {
+                if (index > childs.length - 1) {
+                    index = 0;
+                }
+                if (count === m - 1) {
+                    childs.splice(index, 1);
+                    count = -1;
+                    index -= 1;
+                }
+                count++;
+                index++;
+            }
+            console.log(childs)
+        }
+        var res = LastRemaining_Solution(6, 4);
+
+
+        function LastRemaining_Solution(n, m) {
+            // write code here
+            if (n < 1) return -1;
+            let last = 0;
+            for (let i = 2; i <= n; i++) {
+                last = (last + m) % i;
+            }
+            return last;
+        }
+    </script>
+</body>
+
+</html>

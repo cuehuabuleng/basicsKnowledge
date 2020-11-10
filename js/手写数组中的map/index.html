@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Array.prototype.Map = function(callback, context){
+            let resArr = [];
+            let me = this;
+            console.log('传进来的this', context)
+            let ctx = context ? context : me;
+            if(typeof callback !== 'function'){
+                throw new Error(`${callback} is not a function`)
+            }
+            me.forEach(function(item, index){
+                resArr.push(callback.call(ctx, item, index, me))
+            })
+            return resArr;
+        }
+        var arr = [1,2,3,4]
+        var arr2 = [4,5,6,7]
+
+        let newarr = arr.Map(function(item, index, arr) {
+            console.log(item, index, arr, this)
+        }, arr2)
+    </script>
+</body>
+</html>

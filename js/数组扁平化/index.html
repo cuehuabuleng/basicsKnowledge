@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function flatten(arr) {
+            return arr.toString().split(',').map(function (item) {
+                return Number(item);
+            })
+        } 
+        var arr = [1,2,3,5,[1,2,58,7],12]
+        var res = flatten(arr)
+        console.log(res)
+    </script>
+</body>
+
+</html>

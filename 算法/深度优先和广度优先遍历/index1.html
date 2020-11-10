@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const tree = {
+            name: 'root',
+            children: [{
+                name: 'c1',
+                children: [{
+                    name: 'c11',
+                    children: []
+                },
+                {
+                    name: 'c12',
+                    children: []
+                }
+                ]
+            }, {
+                name: 'c2',
+                children: [{
+                    name: 'c21',
+                    children: []
+                },
+                {
+                    name: 'c22',
+                    children: []
+                }
+                ]
+            }]
+        }
+
+        // 深度遍历
+        // 非递归写法
+        // function dfs (root){
+        //     let stack = [];
+        //     let res = [];
+        //     stack.push(root);
+        //     while(stack.length){
+        //         let item = stack.pop()
+        //         if(item.name){
+        //             res.push(item.name);
+        //         }
+        //         if(item.children.length >= 1){
+        //             for(let i = item.children.length - 1; i >= 0; i --){
+        //                 stack.push(item.children[i])
+        //             }
+        //         }
+        //     }
+        //     return res;
+        // }
+
+        // 递归写法
+        function dfs(root){
+            let res =[];
+            function fn(root){
+                res.push(root.name);
+                if(root.children.length === 0){
+                    return
+                }else{
+                    for(let i = 0; i < root.children.length; i ++){
+                        fn(root.children[i])
+                    }
+                }
+                
+            }
+            fn(root)
+            return res
+        }
+        let res = dfs(tree);
+        console.log(res)
+    </script>
+</body>
+
+</html>

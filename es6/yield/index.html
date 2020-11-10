@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // generattor函数执行， 不会让函数立即执行，返回结果是Interator迭代器(ES6： for of 循环)
+        function * f1(){
+            var res = [1,2,3]
+            for(let i = 0; i < res.length; i ++){
+                yield res[i]   //每一个yield控制一个状态节点
+            }
+        }
+
+        var res = f1()
+        console.log(res.next())  //一次只输出一个状态    {value: 1, done: false}
+        console.log(res.next())  //{value: 1, done: false}
+        console.log(res.next()) //{value: 1, done: false}
+        console.log(res.next()) //直到don为true   {value: undefined, done: true}
+        console.log(res.next())//{value: undefined, done: true}
+    </script>
+</body>
+</html>

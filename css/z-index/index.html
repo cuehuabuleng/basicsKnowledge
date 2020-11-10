@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        background: blue;
+        width: 200px;
+        height: 200px;
+        z-index: 99;
+        position: relative;
+        transform: rotate(15deg);  /*将会被层叠等级低的元素覆盖*/
+    }
+
+    .child {
+        background: yellow;
+        z-index: -1;
+        position: absolute;
+        top: 0;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <span class="child">
+            123
+        </span>
+    </div>
+
+</body>
+
+</html>
