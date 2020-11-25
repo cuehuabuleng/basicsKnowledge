@@ -48,3 +48,5 @@ this取什么值是在函数执行的时候决定的不是在函数定义的时�
     ```
 
     https://www.cnblogs.com/jiuxia/p/11488140.html
+
+    五种this绑定 https://www.cnblogs.com/echolun/p/11962610.html
