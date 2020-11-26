@@ -49,20 +49,93 @@
         // b.fn()
         // console.log(globalThis)
 
-        
-        function bar() {
-            console.log('bar',this, myName)
-        }
 
-        function foo() {
-            this.myName = 'foo'
-            console.log('foo', this, myName)
-            bar()
-        }
+        // function bar() {
+        //     console.log('bar', this, myName) 
+        // }
 
-        var myName = 'window'
-        foo();
-        console.log('window', this, myName)
+        // function foo() {
+        //     this.myName = 'foo'
+        //     console.log('foo', this, myName)
+        //     bar()
+        // }
+
+        // var myName = 'window'
+        // foo();
+        // console.log('window', this, myName)
+        // console.log(this.myName)
+
+        // function fn1() {
+        //     let fn2 = function () {
+        //         console.log(this); //window
+        //         fn3();
+        //     };
+        //     console.log(this); //window
+        //     fn2();
+        // };
+
+        // function fn3() {
+        //     console.log(this); //window
+        // };
+
+        // fn1();
+
+        // function fn() {
+        //     console.log(this); //window
+        //     console.log(this.name);
+        // };
+
+        // function fn1() {
+        //     "use strict";
+        //     console.log(this); //undefined
+        //     console.log(this.name);
+        // };
+
+        // var name = '听风是风';
+
+        // fn();
+        // fn1() //TypeError: Cannot read property 'a' of undefined
+        // var name = '听风是风';
+        // function fn() {
+        //     console.log(this); //window
+        //     console.log(this.name); //听风是风
+        // };
+
+        // (function () {
+        //     "use strict";
+        //     fn();
+        // }());
+
+        // function fn() {
+        //     console.log(this.name);
+        // };
+        // let obj = {
+        //     name: '听风是风',
+        //     func: fn
+        // };
+        // obj.func() //听风是风
+
+        // var name = '行星飞行';
+        // let obj = {
+        //     name: '听风是风',
+        //     fn: function () {
+        //         console.log(this.name);
+        //     }
+        // };
+        // obj.fn();
+        // function fn1(param) {
+        //     param();
+        // };
+        // fn1(obj.fn);//行星飞行
+
+
+        let obj = {
+            name: '听风是风'
+        };
+
+        [1, 2, 3].forEach(function () {
+            console.log(this);//听风是风*3
+        });
     </script>
 </body>
 
