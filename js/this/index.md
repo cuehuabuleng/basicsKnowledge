@@ -177,10 +177,176 @@ fn.call(obj1); //听风是风
 fn.apply(obj2); //时间跳跃
 fn.bind(obj3)(); //echo
 ```
+上面的代码中使用call、apply和bind改变了函数fn的this指向。
+在js中，当我们调用一个函数的时候，我们习惯称之为函数调用，函数处于一个被动的状态；而call和apply让函数从被动变成主动，函数主动选择自己的上下文所以这种写法称为函数应用。
+
+*注意：如果在使用call之类的方法改变this指向的时候，指向参数提供的是null或者undefined，那么this指向的是全局对象*
+```javascript
+let obj1 = {
+    name: '听风是风'
+};
+let obj2 = {
+    name: '时间跳跃'
+};
+var name = '行星飞行';
+
+function fn() {
+    console.log(this.name);
+};
+fn.call(undefined); //行星飞行
+fn.apply(null); //行星飞行
+fn.bind(undefined)(); //行星飞行
+```
+**这里需要说明的是，通过bind绑定之后的this是无法在改变的，bind是硬性的绑定**
+
+**call、apply与bind的区别**
+1. call、apply和bind都是用于改变this绑定，但call和apply在改变this指向同时还会执行函数，而bind在改变this后返回是一个全新的boundFunction绑定函数.
+2. bind属于硬绑、返回的boundFunction的this指向无法再次通过bind、apply或call修改；call与apply的绑定只适用于当前调用，调用完之后就没有了，下次调用还得再次绑定。
+3. call和apply功能完全相同，唯一不同的是call方法传递参数是以散列形式传递，而apply方法的形参是一个数组。在传参的情况下，call的性能要高于apply，因为apply在执行的时候还有一步解析数组。
+   
+## 四、new绑定
+准确来说，js构造函数只是使用new调用的普通函数，它并不是一个类，最终返回的对象也不是一个实例，只是为了便于理解习惯这么说。
+new一个函数的中间过程分为三步：
+1. 以构造器的prototype属性为原型，创建新对象
+2. 将this（可以理解为上句创建的新对象）和调用参数传给构造器，执行
+3. 如果构造器没有手动返回对象，则返回第一步创建的对象
+
+**这个过程称为构造调用**
+```javascript
+function Fn(){
+     this.name = '123'
+}
+let echo = new Fn();
+console.log(echo.name)
+```
+
+## 五、this绑定的优先级
+显式绑定 > 隐式绑定 > 默认绑定
+new绑定 > 隐式绑定 > 默认绑定
+
+这里的显式绑定和new绑定不用比较是因为这两种情况不会同时出现，同时出现会报错
+
+```javascript
+function Fn(){
+    this.name = '听风是风';
+};
+let obj = {
+    name:'行星飞行'
+}
+let echo = new Fn().call(obj);//报错 call is not a function
+```
+
+## 六、箭头函数的this
+**箭头函数没有this，它的this取决于外层作用域中的this，外层作用域中的this指向谁，箭头函数中法人this就指向谁。**
+
+```javascript
+function fn() {
+    return () => {
+        console.log(this.name);
+    };
+}
+let obj1 = {
+    name: '听风是风'
+};
+let obj2 = {
+    name: '时间跳跃'
+};
+let bar = fn.call(obj1); // fn this指向obj1
+bar.call(obj2); //听风是风
+```
+
+上面可以看到第一次绑定this返回箭头函数之后，再次改变this指向没有生效？
+因为fn函数执行时，fn里面的this指向了obj1，所以箭头函数的this也是指向obj1。此外箭头函数的this还有一个特征就是，一旦this绑定成功，那就无法再次修改，如果想要修改，需要修改他的外层函数的作用域来达到修改箭头函数的this。
 
 
+## 七、相关题目
+
+### 题目一、
+
+```javascript
+/*非严格模式*/
+
+var name = 'window'
+
+var obj1 = {
+    name: '听风是风',
+    fn1: function () {
+        console.log(this.name)
+    },
+    fn2: () => console.log(this.name),
+    fn3: function () {
+        return function () {
+            console.log(this.name)
+        }
+    },
+    fn4: function () {
+        return () => console.log(this.name)
+    }
+}
+var obj2 = {
+    name: '行星飞行'
+};
+
+ obj1.fn1();//听风是风
+ obj1.fn1.call(obj2);//行星飞行
+
+ obj1.fn2();//window
+ obj1.fn2.call(obj2);//window
+
+ obj1.fn3()();//window
+ obj1.fn3().call(obj2);//行星飞行
+ obj1.fn3.call(obj2)();//window
+
+ obj1.fn4()();//听风是风
+ obj1.fn4().call(obj2);//听风是风
+ obj1.fn4.call(obj2)();//行星飞行
+```
+
+### 题目二、
+```javascript
+/*非严格模式*/
+var name = 'window'
+
+function Person(name) {
+  this.name = name;
+  this.fn1 = function () {
+    console.log(this.name);
+  };
+  this.fn2 = () => console.log(this.name);
+  this.fn3 = function () {
+    return function () {
+      console.log(this.name)
+    };
+  };
+  this.fn4 = function () {
+    return () => console.log(this.name);
+  };
+};
+
+var obj1 = new Person('听风是风');
+console.dir(obj1);
+var obj2 = new Person('行星飞行');
 
 
-参考链接 ： <https://www.cnblogs.com/jiuxia/p/11488140.html>
+ obj1.fn1(); //听风是风
+ obj1.fn1.call(obj2); //行星飞行
+
+ obj1.fn2(); //听风是风
+ obj1.fn2.call(obj2); // 听风是风
+
+ obj1.fn3()(); // window
+ obj1.fn3().call(obj2);// 行星飞行
+ obj1.fn3.call(obj2)(); // window
+
+ obj1.fn4()();//听风是风
+ obj1.fn4().call(obj2);//听风是风
+ obj1.fn4.call(obj2)();//行星飞行
+```
+
+参考链接 ： 
+
+<https://www.cnblogs.com/jiuxia/p/11488140.html>
+
+<https://www.cnblogs.com/echolun/p/11969938.html>
 
 五种this绑定 :<https://www.cnblogs.com/echolun/p/11962610.html>

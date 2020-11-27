@@ -129,13 +129,129 @@
         // fn1(obj.fn);//行星飞行
 
 
-        let obj = {
-            name: '听风是风'
+        // let obj = {
+        //     name: '听风是风'
+        // };
+
+        // [1, 2, 3].forEach(function () {
+        //     console.log(this.name);//听风是风*3
+        // });
+
+        // function P(){
+        //    this.name = 'name'
+        //    this.age = 'age' 
+        //    return this
+        // }
+        // P.prototype.sayName = function(){
+        //     console.log(this.name)
+        // }
+        // let p = new P();
+        // let p1 = Object.create(P.prototype)
+        // let res = P.call(p1)
+        // p.sayName()
+        // console.log(p, p1, res)
+
+        // function Fn() {
+        //     this.name = '听风是风';
+        // };
+        // let obj = {
+        //     name: '行星飞行'
+        // }
+        // let echo = new Fn().call(obj);//报错 call is not a function
+
+        // function fn() {
+        //     console.log(this)
+        //     return () => {
+        //         console.log(this.name);
+        //     };
+        // }
+        // let obj1 = {
+        //     name: '听风是风'
+        // };
+        // let obj2 = {
+        //     name: '时间跳跃'
+        // };
+        // let bar = fn.call(obj1); // fn this指向obj1
+        // fn.call(obj2)
+        // bar.call(obj2); //听风是风
+
+        /*非严格模式*/
+
+        // var name = 'window'
+
+        // var obj1 = {
+        //     name: '听风是风',
+        //     fn1: function () {
+        //         console.log(this.name)
+        //     },
+        //     fn2: () => {
+        //         console.log(this.name)
+        //     },
+        //     fn3: function () {
+        //         return function () {
+        //             console.log(this.name)
+        //         }
+        //     },
+        //     fn4: function () {
+        //         return () => console.log(this.name)
+        //     }
+        // }
+        // var obj2 = {
+        //     name: '行星飞行'
+        // };
+
+        // obj1.fn1();//听风是风
+        // obj1.fn1.call(obj2);//行星飞行
+
+        // obj1.fn2();//window
+        // obj1.fn2.call(obj2);//window
+
+        // obj1.fn3()();//window
+        // obj1.fn3().call(obj2);//行星飞行
+        // obj1.fn3.call(obj2)();//window
+
+        // obj1.fn4()();//听风是风
+        // obj1.fn4().call(obj2);//听风是风
+        // obj1.fn4.call(obj2)();//行星飞行
+
+
+
+        /*非严格模式*/
+        var name = 'window'
+
+        function Person(name) {
+            this.name = name;
+            this.fn1 = function () {
+                console.log(this.name);
+            };
+            this.fn2 = () => console.log(this.name);
+            this.fn3 = function () {
+                return function () {
+                    console.log(this.name)
+                };
+            };
+            this.fn4 = function () {
+                return () => console.log(this.name);
+            };
         };
 
-        [1, 2, 3].forEach(function () {
-            console.log(this);//听风是风*3
-        });
+        var obj1 = new Person('听风是风');
+        console.log(obj1);
+        var obj2 = new Person('行星飞行');
+
+        obj1.fn1(); //听风是风
+        obj1.fn1.call(obj2); //行星飞行
+
+        obj1.fn2(); //听风是风
+        obj1.fn2.call(obj2); // 听风是风
+
+        obj1.fn3()(); // window
+        obj1.fn3().call(obj2);// 行星飞行
+        obj1.fn3.call(obj2)(); // window
+
+        obj1.fn4()();//听风是风
+        obj1.fn4().call(obj2);//听风是风
+        obj1.fn4.call(obj2)();//行星飞行
     </script>
 </body>
 
