@@ -1,5 +1,5 @@
 module.exports = {
-    title: '前端基础知识',
+    title: '东方根号三的博客',
     description: 'Just playing around',
     head: [
         ['link', { rel: 'icon', href: '/01.ico' }]
@@ -9,7 +9,7 @@ module.exports = {
         nav: [
             { text: 'Home', link: '/' },
             { text: 'github', link: 'https://github.com/cuehuabuleng' },
-            { text: 'personal-website', link: 'http://114.55.93.74:8009/#/home' }
+            { text: '个人网站', link: 'http://114.55.93.74:8009/#/home' }
             // {
             //     text: 'Languages',
             //     ariaLabel: 'Language Menu',
@@ -44,7 +44,7 @@ module.exports = {
                         collapsable: true,
                         children: [
                             'pages/js/es5/',
-                            'pages/js/es5/this的五种绑定'
+                            'pages/js/es5/this-binding'
                         ]
                     },
                     {
@@ -88,35 +88,35 @@ module.exports = {
                 title: '计算机网络',
                 collapsable: true,
                 children: [
-                    'pages/计算机网络/'
+                    'pages/computer-network/'
                 ]
             },
             {
                 title: '操作系统',
                 collapsable: true,
                 children: [
-                    'pages/操作系统/'
+                    'pages/operating-system/'
                 ]
             },
             {
                 title: '算法',
                 collapsable: true,
                 children: [
-                    'pages/算法/'
+                    'pages/algorithm/'
                 ]
             },
             {
                 title: '前端性能优化',
                 collapsable: true,
                 children: [
-                    'pages/前端性能优化/'
+                    'pages/performance-optimization/'
                 ]
             },
             {
                 title: '前端工程化',
                 collapsable: true,
                 children: [
-                    'pages/前端工程化/'
+                    'pages/web-engineering/'
                 ]
             }
         ]

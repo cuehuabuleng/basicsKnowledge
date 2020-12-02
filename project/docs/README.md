@@ -3,7 +3,7 @@ home: true
 heroImage: /02.png
 heroText: 前端知识总结
 tagline: 东方根号三
-actionText: 快速开始 →
+actionText: 进入 →
 actionLink: /pages/HTML/
 features:
 - title: 墨菲定律
