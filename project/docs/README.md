@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: /02.png
-heroText: 前端知识总结
+heroText: 前端面试指南
 tagline: 东方根号三
 actionText: 进入 →
 actionLink: /pages/HTML/

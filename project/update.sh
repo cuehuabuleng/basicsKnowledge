@@ -1,0 +1,1 @@
+# scp -r E:\前端\面试\basics\project\docs\.vuepress\dist root@114.55.93.74:/home/node/web-basicsKnowledge -p Chen10797138479

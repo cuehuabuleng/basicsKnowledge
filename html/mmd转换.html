@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <textarea name="" id="md" cols="30" rows="10"></textarea>
+    <button id="btn">转换</button>
+    <div id="html"></div>
+</body>
+<!-- <script src="http://cdn.bootcss.com/pagedown/1.0/Markdown.Converter.js"></script>
+<script>
+    let md = document.getElementById('md');
+    let btn = document.getElementById('btn');
+    let html = document.getElementById('html');
+    var c = new Markdown.Converter()
+    console.log(btn)
+    btn.onclick = function(){
+        let mdcontent = md.value
+        console.log(mdcontent)
+        let content = c.makeHtml(mdcontent)
+        console.log('md->html', content)
+        html.innerHTML = content
+    } 
+    
+</script>-->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+<script>
+    let md = document.getElementById('md');
+    let btn = document.getElementById('btn');
+    let html = document.getElementById('html');
+    var rendererMD = new marked.Renderer();
+    marked.setOptions({
+        renderer: rendererMD,
+        gfm: true,
+        tables: true,
+        breaks: false,
+        pedantic: false,
+        sanitize: false,
+        smartLists: true,
+        smartypants: false
+    });
+    marked.setOptions({
+        highlight: function (code) {
+            return hljs.highlightAuto(code).value;
+        }
+    });
+    btn.onclick = function () {
+        let htmlcontent = marked(md.value)
+        console.log('md->html', htmlcontent)
+        html.innerHTML = htmlcontent
+    }
+</script>
+
+</html>

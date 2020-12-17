@@ -1,5 +1,5 @@
 module.exports = {
-    title: '东方根号三的博客',
+    title: '前端面试指南',
     description: 'Just playing around',
     head: [
         ['link', { rel: 'icon', href: '/01.ico' }]
@@ -9,7 +9,7 @@ module.exports = {
         nav: [
             { text: 'Home', link: '/' },
             { text: 'github', link: 'https://github.com/cuehuabuleng' },
-            { text: '个人网站', link: 'http://114.55.93.74:8009/#/home' }
+            { text: '个人博客网站', link: 'http://114.55.93.74:8014/' }
             // {
             //     text: 'Languages',
             //     ariaLabel: 'Language Menu',
