@@ -44,7 +44,8 @@ module.exports = {
                         collapsable: true,
                         children: [
                             'pages/js/es5/',
-                            'pages/js/es5/this-binding'
+                            'pages/js/es5/this-binding',
+                            'pages/js/es5/js闭包'
                         ]
                     },
                     {
