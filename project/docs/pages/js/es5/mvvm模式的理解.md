@@ -1,6 +1,6 @@
-# **MVVM (Model-View-ViewModel)模式的理解**
+# **MVVM 模式的理解**
 
-## **一、什么是MVVM模式**
+## **一、什么是MVVM(Model-View-ViewModel)模式**
 &emsp;&emsp; 是一种软件架构设计模式。是一种简化用户界面的事件驱动编程方式。MVVVM的核心是ViewModel层，负责转换Model中的数据对象让数据变得更容易管理和使用。
 
 **ViewModel的主要作用是：**
@@ -29,7 +29,8 @@ _当下的MVVM模式的前端框架有Vie.js,Angularjs等等_
 
 
 ## **三、MVVM的组成**：
-![mvvm](./MVVM的组成.png)
+
+![mvvm](./MVVM.png)
 
 1. View：View是视图层，也是用户界面层。前端主要有HTML和css来构建。用来展示数据。
 2. Model：指的是数据模型，泛指后端进行的各种业务逻辑处理和数据操控，主要围绕数据库系统展开。这里的难点只要在于需要和前端约定统一的接口规范。
@@ -44,6 +45,7 @@ _当下的MVVM模式的前端框架有Vie.js,Angularjs等等_
 
 
 ## 四、MVC（Model-View-controller）
+
 ![mvc](./MVC.png)
 
 * Model层： 是应用程序中用于处理应用程序数据逻辑的部分。通常模型对象负责在数据库中存取数据。

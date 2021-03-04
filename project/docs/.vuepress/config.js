@@ -33,7 +33,8 @@ module.exports = {
                 collapsable: true,
                 children: [
                     'pages/css/',
-                    'pages/css/css选择器权重'
+                    'pages/css/css选择器权重',
+                    'pages/css/css盒子模型'
                 ]
             },
             {
@@ -46,7 +47,8 @@ module.exports = {
                         children: [
                             'pages/js/es5/',
                             'pages/js/es5/this-binding',
-                            'pages/js/es5/js闭包'
+                            'pages/js/es5/js闭包',
+                            'pages/js/es5/mvvm模式的理解'
                         ]
                     },
                     {
