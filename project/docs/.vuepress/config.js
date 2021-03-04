@@ -32,7 +32,8 @@ module.exports = {
                 title: 'css',
                 collapsable: true,
                 children: [
-                    'pages/css/'
+                    'pages/css/',
+                    'pages/css/css选择器权重'
                 ]
             },
             {
