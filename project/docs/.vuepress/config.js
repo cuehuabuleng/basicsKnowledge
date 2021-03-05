@@ -122,7 +122,15 @@ module.exports = {
                 children: [
                     'pages/web-engineering/'
                 ]
+            },
+            {
+                title: '浏览器',
+                collapsable: true,
+                children: [
+                    'pages/browser/浏览器输入url后发生什么'
+                ]
             }
+            
         ]
     }
 }
