@@ -128,7 +128,8 @@ module.exports = {
                 collapsable: true,
                 children: [
                     'pages/browser/浏览器输入url后发生什么',
-                    'pages/browser/cookie、session和jwt'
+                    'pages/browser/cookie、session和jwt',
+                    'pages/browser/xss和csrf'
                 ]
             }
             
