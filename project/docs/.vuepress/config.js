@@ -64,7 +64,8 @@ module.exports = {
                 title: 'vue',
                 collapsable: true,
                 children: [
-                    'pages/vue/'
+                    'pages/vue/',
+                    'pages/vue/vue2响应式原理'
                 ]
             },
             {
