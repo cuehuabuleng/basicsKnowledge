@@ -65,7 +65,8 @@ module.exports = {
                 collapsable: true,
                 children: [
                     'pages/vue/',
-                    'pages/vue/vue2响应式原理'
+                    'pages/vue/vue2响应式原理',
+                    'pages/vue/vueRouter原理'
                 ]
             },
             {
