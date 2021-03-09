@@ -66,7 +66,8 @@ module.exports = {
                 children: [
                     'pages/vue/',
                     'pages/vue/vue2响应式原理',
-                    'pages/vue/vueRouter原理'
+                    'pages/vue/vueRouter原理',
+                    'pages/vue/vue的生命周期'
                 ]
             },
             {
