@@ -67,7 +67,10 @@ module.exports = {
                     'pages/vue/',
                     'pages/vue/vue2响应式原理',
                     'pages/vue/vueRouter原理',
-                    'pages/vue/vue的生命周期'
+                    'pages/vue/vue的生命周期',
+                    'pages/vue/vue的渲染过程',
+                    'pages/vue/vue中的nextTick',
+                    'pages/vue/vue中key的作用'
                 ]
             },
             {
