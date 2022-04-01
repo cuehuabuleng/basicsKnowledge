@@ -21,16 +21,30 @@
         //         return result;
         //     }
         // }(); // 外层立即执行
-
-        var fib = function (n) {
-            if(n === 0){
+        // var fib = function (n) {
+        //     if(n === 0){
+        //         return 0
+        //     }else  if(n === 1){
+        //         return 1
+        //     }else{
+        //         return fib(n-1) + fib(n-2)
+        //     }
+        // };
+        function fib(N) {
+            if (N === 0) {
                 return 0
-            }else  if(n === 1){
-                return 1
-            }else{
-                return fib(n-1) + fib(n-2)
             }
-        };
+            if (N === 1) {
+                return 1
+            }
+            let pre = 1, next = 1;
+            for (let i = 3; i < N; i++) {
+                let tem = pre + next;
+                pre = next
+                next = tem
+            }
+            return next
+        }
         console.log(fib(2))
     </script>
 </body>

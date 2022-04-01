@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="jsContainer">
+        <ul class="js-test" id="jsParent">
+            <li data-index="0">1</li>
+            <li data-index="1">2</li>
+        </ul>
+        <span style="font-weight: bold;">3</span>
+        4
+    </div>
+</body>
+<script>
+    function dom2json() {
+        let root = document.querySelector('#jsContainer');
+        let domobj = Object.create(null);
+        // 不知道怎么样获取文本节点
+        console.log('1',root.firstChild)
+        function fn(root, domobj) {
+                domobj.tag = root.tagName;
+                let attrs = root.attributes;
+                domobj.attributes = {};
+                domobj.children = []
+                for (let i = 0; i < attrs.length; i++) {
+                    domobj.attributes[attrs[i].nodeName] = attrs[i].nodeValue
+                }
+                // console.log(domobj)
+                let len = root.children.length;
+                for(let i = 0; i < len; i ++){
+                    let obj = {}
+                    domobj.children.push(fn(root.children[i], obj))
+                }
+                return domobj;
+        }
+        fn(root, domobj)
+        console.log('res',domobj)
+        return domobj
+    }
+    dom2json();
+</script>
+
+</html>

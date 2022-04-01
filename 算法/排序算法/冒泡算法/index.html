@@ -18,17 +18,29 @@
         。
         最后的时候，当剩下最后一个元素的时候，这时候就不要再比较了，所以一共需要循坏 arr.length - 1 次。
         */
-        function sort(arr) {
-            for(let i = 0; i < arr.length - 1; i++){
-                for (let j = 0; j < arr.length - 1 - i; j++) {
-                    if (arr[j] > arr[j + 1]) {
-                        var tem = arr[j];
-                        arr[j] = arr[j+1];
-                        arr[j+1] = arr[j]
+        // function sort(arr) {
+        //     for(let i = 0; i < arr.length - 1; i++){
+        //         for (let j = 0; j < arr.length - 1 - i; j++) {
+        //             if (arr[j] > arr[j + 1]) {
+        //                 var tem = arr[j];
+        //                 arr[j] = arr[j+1];
+        //                 arr[j+1] = arr[j]
+        //             }
+        //         }
+        //     }
+        //     return arr;
+        // }
+        function sort(arr){
+            for(let i = 0; i < arr.length - 1; i ++){
+                for(let j = i + 1; j < arr.length -j - 1; j ++){
+                    if(arr[j] > arr[j + 1]){
+                        let tem = arr[j];
+                        arr[j] = arr[i];
+                        arr[i] = tem
                     }
                 }
             }
-            return arr;
+            return arr
         }
         var arr = [2,5,8,12,54,23,78]
         console.log(sort(arr))

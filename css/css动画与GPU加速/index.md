@@ -16,7 +16,7 @@
 
 3D 和 2D transform 的区别就在于，浏览器在页面渲染前为3D动画创建独立的复合图层，而在运行期间为2D动画创建。动画开始时，生成新的复合图层并加载为GPU的纹理用于初始化 repaint。然后由GPU的复合器操纵整个动画的执行。最后当动画结束时，再次执行 repaint 操作删除复合图层。
 
-原文: https://www.w3cplus.com/css3/introduction-to-hardware-acceleration-css-animations.html © w3cplus.com
+原文: https://www.w3cplus.com/css3/introduction-to-hardware-acceleration-css-animations.html 
 
 
 

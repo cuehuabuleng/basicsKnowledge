@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    window.onload = function () {
+        var outA = document.getElementById("outA");
+        var outB = document.getElementById("outB");
+        var outC = document.getElementById("outC");
+
+        // 目标(自身触发事件,是冒泡还是捕获无所谓)
+        outC.addEventListener('click', function () { console.log("targetC"); }, true);
+
+        // 事件冒泡
+        outA.addEventListener('click', function () { console.log("bubbleA"); }, false);
+        outB.addEventListener('click', function () { console.log("bubbleB"); }, false);
+
+        // 事件捕获
+        outA.addEventListener('click', function () { console.log("captureA"); }, true);
+        outB.addEventListener('click', function () { console.log("captureB"); }, true);
+    };
+
+</script>
+
+<body>
+    <div id='outA' style='width:400px; height:400px; background:#CDC9C9;position:relative;'>
+        <div id='outB' style='height:200; background:#0000ff;top:100px;position:relative;'>
+            <div id='outC' style='height:100px; background:#FFB90F;top:50px;position:relative;'></div>
+        </div>
+    </div>
+</body>
+
+</html>
+<!-- https://blog.csdn.net/fannnnnn/article/details/90704052 -->

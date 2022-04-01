@@ -123,21 +123,60 @@
         // }
         // obj.fn()
 
-        function func(name){
-            this.name = name || 'sapi'
-            function say(){
-                console.log('hello' + this.name)
+        // function func(name){
+        //     this.name = name || 'sapi'
+        //     function say(){
+        //         console.log('hello' + this.name)
+        //     }
+        // }
+
+        // func.prototype.say = function(prefix){
+        //     console.log(prefix+this.name)
+        // }
+
+        // new func().say('132')
+
+        // https://www.cnblogs.com/hutaoer/p/3423782.html
+
+        // class A {
+        //     start() {
+        //         console.log('this',this)
+        //         setTimeout(() => {
+        //             console.log('x', this)
+        //         }, 0);
+        //         setTimeout(function () {
+        //             console.log('y', this)
+        //         }, 0)
+        //     }
+        // }
+        // const b = new A();
+        // b.start();
+
+        // function Foo() {
+        //     this.value = 42;
+        //     console.log('1', this)
+        //     this.method = function () {
+        //         // this 指向全局对象
+        //         console.log(this)   // 输出window  第二个this
+        //         console.log(this.value); // 输出：undefined   第二个this
+        //     };
+        //     setTimeout(this.method, 500);  // this指向Foo的实例对象  第一个this
+        // }
+        // new Foo();
+
+        var obj = {
+            name: 'hutaoer',
+            say: function () {
+                var self = this;
+                setTimeout( () => {
+                    console.log(self);   // 输出 object ，指向obj
+                    console.log(this);   // 第二个this，指向window，我心永恒，从未改变
+                    console.log(self.name)  // 输出 hutaoer
+                }, 0)
             }
         }
 
-        func.prototype.say = function(prefix){
-            console.log(prefix+this.name)
-        }
-
-        new func().say('132')
-        
-        // https://www.cnblogs.com/hutaoer/p/3423782.html
-
+        obj.say();
     </script>
 </body>
 

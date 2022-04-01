@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* #cover {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            background: rgba(0, 0, 0, 0.4);
+            width: 100%;
+            height: 100%;
+            filter: alpha(opacity=60);
+            opacity: 0.6;
+            display: none;
+            z-Index: 999;
+        } */
+        #cover{
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            opacity: 0.6;
+            background: rgba(0, 0, 0, 0.4);
+            height: 100%;
+            width: 100%;
+            z-index: 999;
+            display: none;
+        }
+
+        /* #modal {
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            background-color: #fff;
+            display: none;
+            cursor: pointer;
+            z-Index: 9999;
+        } */
+        #modal{
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            background-color: white;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            z-index: 9999;
+            cursor: pointer;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="body"> 显示页面的全部内容
+        <div id="open">打开弹框</div>
+    </div>
+    <div id="cover">
+        <div id="modal">
+            <div id="close">关闭弹框</div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</body>
+</body>
+<script>
+    var open = document.getElementById('open');
+    var close = document.getElementById('close');
+    var cover = document.getElementById('cover');
+    var modal = document.getElementById('modal');
+    open.onclick = function () {
+        cover.style.display = 'block'
+        modal.style.display = 'block'
+    }
+    close.onclick = function () {
+        cover.style.display = 'none'
+        modal.style.display = 'none'
+    }
+</script>
+
+</html>

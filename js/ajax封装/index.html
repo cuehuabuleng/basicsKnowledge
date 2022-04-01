@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /*
+    封装 ajax 函数，不需要考虑IE
+        function ajax({
+            url: string,
+            method: string,
+            data?: object,
+            timeout?: number,
+            success: function,
+            error: function
+        }): void;
+    */
+    function ajax(options = {}) {
+
+        // 初始化参数
+        let baseUrl = 'xxx';
+        let requestMethods = ['GET', 'POST', 'DELETE', 'HEAD', 'PUT', 'PTIONS', 'CONNECT', 'TRSCK'];
+        options.method = (options.method || 'GET').toUpperCase();
+        options.contentType = options.contentType || 'application/json';
+        options.dataType = options.dataType || 'json';
+        let params = formatParams(options.data);
+
+        // 创建xhr对象,并且建立连接
+        let xhr;
+        if (window.XMLHttpRequest) {
+            xhr = new XMLHttpRequest()
+        } else if (window.ActiveXObject()) {
+            xhr = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+        if (requestMethods.indexOf(options.method) < 0) {
+            options.error && options.error('request method error')
+        } else {
+            if (options.method === 'GET') {
+                xhr.open('GET', baseUrl + options.url + '?' + params, true);
+                xhr.send(null)
+            } else if (options.method === 'POST') {
+                xhr.open('POST', baseUrl + options.url);
+                xhr.setRequestHeader('Conent-type', options.contentType);
+                switch (options.contentType) {
+                    case 'application/x-www-form-urlencode':
+                        xhr.send(params)
+                        break;
+                    case 'application/json':
+                        xhr.send(JSON.parse(options.data)) 
+                    default:
+                        break;
+                }
+            }
+        }
+        setTimeout(function(){
+            if(xhr.readyState != 4){
+                xhr.abort()
+            }
+        }, Number(options.timeout))
+        //判断状态，返回响应或者错误
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4){
+                let status = xhr.status;
+                if(status >= 200 && status < 300 || status === 304){
+                    options.success && options.success(JSON.parse(xhr.responseText, xhr.responseXML))
+                }else{
+                    options.error && options.error(status)
+                }
+            }
+        }
+    }
+
+    // 处理参数的函数
+    function formatParams(data, type) {
+        let arr = [];
+        for (let name in data) {
+            arr.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]))
+        }
+        arr.push(('v=' + Math.random()).replace('.', ''))
+        return arr.join('&')
+    }
+
+
+</script>

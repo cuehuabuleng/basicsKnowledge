@@ -3,7 +3,8 @@ HashMap的数据结构：数组+(链表或者红黑树)
     数组：查询效率高，插入删除效率低
     链表：查询效率低，插入删除效率高
 
-    hashmap是一个键值对的集合，里面的每个子项可以称为hash桶(hash_table)
+    hashma
+    p是一个键值对的集合，里面的每个子项可以称为hash桶(hash_table)
 
 1、储存的原理 hash.set(key,value)
 

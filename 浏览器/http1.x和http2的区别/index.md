@@ -45,3 +45,6 @@ http和https的区别：
          HTTP协议运行在TCP之上，所有传输的内容都是明文，HTTPS运行在SSL/TLS之上，SSL/TLS运行在TCP之上，所有传输的内容都经过加密的。
          HTTP和HTTPS使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。
          HTTPS可以有效的防止运营商劫持，解决了防劫持的一个大问题。
+
+
+<!-- https://segmentfault.com/a/1190000011172823 -->

@@ -93,49 +93,95 @@
 
         // 对应02gif的执行过程 例子2
 
-        function c() {
-            return new Promise((resolve) => {
-                console.log('开始了')     // 当这条语句执行完， 会把接下来的第一个.then回调事件推进微任务队列中，然后会跳出a()函数，继续执行接下来的函数
-                resolve()
-            }).then(() => {
-                console.log('c.......');
-                return
-            }).then(res => {
-                console.log(res);
-                return '返回了一个值'
-            })
-        }
+        // function c() {
+        //     return new Promise((resolve) => {
+        //         console.log('开始了')// 当这条语句执行完， 会把接下来的第一个.then回调事件推进微任务队列中，然后会跳出a()函数，继续执行接下来的函数
+        //         resolve()
+        //     }).then(() => {
+        //         console.log('c.......');
+        //         return
+        //     }).then(res => {
+        //         console.log(res);
+        //         return '返回了一个值'
+        //     })
+        // }
+        // async function a() {
+        //     // 如果await后的表达式是一个promise对象
+        //     await c().then((res) => {
+        //         console.log('then....' + res)
+        //     })
+        //     console.log(1)
+        // }
+        // a();
+        // console.log('同步代码')
+        // Promise.resolve().then(() => {
+        //     console.log(3)
+        // })
+
         async function a() {
-            // 如果await后的表达式是一个promise对象
-            await c().then((res) => {
-                console.log('then....' + res)
-            })
-            console.log(1)
+
+            console.log('“await start”')
+
+            await 10
+
+            console.log('“await end”')
+
         }
-        a();
-        console.log('同步代码')
-        Promise.resolve().then(() => {
-            console.log(3)
+
+        setTimeout(() => {
+
+            console.log('“0”')
+
         })
 
-/*
+        console.log('“start”')
 
-cmd:
-开始了
-同步代码
-c.......');
-3
-undefined
+        a()
 
-microTask:
- console.log('c.......');
- console.log(3)
-  console.log(res);
+        new Promise((res) => {
 
-macroTask:
+            console.log('“promise”')
+
+            res(0)
+
+        }).then(() => {
+
+            console.log('“then”')
+
+        })
+
+        console.log('“end”')
+
+        /*
+        
+        cmd:
+        开始了
+        
+        microTask:
+        console.log('c.......');
+        
+        macroTask:
+        */
 
 
-*/
+        /*
+        
+        cmd:
+        开始了
+        同步代码
+        c.......');
+        3
+        undefined
+        
+        microTask:
+         console.log('c.......');
+         console.log(3)
+          console.log(res);
+        
+        macroTask:
+        
+        
+        */
 
     </script>
 </body>

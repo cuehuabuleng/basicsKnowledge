@@ -9,14 +9,125 @@
 
 <body>
     <script>
-        function flatten(arr) {
-            return arr.toString().split(',').map(function (item) {
-                return Number(item);
-            })
-        } 
-        var arr = [1,2,3,5,[1,2,58,7],12]
-        var res = flatten(arr)
-        console.log(res)
+        //1、 reduce迭代
+        // function flatten(arr){
+        //     return arr.reduce((result, item) => {
+        //         return result.concat(Array.isArray(item) ? flatten(item) : item)
+        //     },[])
+        // }
+
+        // 2、toString split
+        // function flatten(arr){
+        //     return arr.toString().split(',').map(item => {
+        //         return Number(item)
+        //     })
+        // }
+        // 3、for循环
+        // function flatten(arr){
+        //     let res = [];
+        //     let fn = function(arr){
+        //         for(let i = 0; i < arr.length; i++){
+        //             let item = arr[i]
+        //             if(Array.isArray(item)){
+        //                 fn(item)
+        //             }else{
+        //                 res.push(item)
+        //             }
+        //         }
+        //     }
+        //     fn(arr)
+        //     return res
+        // }
+
+        // 4、 replace + JSON.parse
+        // function flatten(arr){
+        //     let str = JSON.stringify(arr).replace(/(\[|\])/g, '');
+        //     str = '[' + str + ']'
+        //     return JSON.parse(str)
+        // }
+
+
+
+
+
+
+
+
+
+        // 利用reduce
+        // function flatten(arr){
+        //     return arr.reduce((result ,item) => {
+        //         return result.concat(Array.isArray(item) ? flatten(item) : item)
+        //     }, [])
+        // }
+
+        // 1.1.
+        // function flatten(arr) {
+        //     return arr.reduce((result, item) => {
+        //         return result.concat(Array.isArray(item) ? flatten(item) : item)
+        //     }, [])
+        // }
+        // 利用for循环
+        // function flatten(arr) {
+        //     let res = [];
+        //     let fn = function (arr) {
+        //         for (let i = 0; i < arr.length; i++) {
+        //             if (Array.isArray(arr[i])) {
+        //                 fn(arr[i])
+        //             } else {
+        //                 res.push(arr[i])
+        //             }
+        //         }
+        //     }
+        //     fn(arr)
+        //     return res;
+        // }
+
+        // 1.1
+        // function flatten(arr){
+        //     let res = [];
+        //     let fn = function(arr){
+        //         for(let i = 0; i < arr.length; i ++){
+        //             if(Array.isArray(arr[i])){
+        //                 fn(arr[i])
+        //             }else{
+        //                 res.push(arr[i])
+        //             }
+        //         }
+        //     }
+        //     fn(arr)
+        //     return res
+        // }
+
+        // 利用split和toString
+        // function flatten(arr){
+        //     return arr.toString().split(',').map(item => {
+        //         return  Number(item)
+        //     })
+        // }
+
+        //1.1
+        // function flatten(arr){
+        //     return arr.toString().split(',').map( item => {
+        //         return Number(item)
+        //     })
+        // }
+        // 利用replace和JSON.parse
+        // function flatten(arr) {
+        //     let str = JSON.stringify(arr).replace(/(\[|\])/g, '');
+        //     let newarr = '[' + str + ']';
+        //     return JSON.parse(newarr)
+        // }
+
+        //1.1
+        // function flatten(arr){
+        //     let str = JSON.stringify(arr).replace(/(\[|\])/g, '');
+        //     let newarr = '[' + str + ']';
+        //     return JSON.parse(newarr)
+        // }
+        // var arr = [1, 2, 3, 5, [1, 2, 58, 7], 12]
+        // var res = flatten(arr)
+        // console.log(res)
     </script>
 </body>
 

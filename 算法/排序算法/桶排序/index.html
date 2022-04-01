@@ -1,0 +1,122 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>桶排序</title>
+    <meta name="keywords" content="关键字列表" />
+    <meta name="description" content="网页描述" />
+    <link rel="stylesheet" type="text/css" http://www.3qphp.com/down51jb/list-67.html />
+    <style type="text/css"></style>
+    <script type="text/javascript">
+
+        // 1.0
+        //桶排序,参数数组,桶的个数，这里用数组模拟桶
+        // var cask = function (arr, caskCount) {
+        //     //不是数组，返回false
+        //     if (toString.call(arr) != '[object Array]') {
+        //         return false;
+        //     }
+        //     //获取数组的长度
+        //     var len = arr.length;
+        //     if (len <= 1) {
+        //         return arr;//长度小于等于1不用排序
+        //     }
+        //     var list = [],//装桶的桶，用它来控制存储桶的编号
+        //         result = [],//返回的结果
+        //         max = arr[0],
+        //         min = arr[0];
+        //     //默认桶的个数为10
+        //     var caskCount = parseInt(caskCount) > 0 ? parseInt(caskCount) : 10;
+        //     //获取数组的最大值和最小值
+        //     for (var i = 1; i < len - 1; i++) {
+        //         max = arr[i] <= max ? max : arr[i];
+        //         min = arr[i] >= min ? min : arr[i];
+        //     }
+        //     //分成caskCount个桶，桶所占用的范围
+        //     var range = (max - min) / caskCount;
+        //     for (var i = 0; i < len; i++) {
+        //         //桶的数值减去最小数 min 获取的是桶占用的范围，再除以一个桶的范围，就是获取对应的桶编号
+        //         var index = Math.floor((arr[i] - min) / range);
+        //         //桶里是否有值，有值则进行排序
+        //         if (list[index]) {//用数组模拟桶
+        //             //获取桶最后一个值的下标 
+        //             var k = list[index].length - 1;
+        //             //桶最后的值大于要插进来的值，所以要把这个值插到桶的前面去，但不知道这个值要插入到前面的哪个位置，所以，就只能对比排序了
+        //             //对桶进行排序
+        //             while (k >= 0 && list[index][k] > arr[i]) {
+        //                 //桶前面的数字放到后面去
+        //                 list[index][k + 1] = list[index][k];//第一个k+1为新增的桶
+        //                 //小的提前一个位置
+        //                 //list[index][k] = arr[i];
+        //                 k--;
+        //             }
+        //             //不用排序的，直接加在桶的最后面
+        //             list[index][k + 1] = arr[i];
+        //         } else {
+        //             //没有值则生成桶，并把值放到对应的桶中
+        //             list[index] = [];
+        //             list[index][0] = arr[i];
+        //         }
+        //     }
+        //     //合并桶
+        //     var n = 0;
+        //     while (n <= caskCount) {
+        //         if (list[n]) {
+        //             result = result.concat(list[n]);
+        //         }
+        //         n++;
+        //     }
+        //     return result;
+        // }
+        // var arr = [8, 39, 400, 500, 3, 4, 20, 44, 440];
+        // console.log(cask(arr, 10));
+        //alert(parseInt(-1) ? parseInt(-1) : 1);
+
+
+
+        //   1.1
+        function bucketSort(arr, bucketCount) {
+            result = []
+            minValue = arr[0]
+            maxValue = arr[0]
+            // 找出最大值和最小值，为给每个桶分配大小做准备
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] < minValue) {
+                    minValue = arr[i]
+                }
+                if (arr[i] > maxValue) {
+                    maxValue = arr[i]
+                }
+            }
+            // 求得每个桶的size
+            bucketSize = Math.floor((maxValue - minValue) / bucketCount) + 1
+            bucket = new Array(bucketCount)
+            for (let i = 0; i < bucketCount; i++) {
+                bucket[i] = []
+            }
+            console.log('132',bucket)
+            // 往桶里放数据
+            for (let i = 0; i < arr.length; i++) {
+                bucket[Math.floor((arr[i] - minValue) / bucketCount)].push(arr[i])
+            }
+            // 对每个桶进行单独排序，放进结果数组中
+            for (let i = 0; i < bucketCount; i++) {
+                bucket[i].sort()
+                for (let j = 0; j < bucket[i].length; j++) {
+                    result.push(bucket[i][j])
+                }
+            }
+            return result
+        }
+        // 测试
+        arr = [5, 4, 3, 2, 1, 8, 6, 4, 7, 6]
+        console.log(bucketSort(arr, 3))
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

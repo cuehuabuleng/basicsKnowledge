@@ -26,8 +26,22 @@
         //     }
         //     return arr;
         // }
-        // var arr = [1,1,4,4,4,4,4,4,4,52,2,2,3,3,36,36]
-        // console.log(deDuplication(arr))
+        // 1.1
+        function deDuplication(arr){
+            for(let i = 0; i < arr.length; i ++){
+                let cur = arr[i];
+                for(let j = i + 1; j < arr.length; j ++){
+                    if(cur === arr[j]){
+                        arr.splice(j, 1)
+                        j --
+                    }
+                }
+            }
+            return arr
+        }
+        var arr = [1,1,4,4,4,4,4,4,4,52,2,2,3,3,36,36]
+        console.log('双重for循环',deDuplication(arr))
+
 
 
         // 使用es6 set去重
@@ -38,9 +52,15 @@
         //     var newArr = Array.from(set)
         //     return newArr;
         // }
-        // let arr = [2,3,43,44,4,4,54,56,76,34,2]
-        // console.log(unique(arr))
+        //1.1
+        // function unique(arr){
+        //     let set = new Set(arr)
+        //     return Array.from(set)
+        // }
+        // var arr = [2,3,43,44,4,4,54,56,76,34,2]
+        // console.log('...set',unique(arr))
 
+        
         // 使用indexof去重
         // function unique(arr) {
         //     if(!Array.isArray(arr)){
@@ -55,35 +75,48 @@
 
         //     return newArray;
         // }
+        //1.1
+        function unique(arr){
+            if(!Array.isArray(arr)){
+                console.error('type error !!')
+            }
+            var newArr = [];
+            for(let i = 0; i < arr.length; i ++){
+                if(newArr.indexOf(arr[i]) === -1){
+                    newArr.push(arr[i])
+                }
+            }
+            return newArr
+        }
 
-        // var arr = [1,2,5,5,5,6,6,8,8,8,96,2,1,2, {},{},[], NaN, NaN]
-        // console.log(unique(arr))
+        var arr = [1,2,5,5,5,6,6,8,8,8,96,2,1,2, {},{},[], NaN, NaN]
+        console.log('indexOf',unique(arr))
         // Nan {} 并没有去重
 
 
         // 利用递归去重
-        // function unique(arr) {
-        //     debugger;
-        //     var newArr = arr;
-        //     var len = newArr.length;
-        //     //先排序之后再进行去重
-        //     newArr.sort(function (a, b) {
-        //         return a - b;
-        //     })
-        //     function loop(index) {
-        //         if (index >= 1) {
-        //             if (newArr[index] === newArr[index - 1]) {
-        //                 newArr.splice(index, 1)
-        //             }
-        //             loop(index - 1)
-        //         }
-        //     }
-        //     loop(len - 1)
-        //     return newArr;
-        // }
+        function unique(arr) {
+            debugger;
+            var newArr = arr;
+            var len = newArr.length;
+            //先排序之后再进行去重
+            newArr.sort(function (a, b) {
+                return a - b;
+            })
+            function loop(index) {
+                if (index >= 1) {
+                    if (newArr[index] === newArr[index - 1]) {
+                        newArr.splice(index, 1)
+                    }
+                    loop(index - 1)
+                }
+            }
+            loop(len - 1)
+            return newArr;
+        }
 
-        // var arr = [1, 32, 43, 54, 54, 54, 65, 76, 34, 23]
-        // console.log(unique(arr))
+        var arr = [1, 32, 43, 54, 54, 54, 65, 76, 34, 23]
+        console.log('递归去重',unique(arr))
 
 
         /*
@@ -91,65 +124,80 @@
         思路：数组的每一个元素当作是map的key值， map中不会出现相同的key值，最终得到的是去重后的结果
 
         */
-        function unique(arr) {
+        // function unique(arr) {
+        //     let map = new Map();
+        //     let newArr = new Array();
+        //     for (let i = 0; i < arr.length; i++) {
+        //         if (map.has(typeof arr[i] + arr[i])) {
+        //             map.set(typeof arr[i] + arr[i], true)
+        //         } else {
+        //             map.set(typeof arr[i] + arr[i], false)
+        //             newArr.push(arr[i])
+        //         }
+        //     }
+        //     return newArr;
+        // }
+
+        //1.1
+        function unique(arr){
             let map = new Map();
-            let newArr = new Array();
-            for (let i = 0; i < arr.length; i++) {
-                if (map.has(typeof arr[i] + arr[i])) {
+            let res = [];
+            for(let i = 0; i < arr.length; i ++){
+                if(map.has(typeof arr[i] + arr[i])){
                     map.set(typeof arr[i] + arr[i], true)
-                } else {
+                }else{
                     map.set(typeof arr[i] + arr[i], false)
-                    newArr.push(arr[i])
+                    res.push(arr[i])
                 }
             }
-            console.log(map)
-            return newArr;
+            return res
         }
-
-        var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
-        console.log(unique(arr))
+        var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}, { a: 1 }];
+        console.log('map', unique(arr))
 
 
         //利用hasOwnprototype  利用数组的fillter中当每一项中return的为true的时候，该项item就是被返回 实现去重的效果。
-        // function unique(arr) {
-        //     var obj = {};
-        //     let newArr = arr.filter(function (item, index, arr) {
-        //         let zz = obj.hasOwnProperty(typeof item + item) ? false : (obj[typeof item + item] = true)
-        //         return zz
-        //     })
-        //     return newArr
-        // }
-        // var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
-        // console.log(unique(arr))
+        function unique(arr) {
+            var obj = {};
+            let newArr = arr.filter(function (item, index, arr) {
+                let zz = obj.hasOwnProperty(typeof item + item) ? false : (obj[typeof item + item] = true)
+                return zz
+            })
+            return newArr
+        }
+        var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}, { a: 123 }];
+        console.log('hasOwnprototype', unique(arr))
 
 
         // 利用 Set去重
-        // var arr = [1,2,5,5,5,8,7,52,3]
-        // var newArr = [...new Set(arr)]
-        // console.log(newArr)
-
-
+        var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}, { a: 123 }];
+        function unique(arr) {
+            let set = new Set(arr);
+            return Array.from(set)
+        }
+        var newArr = unique(arr)
+        console.log('set', newArr)
         // 使用reduce和includes
         // 1. 要去重的数组
-        // const targets = [1, 1, 2, 3, 4, 3, 3,{},{}];
+        // const targets =  [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
 
         // // 2.采用 reduce + includes 来实现
         // const noRepeat = targets.reduce((previousValue, currentValue, index, array) => {
         //     // 判断之前返回的值 是否 不包含当前值，如果 不包含 就满足条件，注意这里有 ！运算符
-        //     if (!previousValue.includes(currentValue)) {
+            // if (!previousValue.includes(currentValue)) {
         //         // 如果 previousValue(之前迭代返回的值) 中不 includes(包含) 那就将当前值 concat(合并) 进数组
         //         // 并返回 作为 下一次迭代的 previousValue 值
-        //         return previousValue.concat(currentValue);
-        //     }
+                // return previousValue.concat(currentValue);
+            // }
         //     // 如果上面判断发现 currentValue 存在 上一次迭代返回的 previousValue  中
         //     // ，那就证明当前 currentValue 的值是重复的，那就不会被合并进下一次迭代的 previousValue 中，不做任何修改直接返回 去下一次迭代。
-        //     return previousValue;
+            // return previousValue;
         // }, []);
         // // 注意： reduce 的第二个参数 reduce(()=> {}，[]) 是指 previousValue 第一次迭代的值，必须提供一个空数组，
         // // 不然默认会以 targets 数组中的第一个数组元素当作第一次迭代的 previousValue 值。
 
         // // 打印结果输出验证
-        // console.log(noRepeat);
+        // console.log('reduce+includes',noRepeat);
     </script>
 </body>
 

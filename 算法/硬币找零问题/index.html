@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /*
+    硬币找零问题：有面额为d1...dn的硬币，和要找零的钱数，找出所需最小硬币个数的方案，例如，有以下面额(硬币）：d1=1, d2=5, d3=10, d4=25，
+    如果要找36的零钱，所需最少硬币是 [1, 10, 25]，即满足如下输出：
+    const minCoinChange = new MinCoinChange([1, 5, 10, 25]);
+    console.log(minCoinChange.makeChange(36)) // [1, 10, 25]
+
+    class MinCoinChange{
+    // to do
+    }
+    */
+    // 最少硬币找零 - 贪心算法
+
+    function MinCoinChange(coins) {
+        // coins.sort((a, b) => a - b)
+        // this.makeChange = function (amount) {
+        //     let total = 0, change = []
+        //     for (let i = coins.length; i >= 0; i--) {
+        //         let coin = coins[i]
+        //         while (total + coin <= amount) {
+        //             change.push(coin)
+        //             total += coin
+        //         }
+        //     }
+        //     if(total !== amount){
+        //         return false
+        //     }
+        //     return change
+        // }
+        coins.sort((a, b) => a - b )
+        console.log(coins)
+        this.makeChange = function(amount){
+            let total = 0, change = [];
+            for(let i = coins.length - 1; i >= 0; i --){
+                let coin = coins[i]
+                while(total + coin <= amount){
+                    change.push(coin);
+                    total += coin;
+                }
+            }
+            if(total !== amount){
+                return false
+            }
+            return change
+        }
+    }
+    let minCoinChange = new MinCoinChange([1,2,3, 5, 10, 25]);
+    console.log(minCoinChange.makeChange(36))
+
+
+
+</script>
+
+</html>

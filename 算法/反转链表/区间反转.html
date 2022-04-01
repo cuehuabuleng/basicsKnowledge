@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-        var reverseBeteween = function(head, m, n){
+        var reverseBeteween = function (head, m, n) {
             let pre = null;
             let curr = head;
             let next = head;
-            for(var i = 1; i < m; i++){
+            for (var i = 1; i < m; i++) {
                 pre = curr;
                 curr = curr.next;
             }
             let pre2 = pre;
             let cur2 = curr;
-            for(let i = m; i<= n; i++){
-
+            for (let i = m; i <= n; i++) {
+                next = cur.next;
+                cur.next = pre;
+                pre = cur;
+                cur = next;
             }
-            
+            if (pre2 != null) {
+                pre2.next = pre
+            } else {
+                head = pre
+            }
+            cur2.next = cur;
+            return head
         }
     </script>
 </body>
+
 </html>

@@ -9,45 +9,85 @@
 
 <body>
     <script>
+        // var threeSum = function (nums) {
+        //     var res = [];
+        //     if (nums == null || nums.length < 3) {
+        //         return res;
+        //     }
+        //     nums.sort((a, b) => a - b)
+        //     for (let i = 0; i < nums.length; i++) {
+        //         if (nums[i] > 0) {
+        //             break;
+        //         }
+        //         if (i > 0 && nums[i] === nums[i - 1]) {
+        //             continue;
+        //         }
+        //         let j = i + 1,
+        //             k = nums.length - 1;
+        //         while (j < k) {
+        //             let item = nums[i];
+        //             let sum = nums[j] + nums[k] + item;
+        //             if (sum < 0) {
+        //                 j++;
+        //             } else if (sum > 0) {
+        //                 k--;
+        //             } else {
+        //                 res.push([nums[i], nums[j], nums[k]])
+        //                 while (j < k && nums[j] === nums[j + 1]) {
+        //                     j++;
+        //                 }
+        //                 while (j < k && nums[k] === nums[k - 1]) {
+        //                     k--;
+        //                 }
+        //                 j++;
+        //                 k--;
+        //             }
+        //         }
+        //     }
+        //     return res;
+        // }
         var threeSum = function (nums) {
-            var res = [];
-            if (nums == null || nums.length < 3) {
-                return res;
+            let res = [];
+            if (nums.length < 3) {
+                return res
             }
-            nums.sort((a, b) => a - b)
+            nums.sort((a, b) => a - b);
             for (let i = 0; i < nums.length; i++) {
-                if (nums[i] > 0) {
-                    break;
-                }
-                if (i > 0 && nums[i] === nums[i - 1]) {
+                if (nums[i] === nums[i - 1]) {
                     continue;
                 }
-                let j = i + 1,
-                    k = nums.length - 1;
-                while (j < k) {
-                    let item = nums[i];
-                    let sum = nums[j] + nums[k] + item;
+                if (nums[i] > 0) {
+                    break
+                }
+                let start = i + 1, end = nums.length - 1;
+                while (start < end) {
+                    let sum = nums[start] + nums[end] + nums[i];
+                    console.log(sum)
                     if (sum < 0) {
-                        j++;
+                        start++;
                     } else if (sum > 0) {
-                        k--;
+                        end--;
                     } else {
-                        res.push([nums[i], nums[j], nums[k]])
-                        while (j < k && nums[j] === nums[j + 1]) {
-                            j++;
+                        res.push([nums[i], nums[start], nums[end]]);
+                        while (start < end && nums[start] === nums[start + 1]) {
+                            start++
                         }
-                        while (j < k && nums[k] === nums[k - 1]) {
-                            k--;
+                        while (start < end && nums[end] === nums[end - 1]) {
+                            end--
                         }
-                        j++;
-                        k--;
+                        start++;
+                        end--;
                     }
                 }
             }
-            return res;
+            return res
         }
-        var res = threeSum([0, 0, 0, 0, 0, 0])
-        console.log(res)
+
+        let arr = [-1, -1, 0, 1];
+        console.log(threeSum(arr))
+
+
+
     </script>
 </body>
 

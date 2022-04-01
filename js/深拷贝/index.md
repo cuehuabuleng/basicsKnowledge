@@ -41,6 +41,31 @@
         console.log(obj1.a) //我是a
                             // 拷贝成功
     ```
+
+3、使用concat浅拷贝数组
+
+```javascript
+let arr = [1,2,3]
+let newarr = arr.concat();
+newarr[1] = 100
+console.log(arr) //[1,2,3]
+
+```
+
+4、使用slice浅拷贝数组
+
+```javascript
+let arr = [1,2,3]
+let newarr = arr.slice();
+newarr[1] = 100
+console.log(arr) //[1,2,3]
+```
+5、使用展开运算符
+```javascript
+let arr = [1,2,3]
+let newarr = [...arr]
+```
+
   
 
 
@@ -120,3 +145,13 @@
 
 
 3、广度优先遍历拷贝
+
+4、使用Object.assign
+    这里需要注意的是，使用Object.assign()拷贝的是对象的属性的引用，而不是对象的本身
+
+```javascript
+let obj = {name:'sy', age:'18'}
+const obj2 = Object.assign({}, obj, {name:'sss'})
+console.log(obj2) ///{name:'sss', age:18}
+```
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var merge = function (nums1, m, nums2, n) {
+        let i = 0, j = 0;
+        let res = [];
+        while (i < m && j < n) {
+            if (nums1[i] < nums2[j]) {
+                res.push(nums1[i])
+                i++
+            } else {
+                res.push(nums2[j])
+                j++;
+            }
+        }
+        if(i <= m){
+            while(i < m){
+                res.push(nums1[i ++])
+            }
+        }  
+         if(j <= n){
+            while(j < n){
+                res.push(nums2[j ++])
+            }
+        }
+        return res
+    };
+    console.log(merge([1,2,3,0,0,0],3,[2,5,6],3))
+</script>
+
+</html>

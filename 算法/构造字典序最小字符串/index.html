@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 构造字典序最小字符串
+        var largestMerge = function (word1, word2) {
+            let i = 0
+            let j = 0
+            let ans = ''
+            while (i < word1.length || j < word2.length) {
+                let len = 0;
+                while (word1[i + len] && word2[j + len] && word1[i + len] === word2[j + len]) {
+                    len++
+                }
+                let w1 = word1[i + len] || ''
+                let w2 = word2[j + len] || '';
+                if (w1 > w2) {
+                    ans += word1[i++]
+                } else {
+                    ans += word2[j++]
+                }
+                // console.log(ans, i, j)
+            }
+            return ans
+        }
+        let word1 = "aaac"
+        let word2 = "aaabvnjnjbuj"
+        console.log(largestMerge(word1, word2))
+    </script>
+</body>
+
+</html>

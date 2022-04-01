@@ -58,27 +58,52 @@
         // }
         // console.log(permutate("abc"));
 
-        let permute = (nums) => {
+        // 数字
+        // let permute = (nums) => {
+        //     let res = [];
+        //     dfs([])
+        //     function dfs(path) {
+        //         debugger;
+        //         if (path.length === nums.length) {
+        //             res.push([...path])
+        //             return
+        //         }
+        //         for (let i = 0; i < nums.length; i++) {
+        //             if (path.includes(nums[i])) {
+        //                 continue
+        //             }
+        //             path.push(nums[i])
+        //             dfs(path)
+        //             path.pop();
+        //         }
+        //     }
+        //     return res;
+        // }
+        // var res = permute([1,2,3])
+        // console.log(res)
+
+        //字母
+        var permutation = function (s) {
             let res = [];
-            dfs([])
+            dfs([]);
             function dfs(path) {
-                debugger;
-                if (path.length === nums.length) {
-                    res.push([...path])
+                if (path.length === s.length) {
+                    res.push([...path].join(''))
                     return
                 }
-                for (let i = 0; i < nums.length; i++) {
-                    if (path.includes(nums[i])) {
+                for (let i = 0; i < s.length; i++) {
+                    if (path.includes(s[i])) {
                         continue
                     }
-                    path.push(nums[i])
-                    dfs(path)
+                    path.push(s[i])
+                    console.log(path)
+                    dfs(path);
                     path.pop();
                 }
             }
-            return res;
-        }
-        var res = permute([1,2,3])
+            return res
+        };
+        var res = permutation("aab")
         console.log(res)
     </script>
 </body>

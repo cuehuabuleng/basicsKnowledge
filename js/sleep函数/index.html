@@ -1,22 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         // sleep函数作用是让线程休眠，等到指定时间在重新唤起.
-        function sleep(delay){
-            let start = new Date().getTime();
-            while(new Date().getTime() - start < delay){
-                continue;
-            }
+        // function sleep(delay){
+        //     let start = + new Date();
+        //     while(new Date().getTime() - start < delay){
+        //         continue
+        //     }
+        // }
+        // console.log(1)
+        // sleep(1000)
+        // console.log(2)
+
+        // function sleep(delay){
+        //     let start = +new Date();
+        //     while(new Date().getTime() - start < delay){
+        //         continue
+        //     }
+        // }
+        // console.log(1)
+        // sleep(1000)
+        // console.log(2)
+
+
+
+
+        //1.0
+        // function sleep(time) {
+        //     return new Promise(function (resolve, reject) {
+        //         setTimeout(() => resolve('over'), time);
+        //     });
+        // }
+
+        // async function run(time) {
+        //     let result = await sleep(time);
+        //     console.log(result);
+        // }
+
+        // run(3000);
+
+
+
+
+        function sleep(time){
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('over')
+                }, time)
+            })
         }
-        console.log(1)
-        sleep(1000)
-        console.log(2)
+        async function run(time){
+            let res = await sleep(time)
+            console.log(res)
+        }
+        run(1000)
+        
     </script>
 </body>
+
 </html>

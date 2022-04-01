@@ -135,37 +135,97 @@
         //     return left
         // }
 
-        var sortArray = function(nums){
-            quick(nums, 0, nums.length - 1)
-            return nums
+        // var sortArray = function(nums){
+        //     quick(nums, 0, nums.length - 1)
+        //     return nums
+        // }
+        // function quick(list, left, right){
+        //     let index = 0;
+        //     if(list.length > 1){
+        //         index = partition(list, left, right);
+        //         left < index - 1 && quick(list, left, index - 1)
+        //         right > index && quick(list, index, right);
+        //     }
+        // }
+
+        // function partition(list, left, right){
+        //     let mid = list[Math.floor((left + right)/2)]
+        //     while(left <= right){
+        //         while(list[left] < mid){
+        //             left ++
+        //         }
+        //         while(list[right] > mid){
+        //             right --
+        //         }
+        //         if(left <= right){
+        //             [list[left], list[right]] = [list[right], list[left]];
+        //             right --;
+        //             left ++
+        //         }
+        //     }
+        //     return left
+        // }
+
+        //1.1
+        // function sortArray (nums){
+        //     quick(nums, 0, nums.length - 1);
+        //     return nums;
+        // }
+        // function quick(list, left, right){
+        //     let index = 0;
+        //     if(list.length > 1){
+        //         index = partition(list, left, right);
+        //         left < index - 1 && quick(list, left, index - 1)
+        //         right > index && quick(list, index, right)
+        //     }
+        // }
+        // function partition(list, left, right){
+        //     let mid = list[Math.floor((left + right) / 2)]
+        //     while(left <= right){
+        //         while(list[left] < mid){
+        //             left ++
+        //         }
+        //         while(list[right] > mid){
+        //             right --
+        //         }
+        //         if(left <= right){
+        //             [list[left], list[right]] = [list[right], list[left]]
+        //             right --;
+        //             left ++;
+        //         }
+        //     }
+        //     return left
+        // }
+        function sortArray(arr) {
+            quick(0, arr.length - 1, arr)
+            console.log(arr)
+            return arr[4 - 1]
         }
-        function quick(list, left, right){
-            let index = 0;
-            if(list.length > 1){
-                index = partition(list, left, right);
-                left < index - 1 && quick(list, left, index - 1)
-                right > index && quick(list, index, right);
+        function quick(left, right, arr) {
+            if (arr.length > 1) {
+                let index = partition(left, right, arr);
+                left < index - 1 && quick(left, index - 1, arr);
+                right > index && quick(index, right, arr)
             }
         }
-
-        function partition(list, left, right){
-            let mid = list[Math.floor((left + right)/2)]
-            while(left <= right){
-                while(list[left] < mid){
-                    left ++
+        function partition(left, right, arr) {
+            let mid = arr[Math.floor((left + right) / 2)];
+            while (left <= right) {
+                while (arr[left] < mid) {
+                    left++
                 }
-                while(list[right] > mid){
-                    right --
+                while (arr[right] > mid) {
+                    right--
                 }
-                if(left <= right){
-                    [list[left], list[right]] = [list[right], list[left]];
-                    right --;
-                    left ++
+                if (left <= right) {
+                    [arr[left], arr[right]] = [arr[right], arr[left]]
+                    left++;
+                    right--;
                 }
             }
             return left
         }
-        let arr = [1,2,5,7,52,1,2,8,72,7]
+        let arr = [3,2,3,1,2,4,5,5,6]
         console.log(sortArray(arr))
     </script>
 </body>

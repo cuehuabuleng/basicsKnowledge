@@ -9,26 +9,59 @@
 
 <body>
     <script>
-        function Animal(name) {
-            this.name = name;
+        // function Animal(name) {
+        //     this.name = name;
+        // }
+        // Animal.prototype.color = "black";
+        // Animal.prototype.say = function () {
+        //     console.log("I'm " + this.name);
+        // };
+        // var cat = new Animal("cat");
+
+        // console.log(
+        //     cat.name, //cat
+        //     cat.color //undefined
+        // );
+        // cat.say(); //I'm cat
+
+        // console.log(
+        //     Animal.name, //Animal
+        //     Animl.color //back
+        // );
+        // Animal.say(); //Animal.say is not a function
+
+        // 实现一个new
+        // function new_(constr, ...resets) {
+        //     let obj = Object.create(constr.prototype);
+        //     let res = constr.apply(obj, resets);
+        //     return typeof res === 'object' ? res : obj;
+        // }
+
+        // 手写new
+        // function new_(constr, ...reset){
+        //     let obj = Object.create(constr.prototype);
+        //     let res = constr.apply(obj, reset);
+        //     return typeof res == 'object' ? res : obj
+        // }
+        
+        function new_(constr, ...reset){
+            let obj = Object.create(constr.prototype);
+            let result = constr.apply(obj, reset)
+            return typeof result ==="object" ? result : obj
         }
-        Animal.prototype.color = "black";
-        Animal.prototype.say = function () {
-            console.log("I'm " + this.name);
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.say = function () {
+            console.log(this.name);
         };
-        var cat = new Animal("cat");
-
-        console.log(
-            cat.name, //cat
-            cat.color //undefined
-        );
-        cat.say(); //I'm cat
-
-        console.log(
-            Animal.name, //Animal
-            Animal.color //back
-        );
-        Animal.say(); //Animal.say is not a function
+        var p1 = new_(Person, 'clloz', '28')
+        var p2 = new_(Person, 'csx', '31')
+        console.log(p1); //Person {name: "clloz", age: "28"}
+        p1.say(); //clloz
+        console.log(p2); //Person {name: "csx", age: "31"}
+        p2.say(); //csx
     </script>
 </body>
 

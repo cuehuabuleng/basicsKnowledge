@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var  str = 'hello world !';
+        // 反转字符串
+        
+        // 方法一:遍历数组，逆序输出
+        // function reverseStr(str){
+        //     let newstr = '';
+        //     for(let i = str.length - 1; i >= 0; i --){
+        //         newstr += str[i]
+        //     }
+        //     return newstr
+        // }
+
+        // 方法二 使用数组的reverse
+        // function reverseStr(str){
+        //     return str.split('').reverse().join('')
+        // }
+
+        // 方法三 使用unshift，在数组前面加元素
+        function reverseStr(str){
+            let res = [];
+            let newstr = '';
+            for(let i = 0; i < str.length; i ++){3
+                res.unshift(str[i])
+            }
+            for(let i= 0; i < res.length; i ++){
+                newstr += res[i]
+            }
+            return newstr
+        }
+
+        // 方法四 使用charAt()
+        // function reverseStr(str){
+        //     let newstr = ''
+        //     for(let i = str.length - 1; i >= 0; i --){
+        //         newstr += str.charAt(i)
+        //     }
+        //     return newstr
+        // }
+        let res = reverseStr(str)
+        console.log(res)
+    </script>
+</body>
+</html>

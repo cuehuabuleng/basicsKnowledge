@@ -105,30 +105,53 @@
 
 
         //方法一：
-        // var obj = {
-        //     a:1,
-        //     b:2,
-        //     c:3
-        // };
-
-        // obj[Symbol.iterator] = function(){
-        // 	var keys = Object.keys(this);
-        // 	var count = 0;
-        // 	return {
-        // 		next(){
-        //             debugger;
-        // 			if(count<keys.length){
-        //                 var a = obj[keys[count++]]
-        // 				return {value: obj[keys[count++]],done:false};
-        // 			}else{
-        // 				return {value:undefined,done:true};
-        // 			}
-        // 		}
-        // 	}
-        // };
-        // for(var k of obj){
-        // 	console.log(k);
+        var obj = {
+            a: 1,
+            b: 2,
+            c: 3
+        };
+        // obj[Symbol.iterator] = function () {
+        //     let count = 0, keys = Object.keys(this);
+        //     return {
+        //         next() {
+        //             if (count < keys.length) {
+        //                 return {
+        //                     value: keys[count++],
+        //                     done: false
+        //                 }
+        //             } else {
+        //                 return {
+        //                     value: undefined,
+        //                     done: true
+        //                 }
+        //             }
+        //         }
+        //     }
         // }
+
+        obj[Symbol.iterator] = function(){
+            let count = 0, keys = Object.keys(this);
+            return {
+                next(){
+                    if(count < keys.length){
+                        return {
+                            value: keys[count ++],
+                            done:false
+                        }
+                    }else{
+                        return {
+                            value:undefined,
+                            done:true
+                        }
+                    }
+                }
+            }
+        }
+
+        for (let k of obj) {
+            console.log('iterator', k);
+        }
+
 
         // 为对象添加迭代器  for of遍历
         // var obj = {
@@ -181,11 +204,11 @@
         // console.log(newarr) //[a,b,c,d,e]
 
 
-        var arr = [1,2,3,4,5]
-                var newarr = arr.map((item, index, arr) => {
-                    return item > 2; 
-                })
-                console.log(newarr) //[a,b,c,d,e]
+        // var arr = [1, 2, 3, 4, 5]
+        // var newarr = arr.map((item, index, arr) => {
+        //     return item > 2;
+        // })
+        // console.log(newarr) //[a,b,c,d,e]
     </script>
 </body>
 

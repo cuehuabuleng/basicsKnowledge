@@ -57,7 +57,7 @@
       缺点：不适用于处理原有的原生对象（原生对象是一个子集，包含一些在运动过程中动态创建的对象）
 
       ```javascript
-              var  forofArr = [1,2,4,5,6]
+        var  forofArr = [1,2,4,5,6]
         var forofObj = {a:1,b:2,c:3}
         for (let iterator of forofArr) {
             console.log(iterator)
@@ -75,20 +75,20 @@
         ```javascript
         let Objec = {name:'132', age:'25',sex:'男'}
         let objKeys = Object.keys(Objec)
-        for(let i = 0; i < objKeys; i ++){
+        for(let i = 0; i < objKeys.length; i ++){
             console.log(objKeys[i])
         }
         // name age sex
         ```
 
-        5、map：返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值，是对原数组的加工，映射成一一映射的新数组,按照原始数组元素顺序依次处理元素。
+        5、map：返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值，是对原数组的加工，映射成一一映射的新数组,按照原始数组元素顺序依次处理元素。 对原数组不影响。
 
         ```javascript
         var arr = [1,2,3,4,5]
         var newarr = arr.map((item, index, arr) => {
             return item * 2;  //在里面可以做一写处理，返回新的元素 比如加减乘除， 但是如果是对元素进行条件的判断的话，就只返回true或false
         })
-        console.log(newarr) //[2,4,6,8,10]
+        console.log(newarr, arr) //[2,4,6,8,10]
 
         var arr = [1,2,3,4,5]
         var newarr = arr.map((item, index, arr) => {
@@ -127,6 +127,8 @@
         a:1,
         b:2
     })
+    console.log(Object.keys(obj)) // ["id", "name", "age", "xx"]
+    console.log( Object.getOwnPropertyNames(obj))// ["id", "name", "age", "xx"]
     for(let index in obj){
         console.log(index)
     }

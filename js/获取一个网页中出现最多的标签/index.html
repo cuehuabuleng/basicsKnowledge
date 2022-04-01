@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        div
+        <p>
+            2
+        </p>
+    </div>
+    <span>
+        span
+    </span>
+    <p>
+        p
+    </p>
+</body>
+<script>
+    // 寻找网页中出现最多的标签
+    // let tags = document.querySelectorAll('*')
+    // let temArr = Array.from(tags).map((node) => {
+    //     return node.nodeName;
+    // })
+    // let max = 0, maxtag = '';
+    // let map = new Map();
+    // temArr.forEach((item) => {
+    //     if (map.has(item)) {
+    //         let count = map.get(item)
+    //         map.set(item, count + 1);
+    //         if (max < count + 1) {
+    //             max = count;
+    //             maxtag = item
+    //         }
+    //     } else {
+    //         map.set(item, 1)
+    //     }
+    // })
+    // console.log(maxtag)
+    // let tags = document.querySelectorAll("*");
+    // let temarr = Array.from(tags).map((node) => {
+    //     return node.nodeName
+    // })
+    // let max = 0, maxtag = '';
+    // let map = new Map();
+    // temarr.forEach((tag) =>{
+    //     if(map.has(tag)){
+    //         let count = map.get(tag);
+    //         if(max < count + 1){
+    //             max = count + 1;
+    //             maxtag = tag;
+    //         }
+    //         map.set(tag, count + 1)
+    //     }else{
+    //         map.set(tag, 1)
+    //     }
+    // })
+    // console.log(maxtag)
+    
+
+    // nodelist类型 类数组数据类型
+    let tags = document.querySelectorAll("*");
+    tags[Symbol.iterator] = function(){
+        let count = 0, keys = Object.keys(tags);
+        return {
+            next(){
+                if(count < keys.length){
+                    return {
+                        value:keys[count ++],
+                        done:false
+                    }
+                }else{
+                    return {
+                        value:undefined,
+                        done:true
+                    }
+                }
+            }
+        }
+    }
+    tags.map((item) => {
+        console.log(item.nodeName)
+    })
+</script>
+
+</html>

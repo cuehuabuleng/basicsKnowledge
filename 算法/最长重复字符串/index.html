@@ -13,7 +13,7 @@
             // write code here
             let res = [];
             for (let i = 0; i < str.length; i++) {
-                for (let j = i + 1; j < str.length; j++) {
+                for (let j = 0; j < str.length; j++) {
                     let len = j - i;
                     if (str.slice(i, len + 1) === str.slice(j + 1, len + 1)) {
                         res.push(len)
@@ -27,7 +27,7 @@
             return res[0]
         }
 
-        let str = 'asdsadaasdasdas'
+        let str = 'anana'
         let res = getRepeatCharLength(str)
         console.log(res)
 

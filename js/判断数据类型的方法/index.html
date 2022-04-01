@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // function getType(obj){
+    //     if(obj == null){
+    //         return String(obj)
+    //     }
+    //     return typeof obj === 'object'
+    //         ? Object.prototype.toString.call(obj).replace('[object ', '').replace(']', '').toLowerCase()
+    //         : typeof obj
+    // }
+    // console.log(getType(/132/))
+
+    // function getType(obj) {
+    //     if (obj == null) {
+    //         return String(obj)
+    //     }
+    //     return typeof obj === "object"
+    //         ? Object.prototype.toString.call(obj).replace('[object', '').replace(']', '').toLowerCase()
+    //         : typeof obj
+    // }
+    function getType(obj){
+        if(obj == null){
+            return obj
+        }
+        return typeof obj ==="object"
+               ? Object.toString.call(obj).replace('[object','').replace(']','').toLowerCase()
+               : typeof obj
+    }
+    console.log(getType(0))
+</script>
+
+</html>

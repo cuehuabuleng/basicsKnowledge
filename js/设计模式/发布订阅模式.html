@@ -154,32 +154,75 @@
     //         messageList.innerHTML += `<li>${type}: ${msg}</li>`;
     //     }
 
+    class Event{
+        constructor(){}
+        handlers = {}
+        // 订阅函数
+        addEventlistener(type, fn){
+            if(!(type in this.handlers)){
+                this.handlers[type] = []
+            }
+            this.handlers[type].push(fn)
+        }
+
+        //触发函数
+        dispatchEvent(type, ...args){
+            if(!(type in this.handlers)){
+                throw new Error('事件未注册')
+            }
+            this.handlers[type].forEach(fn => {
+                fn(...args)
+            });
+        }
+
+        //取消订阅
+        removeEvent(type, fn){
+            //判断是否有改类型事件
+            if(!(type in this.handlers)){
+                return new Error('无该事件')
+            }
+            if(!fn){
+                delete this.handlers[type]
+            }else{
+                let index = this.handlers[type].indexOf(fn)
+                if(index === -1){
+                    return new Error('没有绑定该事件')
+                }
+                this.handlers[type].splice(index, 1)
+                if(this.handlers[type].length === 0){
+                    delete this.handlers[type]
+                }
+            }
+        }
+    }
+
+
     // class Event{
     //     constructor(){}
-    //     handlers = {}
-    //     // 订阅函数
+    //     handlers = {};
+
+    //     //订阅事件
     //     addEventlistener(type, fn){
     //         if(!(type in this.handlers)){
-    //             this.handlers[type] = []
+    //             this.handlers[type] = []; 
     //         }
     //         this.handlers[type].push(fn)
     //     }
 
-    //     //触发函数
-    //     dispatchEvent(type, ...args){
-    //         if(!(type in this.handlers)){
-    //             throw new Error('事件未注册')
+    //     //触发事件
+    //     dispatchEvent(type, ...arg){
+    //         if(!(type in handlers)){
+    //             throw new Error('该类型事件未注册')
     //         }
-    //         this.handlers[type].forEach(fn => {
-    //             fn(...args)
-    //         });
+    //         this.handlers[type].forEach((fn) => {
+    //             fn(...arg)
+    //         })
     //     }
 
     //     //取消订阅
     //     removeEvent(type, fn){
-    //         //判断是否有改类型事件
     //         if(!(type in this.handlers)){
-    //             return new Error('无该事件')
+    //             return new Error('没有该类型事件')
     //         }
     //         if(!fn){
     //             delete this.handlers[type]
@@ -195,49 +238,6 @@
     //         }
     //     }
     // }
-
-
-    class Event{
-        constructor(){}
-        handlers = {};
-
-        //订阅事件
-        addEventlistener(type, fn){
-            if(!(type in this.handlers)){
-                this.handlers[type] = []; 
-            }
-            this.handlers[type].push(fn)
-        }
-
-        //触发事件
-        dispatchEvent(type, ...arg){
-            if(!(type in handlers)){
-                throw new Error('该类型事件未注册')
-            }
-            this.handlers[type].forEach((fn) => {
-                fn(...arg)
-            })
-        }
-
-        //取消订阅
-        removeEvent(type, fn){
-            if(!(type in this.handlers)){
-                return new Error('没有该类型事件')
-            }
-            if(!fn){
-                delete this.handlers[type]
-            }else{
-                let index = this.handlers[type].indexOf(fn)
-                if(index === -1){
-                    return new Error('没有绑定该事件')
-                }
-                this.handlers[type].splice(index, 1)
-                if(this.handlers[type] === 0){
-                    delete this.handlers[type]
-                }
-            }
-        }
-    }
 
     let event = new Event();
 

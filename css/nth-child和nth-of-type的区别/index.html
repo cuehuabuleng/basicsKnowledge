@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        .box {
+            width: 50%;
+            margin: auto;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        .box div,
+        p {
+            border: 1px solid #008000;
+            height: 30px;
+            line-height: 30px;
+            text-indent: 10px;
+        }
+
+        .box div {
+            margin: 10px auto;
+        }
+
+        /* 在不指定类型的时候，选中的就是父元素下的地N个元素 */
+        /* .box :nth-child(2) {
+            background: yellow
+        } */
+
+        /* 如果不指定类型的时候，选中的就是父元素下的不同类型标签的地N个 */
+        /* .box :nth-of-type(2) {
+            background: yellow;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <p>ppp</p>
+        <p>ppp</p>
+        <div>div</div>
+        <div>div</div>
+        <article>article</article>
+        <div>div</div>
+        <div>div</div>
+        <div>div</div>
+        <ul>
+            <li>ul中的li标签</li>
+        </ul>
+        <p><span>p标签里面的span标签</span></p>
+        <span>span1</span>
+        <span>span2</span>
+    </div>
+</body>
+
+</html>

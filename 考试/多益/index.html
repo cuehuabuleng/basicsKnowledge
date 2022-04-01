@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            box-shadow: 0px 1px 1px #de1dde;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nav">
+        div
+        <a class="active"></a>
+        <a></a>
+        <a></a>
+        <a></a>
+        <a></a>
+    </div>
+</body>
+<script>
+    
+    function insert(head, p, newnode){
+        let cur = null, pre = head;
+        while(cur !== p && head){
+            cur = pre;
+            pre = pre.next;
+        }
+        cur.next = newnode;
+        newnode.next = pre;
+        return head
+    }
+
+    // const shape = {
+    //     radius: 10,
+    //     diameter() {
+    //         return this.radius * 2
+    //     },
+    //     perimeter: () => {
+    //         console.log(this)
+    //         return 2 * Math.PI * this.radius
+    //     }
+    // }
+    // console.log(shape.diameter())
+    // console.log(shape.perimeter())
+    // var output = (function (x) {
+    //     delete x;
+    //     return x;
+    // })(0)
+    // console.log(output)
+    // var arr = [];
+    // for (var i = 0; i < 10; i++) {
+    //     i <= 1 ? arr.push(1) : arr.push(arr[i - 1] + arr[i - 2])
+    // }
+    // console.log(arr)
+
+    // function fn2() {
+    //     let args = [].slice.call(arguments);
+
+    // }
+
+
+    // function getType(obj) {
+    //     if (obj === null) return String(obj);
+    //     return typeof obj === 'object'
+    //         ? Object.prototype.toString.call(obj).replace('[object ', '').replace(']', '').toLowerCase()
+    //         : typeof obj;
+    // }
+    // let map = new Map()
+    // console.log(getType(map))
+
+
+
+</script>
+
+</html>

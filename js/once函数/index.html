@@ -9,46 +9,46 @@
 
 <body>
     <script>
-        function test() {
-            console.log('coinxu')
-        }
-        var once = (function () {
-            debugger;
-            var memo = {}, i = 0;
-            return function (fn) {
-                for (var key in memo) {
-                    //匿名函数支持
-                    if (memo[key].func === fn || memo[key].func.toString() === fn.toString()) {
-                        return memo[key].result
-                    }
-                }
-                i += 1
-                var result = fn()
-                memo[i] = { func: fn, result: result }
-                console.log(memo)
-                return result
-            }
-        })()
-        once(test)
-        once(test)
+        // function test() {
+        //     console.log('coinxu')
+        // }
+        // var once = (function () {
+        //     debugger;
+        //     var memo = {}, i = 0;
+        //     return function (fn) {
+        //         for (var key in memo) {
+        //             //匿名函数支持
+        //             if (memo[key].func === fn || memo[key].func.toString() === fn.toString()) {
+        //                 return memo[key].result
+        //             }
+        //         }
+        //         i += 1
+        //         var result = fn()
+        //         memo[i] = { func: fn, result: result }
+        //         console.log(memo)
+        //         return result
+        //     }
+        // })()
+        // once(test)
+        // once(test)
 
 
         //只执行一次函数
-        // var once = (function () {
-        //         var ifFalse = true
-        //         return function (fn) {
-        //             if (ifFalse) {
-        //                 ifFalse = false
-        //                 fn()
-        //             }
-        //         }
-        // })()
-        // //调用
-        // function getName() {
-        //     console.log('我叫吉娃娃')
-        // }
-        // once(getName)
-        // once(getName)
+        var once = (function () {
+                var ifFalse = true
+                return function (fn) {
+                    if (ifFalse) {
+                        ifFalse = false
+                        fn()
+                    }
+                }
+        })()
+        //调用
+        function getName() {
+            console.log('我叫吉娃娃')
+        }
+        once(getName)
+        once(getName)
 
 
     </script>

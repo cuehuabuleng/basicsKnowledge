@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function shuffle(array) {
+            let map = new Map();
+            let len = array.length;
+            return function(n){
+                let res= [];
+                if(array.length === map.size){
+                    map.clear();
+                }
+                let idx;
+                for(let i = 0; i < n; i ++){
+                    idx = Math.floor(Math.random()*len)
+                    if(map.has(array[idx])){
+                        map.set(array[idx], true);
+                        i --;
+                    }else{
+                        map.set(array[idx], false)
+                        res.push(array[idx]);
+                    }
+                }
+                return res;
+            }
+        }
+        var random = shuffle([0,1,2,3,4,5,6]);
+        console.log(random(1)) // [1]
+        console.log(random(2)) // [1]
+        console.log(random(2)) // [1]
+        console.log(random(2)) // [1]
+        // console.log(random(1)) // [1]
+        // console.log(random(1)) // [1]
+        // console.log(random(1)) // [1]
+        // 50 365 
+        // 2 
+    </script>
+</body>
+
+</html>

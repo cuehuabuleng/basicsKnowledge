@@ -70,7 +70,6 @@
         obj.b(); 
         obj.c();
 
-
             var obj = {
         a: 10,
         b: function(){

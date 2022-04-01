@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // promise.all的实现
+        // Promise._all = function(promises){
+        //     let len = promises.length, result = [], count = 0;
+        //     return new Promise(function(resolve, reject){
+        //         for(let i = 0; i < promises.length; i ++){
+        //             promises[i].then((res) => {
+        //                 result[i] = res
+        //                 count ++
+        //                 if(count === len){
+        //                     resolve(result)
+        //                 }
+        //             },(err) => {
+        //                 reject(err)
+        //             })
+        //         };
+        //     })
+        // }
+
+        // 1.0
+        Promise._all = function (promises) {
+            let count = 0, len = promises.length;
+            let result = [];
+            return new Promise((resolve, reject) => {
+                promises.forEach((promise) => {
+                    promise.then((res) => {
+                        result.push(res);
+                        count++;
+                        if (count === len) {
+                            resolve(result)
+                        }
+                    }, (err) => {
+                        reject(err)
+                    })
+                })
+            })
+        }
+
+        //promise.race的实现
+        // Promise._race = function (promises) {
+        //     let len = promises.length;
+        //     return new Promise((resolve, reject) => {
+        //         promises.forEach(promise => {
+        //             promise.then((res) => {
+        //                 resolve(res)
+        //             }, (err) => {
+        //                 reject(err)
+        //             })
+        //         });
+        //     })
+        // }
+
+        // 1.1
+        Promise._race = function (promises) {
+            return new Promise((resolve, reject) => {
+                promises.forEach((promise) => {
+                    promise.then((res) => {
+                        resolve(res)
+                    }, (err) => {
+                        reject(err)
+                    })
+                })
+            })
+        }
+
+        let p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('成功了1')
+            }, 400)
+        })
+        let p2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('成功了2')
+            }, 100)
+
+            // reject('失败了2')
+        })
+        let p3 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('成功了3')
+            }, 200)
+        })
+        Promise._race([p1, p2, p3]).then((res) => {
+            console.log(res)
+        })
+
+
+    </script>
+</body>
+
+</html>

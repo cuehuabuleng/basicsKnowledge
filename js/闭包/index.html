@@ -30,17 +30,17 @@
         // console.log(total) //18
 
 
-        let a = 0,
-            b = 0;
-            function A(a){
-                console.log('1a',a)
-                A = function (b) {
-                    console.log('a + b',a + b ++)
-                }
-                console.log('a', a++)
-            }
-            A(1)
-            A(2)
+        // let a = 0,
+        //     b = 0;
+        //     function A(a){
+        //         console.log('1a',a)
+        //         A = function (b) {
+        //             console.log('a + b',a + b ++)
+        //         }
+        //         console.log('a', a++)
+        //     }
+        //     A(1)
+        //     A(2)
 
 
 
@@ -98,7 +98,31 @@
         // console.log(test2())   //2
         
 
-
+        /*
+        )实现一个函数add() //1
+        add() //2
+        add() //1
+        add() //2
+        ...
+        */
+       let log = function(){
+           let flag = true
+           return function(){
+               if(flag){
+                   console.log(1)
+                   flag = !flag
+               }else{
+                   console.log(2)
+                   flag = !flag
+               }
+           }
+       }
+       let add = log()
+       add()
+       add()
+       add()
+       add()
+       
     </script>
 </body>
 

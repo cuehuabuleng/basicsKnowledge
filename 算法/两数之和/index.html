@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 的那 两个 整数，
+        并返回它们的数组下标。
+        你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。
+        */
+    //    function twoNum(nums, target){
+    //        let map = new Map();
+    //        for(let i = 0; i < nums.length; i ++){
+    //            if(map.has(nums[i])){
+    //                return [map.get(nums[i]), i]
+    //            }else{
+    //                map.set(target - nums[i], i)
+    //            }
+    //        }
+    //    }
+    function twoNum(nums, target){
+        let map = new Map();
+        for(let i = 0; i < nums.length; i ++){
+            if(map.has(nums[i])){
+                return [map.get(nums[i]), i]
+            }else{
+                map.set(target - nums[i], i)
+            }
+        }
+        return
+    }
+       let nums = [2,7,11,15], target = 9;
+       console.log(twoNum(nums, target))
+    </script>
+</body>
+
+</html>

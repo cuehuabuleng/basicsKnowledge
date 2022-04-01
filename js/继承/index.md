@@ -59,13 +59,14 @@ js户的继承的方式有6种。
         var chil1 = new Child('xiaoqiao');
         var chil2 = new Child('daqiao');
         // 可以向Person传参
+        chil1.getName() //Uncaught TypeError: chil1.getName is not a function
         console.log(chil1.name); //xiaoqiao
         console.log(chil2.name) //daqiao
         chil1.colors.push('black')
         console.log(chil1.colors)  //["red", "blue", "green", "black"]
         console.log(chil2.colors)  //["red", "blue", "green"]
 
-        console.log(child1 instanceof Person); // false   不能识别是Person的实例
+        console.log(chil1 instanceof Person); // false   不能识别是Person的实例
 
 
   ```

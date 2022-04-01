@@ -20,13 +20,22 @@
 
 
         // 使用toFixed，来保留小数
-        function add(a, b) {
-            var res = (a + b).toFixed(1)
-            return Number(res);
+        // function add(a, b) {
+        //     var res = (a + b).toFixed(1)
+        //     return Number(res);
+        // }
+        // var a = 0.1;
+        // var b = 0.2
+        // var res = add(a, b)
+        // console.log(res)
+
+
+        // 如何判斷0.1+0.2 = 0.3
+        function judge(a, b, sum){
+            return Math.abs(a + b - sum) < Number.EPSILON
+            // Math.abs()用来计算绝对值
         }
-        var a = 0.1;
-        var b = 0.2
-        var res = add(a, b)
+        let res = judge(0.1, 0.2, 0.3)
         console.log(res)
     </script>
 </body>

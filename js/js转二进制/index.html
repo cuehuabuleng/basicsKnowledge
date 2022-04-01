@@ -34,19 +34,31 @@
         //     return res
         // }
 
+        // function tranSform(num){
+        //     let res = '';
+        //     while(num > 0){
+        //         if(num % 2 != 0){
+        //             res = '1' + res
+        //         }else{
+        //             res = '0' + res
+        //         }
+        //         num = parseInt(num/2)
+        //     }
+        //     return res
+        // }
         function tranSform(num){
             let res = '';
             while(num > 0){
                 if(num % 2 != 0){
-                    res = '1' + res
+                    res = '1'
                 }else{
                     res = '0' + res
                 }
-                num = parseInt(num/2)
+                num = parseInt(num / 2)
             }
             return res
         }
-        let res = tranSform(25)
+        let res = tranSform(11)
         console.log(res)
     </script>
 </body>

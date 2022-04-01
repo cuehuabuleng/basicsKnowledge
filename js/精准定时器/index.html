@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //继续线程占用
+        // setInterval(function () {
+        //     var j = 0;
+        //     while (j++ < 100000000);
+        // }, 0);
+
+        // //倒计时
+        // var interval = 1000,
+        //     ms = 50000,  //从服务器和活动开始时间计算出的时间差，这里测试用50000ms
+        //     count = 0,
+        //     startTime = new Date().getTime();
+        // if (ms >= 0) {
+        //     var timeCounter = setTimeout(countDownStart, interval);
+        // }
+
+        // function countDownStart() {
+        //     count++;
+        //     var offset = new Date().getTime() - (startTime + count * interval);
+        //     var nextTime = interval - offset;
+        //     if (nextTime < 0) { nextTime = 0 };
+        //     ms -= interval;
+        //     console.log("误差：" + offset + "ms，下一次执行：" + nextTime + "ms后，离活动开始还有：" + ms + "ms");
+        //     if (ms < 0) {
+        //         clearTimeout(timeCounter);
+        //     } else {
+        //         timeCounter = setTimeout(countDownStart, nextTime);
+        //     }
+        // }
+
+        // 计算出阻塞的代码的运行时间，提前去执行定时器，减少误差
+        //占用线程事件 
+        setInterval(function () {
+            var j = 0;
+            while (j++ < 100000000);
+        }, 0);
+        var start = new Date().getTime();
+        var count = 0;
+        var interval = 1000;
+        var startTime = new Date().getTime();
+
+        var timeCounter = setTimeout(countDownStart, interval)
+
+
+        function countDownStart() {
+            console.log('秒', new Date().getSeconds())
+            count++;
+            var offset = new Date().getTime() - (startTime + count * 1000);
+            var nextTime = interval - offset;
+            if (offset < 0) {
+                nextTime = 0
+            }
+            console.log('offset',offset, nextTime)
+            timeCounter = setTimeout(countDownStart, nextTime)
+
+        }
+
+
+
+
+        // 普通计时器
+        //占用线程事件 
+    //     setInterval(function () {
+    //         var j = 0;
+    //         while (j++ < 100000000);
+    //     }, 0);
+    //     //定时器测试
+    //     var count = 0;
+    //     var start = new Date().getTime();
+    //     setInterval(function () {
+    //         console.log('秒', new Date().getSeconds())
+    //         count++;
+    //         console.log(new Date().getTime() - (start + count * 1000));
+    //     }, 1000);
+    // </script>
+</body>
+
+</html>

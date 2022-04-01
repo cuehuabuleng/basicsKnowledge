@@ -82,27 +82,82 @@
         // print();
 
 
-        new Promise(function (resolve) {
-            debugger
+        // new Promise(function (resolve) {
+        //     debugger
 
-            resolve();
-        }).then(function () {
-            return new Promise((r) => {
-                r(4);
-            })
-        }).then(function (r) {
-            console.log(r);
-        });
+        //     resolve();
+        // }).then(function () {
+        //     return new Promise((r) => {
+        //         r(4);
+        //     })
+        // }).then(function (r) {
+        //     console.log(r);
+        // });
 
-        new Promise(function (resolve) {
-            resolve(2);
-        }).then(function () {
-            console.log(1);
-        }).then(function () {
-            console.log(2);
-        }).then(function () {
-            console.log(3);
-        });
+        // new Promise(function (resolve) {
+        //     resolve(2);
+        // }).then(function () {
+        //     console.log(1);
+        // }).then(function () {
+        //     console.log(2);
+        // }).then(function () {
+        //     console.log(3);
+        // });
+
+        // 如果希望每隔1s输出一个结果，应该如何改造？
+        // const list = [1, 2, 3];
+        // const square = num => {
+        //     return new Promise((resolve, reject) => {
+        //         setTimeout(() => {
+        //             resolve(num * num);
+        //         }, 1000);
+        //     });
+        // }
+        // function test() {
+        //     list.forEach(async x => {
+        //         const res = await square(x);
+        //         console.log(res);
+        //     });
+        // }
+        // test()
+
+
+        // 修改后1.0
+        // const list = [1, 2, 3];
+        // const square = (num, index) => {
+        //     return new Promise((resolve, reject) => {
+        //         setTimeout(() => {
+        //             resolve(num * num);
+        //         }, parseInt(`${index + 1}000`, 10));
+        //     });
+        // }
+        // function test() {
+        //     list.forEach(async (x, index) => {
+        //         console.log(x)
+        //         const res = await square(x, index);
+        //         console.log(res);
+        //     });
+        // }
+        // test()
+
+        // 修改后1.1
+        const list = [1, 2, 3];
+        const square = num => {
+            return new Promise((resolve, reject) => {
+                console.log('promise')
+                setTimeout(() => {
+                    console.log('settimeout')
+                    resolve(num * num);
+                }, 1000);
+            });
+        }
+        async function test() {
+            for(let i = 0; i < list.length; i ++){
+                const res = await square(list[i]);
+                console.log(res)
+            }
+        }
+        test()
     </script>
 </body>
 

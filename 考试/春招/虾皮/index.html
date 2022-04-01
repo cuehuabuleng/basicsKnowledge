@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1
+        // function sort(str) {
+        //     let arr = str.split(' ');
+        //     arr.sort((a, b) => {
+        //         return a.length - b.length
+        //     })
+        //     for(let i = 0; i < arr.length; i ++){
+        //         if(i === 0){
+        //             arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1)
+        //         }else{
+        //             arr[i] = arr[i].toLowerCase()
+        //         }
+        //     }
+        //     return arr.join(' ')
+        // }
+
+        // let str = 'Show me the code'
+        // console.log(sort(str))
+
+        // 2
+        // function uniq(str) {
+        //     let stack = [];
+        //     for(let item of str){
+        //         if(stack[stack.length - 1] === item){
+        //             continue;
+        //         }else{
+        //             stack.push(item)
+        //         }
+        //     }
+        //     return stack.join('');
+        // }
+        // let str = '12333nfos88juuufbvbvjsm'
+        // console.log(uniq(str))
+
+        //3
+        function multiply(num1, num2) {
+            let len1 = num1.length;
+            let len2 = num2.length;
+            let stack = new Array(len1 + len2).fill(0);
+            console.log(len1,len2,stack)
+            for (let i = len1 - 1; i >= 0; i--) {
+                console.log(0)
+                let n1 = +num1[i];
+                for (let j = len2 - 1; j <= 0; j--) {
+                    console.log('没有进来')
+                    let n2 = +num2[j];
+                    let mutil = n1 * n2;
+                    let sum = stack[i + j + 1] + mutil;
+                    stack[i + j + 1] = sum % 10;
+                    stack[i + j] += sum / 10 | 0;
+                }
+            }
+            while (stack[0] == 0) {
+                stack.shift();
+            }
+            console.log(stack)
+            return stack.length ? stack.join('') : '0'
+        }
+        let str1 = '12'
+        let str2 = '56'
+        console.log(multiply(str1, str2))
+
+    </script>
+</body>
+
+</html>

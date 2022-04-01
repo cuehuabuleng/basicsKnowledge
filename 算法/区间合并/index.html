@@ -15,6 +15,7 @@
             intervals.sort((a, b) => {
                 return a[0] - b[0]
             })
+            console.log(intervals)
             res.push(intervals[0])
             for (let i = 0; i < intervals.length; i++) {
                 let item = res[res.length - 1];

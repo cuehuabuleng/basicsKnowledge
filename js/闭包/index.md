@@ -84,7 +84,7 @@ function assignHandler(){
         fn();  //100
 
     // 函数作为参数被传递
-        function print () {
+        function print (fn) {
             let a = 200;
             fn()
         }
@@ -92,7 +92,7 @@ function assignHandler(){
         function fn () {
             console.log(a)
         }
-        print(a) //100
+        print(fn) //100
 ```
 
 

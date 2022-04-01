@@ -168,9 +168,9 @@
         // console.log(a === b)
 
         // 通用单列模式
-        // var People = function (name) {
-        //     this.name = name;
-        // }
+        var People = function (name) {
+            this.name = name;
+        }
 
         // var Singleton = function (obj) {
         //     var instance;
@@ -181,29 +181,38 @@
         //         return instance;
         //     }
         // }
-        // var peopleSingle = Singleton(People)
-        // var a = new peopleSingle('a')
-        // var b = new peopleSingle('b')
-        // console.log(a === b) //true
+        var Singleton = function(obj){
+            var single;
+            return function(){
+                if(!single){
+                    single = new obj(arguments)
+                }
+                return single
+            }
+        }
+        var peopleSingle = Singleton(People)
+        var a = new peopleSingle('a')
+        var b = new peopleSingle('b')
+        console.log(a === b) //true
 
 
         // es6单例设计
-        class People{
-            constructor(name){
-                if(typeof People.instance === 'object'){
-                    return People.instance;
-                }
-                People.instance = this;
-                this.name;
-                return this;
-            }
-        }
+        // class People{
+        //     constructor(name){
+        //         if(typeof People.instance === 'object'){
+        //             return People.instance;
+        //         }
+        //         People.instance = this;
+        //         this.name;
+        //         return this;
+        //     }
+        // }
 
         
-        var a = new People('a')
-        var b = new People('b')
-        console.log(a, b)
-        console.log(a === b) //true
+        // var a = new People('a')
+        // var b = new People('b')
+        // console.log(a, b)
+        // console.log(a === b) //true
     </script>
 </body>
 

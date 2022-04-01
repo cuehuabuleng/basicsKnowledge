@@ -15,15 +15,22 @@
         var arr = [1,2,4,5]
         var sum = arr.reduce((total, curVal, curvalIndedx, arr) => {
             console.log(total, curVal, curvalIndedx, arr)
-            return total
+            return total + curVal
         },0)
-        console.log(sum)
+        console.log('sum',sum)
 
         // 业可以实现数组的便扁平化
-        function flattern (arr = []) {
-            return arr.reduce((total, curVal, caurValindex, arr) => {
+        // function flattern (arr = []) {
+        //     return arr.reduce((total, curVal, caurValindex, arr) => {
+        //         return total.concat(Array.isArray(curVal) ? flattern(curVal) : curVal)
+        //     },[])
+        // }
+
+        // 1.1
+        function flattern(arr = []){
+            return arr.reduce((total, curVal, curvalIndex, arr) => {
                 return total.concat(Array.isArray(curVal) ? flattern(curVal) : curVal)
-            },[])
+            }, [])
         }
         var numbers = [1,2,4,[1,1,[1,8],2],2,4,5]   
         var res = flattern(numbers);
@@ -32,11 +39,11 @@
         // push
         var arr = [1,2,3,4,5]
         var a = arr.push(8); //返回的是一个新数组的长度，原数组arr业发生改变
-        console.log(arr, a)//  
+        console.log('push',arr, a)//  
 
         //unshift，在数组的 前面添加元素，原数组会改变
         var a = arr.unshift(1,2,3) //同样也是返回一个新长度
-
+        console.log('unshift', a)
         //pop , 在数组的后面删除一个元素
         var a = arr.pop(); //返回被被删除的一个元素，原数组发生改变
 
@@ -46,23 +53,24 @@
         //slice(start,end)截取数组上的一段,返回一个新的数组,从start开始，不包含end
         var arr = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
         var newarr = arr.slice(1,3) //"Orange", "Lemon"
+        console.log('slice', newarr, arr);
 
         // splice(index, many, newitem) 从index开始截取，截取many个，后面的newitem传进来的话，就从index后面插入
         var arr = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
-        var newarr = arr.splice(2,2); //"Apple", "Mango" 返回截取出来的数组
+        var newarr = arr.splice(2,2); //"Lemon", "Apple" 返回截取出来的数组
+        console.log('splice', newarr, arr)//["Lemon", "Apple"]  ["Banana", "Orange", "Mango"]
         arr.splice(2,2,"new") //"Banana", "Orange", "Lemon","new" //截取后改变原来的数组，并且插入元素
-
+        console.log('splice', newarr, arr) //["Lemon", "Apple"]   ["Banana", "Orange", "new"]
         // reverse
         arr.reverse(); //将数组反转
 
+
         // sort  对数组进行排序
-        arr.sort((a, b) => {
-            if (a < b) {
-                return -1;  //返回-1 升序
-            }else{
-                return 1  //返回1 降序
-            }
+        var arr = [2,1,4,5,8,2,4,2,3,12,54,11,10]
+        var newarr = arr.sort((a, b) => {
+            return  b - a;
         })
+        console.log('sort', newarr)
 
 
         // arr.join(separator) 将数组的元素按照指定的分隔符分割 转换成字符串

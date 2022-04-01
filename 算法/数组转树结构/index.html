@@ -9,86 +9,169 @@
 
 <body>
     <script>
-        var arr3 = [
+        // var arr3 = [
+        //     {
+        //         menuId: 1,
+        //         name: '系统管理1',
+        //         parentMenu: null
+        //     },
+        //     {
+        //         menuId: 2,
+        //         name: '系统管理2',
+        //         parentMenu: null
+        //     },
+        //     {
+        //         menuId: 3,
+        //         name: '系统管理1_0',
+        //         parentMenu: 1
+        //     },
+        //     {
+        //         menuId: 4,
+        //         name: '系统管理1_1',
+        //         parentMenu: 1
+        //     },
+        //     {
+        //         menuId: 5,
+        //         name: '系统管理2_0',
+        //         parentMenu: 2
+        //     },
+        //     {
+        //         menuId: 6,
+        //         name: '系统管理5_0',
+        //         parentMenu: 5
+        //     },
+        //     {
+        //         menuId: 7,
+        //         name: '系统管理3',
+        //         parentMenu: null
+        //     }
+        // ]
+
+        // function turnToTreeOfManyRootPlus(arr) {
+        //     var arrs = []
+        //     arr.forEach(item => {
+        //         if (!item.parentMenu) {
+        //             arrs.push(item)
+        //         }
+        //     })
+
+        //     return arr.reduce((h, m) => {
+        //         if (m.parentMenu) {
+        //             foo(h, m)
+        //         }
+
+        //         function foo(arr, cur) {
+        //             arr.forEach(item => {
+        //                 if (item.menuId === cur.parentMenu) {
+        //                     if (!item.children) {
+        //                         item.children = []
+        //                     }
+        //                     item.children.push(cur)
+        //                 } else if (item.children) {
+        //                     foo(item.children, cur)
+        //                 }
+        //             })
+        //         }
+
+        //         return h
+        //     }, arrs)
+        // }
+
+        // var res = turnToTreeOfManyRootPlus(arr3)
+        // console.log(res)
+
+        // function transform(data) {
+        //     var temp = {};
+        //     var treeData = [];
+        //     for (var i = 0; i < data.length; i++) {
+        //         temp[data[i].id] = data[i];
+        //     }
+        //     console.log('temp', temp, data)
+        //     for (var i in temp) {
+        //         console.log('temp i', i)
+        //         if (temp[i].parentId != "") {
+        //             if (!temp[temp[i].parentId].children) {
+        //                 temp[temp[i].parentId].children = new Array();
+        //             }
+        //             temp[temp[i].parentId].children.push(temp[i]);
+        //         } else {
+        //             treeData.push(temp[i]);
+        //         }
+        //     }
+        //     return treeData
+        // }
+        function transform(data) {
+            let temp = {};
+            let treeData = [];
+            for (let i = 0; i < data.length; i++) {
+                temp[data[i].id] = data[i]
+            }
+            for (let i in temp) {
+                if (temp[i].parentId != '') {
+                    if (!temp[temp[i].parentId].children) {
+                        temp[temp[i].parentId].children = new Array()
+                    }
+                    temp[temp[i].parentId].children.push(temp[i])
+                } else {
+                    treeData.push(temp[i])
+                }
+            }
+            return treeData
+        }
+        let data = [
             {
-                menuId: 1,
-                name: '系统管理1',
-                parentMenu: null
+                id: 1,
+                text: '节点1',
+                parentId: 0 //这里用0表示为顶级节点
             },
             {
-                menuId: 2,
-                name: '系统管理2',
-                parentMenu: null
-            },
-            {
-                menuId: 3,
-                name: '系统管理1_0',
-                parentMenu: 1
-            },
-            {
-                menuId: 4,
-                name: '系统管理1_1',
-                parentMenu: 1
-            },
-            {
-                menuId: 5,
-                name: '系统管理2_0',
-                parentMenu: 2
-            },
-            {
-                menuId: 6,
-                name: '系统管理5_0',
-                parentMenu: 5
-            },
-            {
-                menuId: 7,
-                name: '系统管理3',
-                parentMenu: null
+                id: 2,
+                text: '节点1_1',
+                parentId: 1 //通过这个字段来确定子父级
+            }, {
+                id: 4,
+                text: '节点1_2',
+                parentId: 1
+            }, {
+                id: 3,
+                text: '节点1_2_1',
+                parentId: 4
             }
         ]
+        console.log('res', transform(data))
 
-        function turnToTreeOfManyRootPlus(arr) {
-            var arrs = []
-            arr.forEach(item => {
-                if (!item.parentMenu) {
-                    arrs.push(item)
-                }
-            })
 
-            return arr.reduce((h, m) => {
-                if (m.parentMenu) {
-                    foo(h, m)
-                }
-
-                function foo(arr, cur) {
-                    arr.forEach(item => {
-                        if (item.menuId === cur.parentMenu) {
-                            if (!item.children) {
-                                item.children = []
-                            }
-                            item.children.push(cur)
-                        } else if (item.children) {
-                            foo(item.children, cur)
-                        }
-                    })
-                }
-
-                return h
-            }, arrs)
-        }
-
-        var res = turnToTreeOfManyRootPlus(arr3)
-        console.log(res)
-
-        var v = 'hello';
-        (function(){
-            console.log(v)
-            function v(){
-                var v = 'happy'
-                console.log(v)
+        const list = [
+            { key: 1, data: 'A', parentKey: 0 },
+            { key: 2, data: 'B', parentKey: 0 },
+            { key: 3, data: 'C', parentKey: 1 },
+            { key: 4, data: 'D', parentKey: 1 },
+            { key: 5, data: 'E', parentKey: 2 },
+            { key: 6, data: 'F', parentKey: 3 },
+            { key: 7, data: 'G', parentKey: 2 },
+            { key: 8, data: 'H', parentKey: 4 },
+        ];
+        function convert(arr) {
+            let tem = {};
+            let treeArr = [];
+            for(let i = 0; i < arr.length; i ++){
+                tem[arr[i].key] = arr[i]
             }
-            v();
-        })()
+            console.log(tem)
+            for(let k in tem){
+                if(tem[k].parentKey !== 0){
+                    if(!tem[tem[k].parentKey].children){
+                        tem[tem[k].parentKey].children = [];
+                    }
+                    tem[tem[k].parentKey].children.push(tem[k])
+                }else{
+                    treeArr.push(tem[k])
+                }
+            }
+            return treeArr;
+        }
+        let res = convert(list)
+        console.log('list',res)
     </script>
 </body>
 

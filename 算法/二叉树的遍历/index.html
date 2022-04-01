@@ -229,12 +229,12 @@
             }
         }
 
+        // 非递归层次遍历
         var levelOrder = function (root) {
             const ret = [];
             if (!root) {
                 return ret;
             }
-
             const q = [];
             q.push(root);
             while (q.length !== 0) {
@@ -247,13 +247,53 @@
                     if (node.right) q.push(node.right);
                 }
             }
-
             return ret;
         };
+
+        var levelOrder1 = function(root){
+            if(!root){
+                return null
+            }
+            let res = [];
+            let q = [];
+            q.push(root)
+            while(q.length !== 0){
+                res.push([])
+                let curLevelSize = q.length;
+                for(let i = 0; i < curLevelSize; i ++){
+                    let node = q.shift();
+                    res[res.length - 1].push(node.val)
+                    if(node.left){
+                        q.push(node.left)
+                    }
+                    if(node.right){
+                        q.push(node.right)
+                    }
+                }
+            }
+            return res
+         }
+
+        // 递归层次遍历
+        var levelOrder2 =  function(root, res = [], deth = 0){
+            if(!root){
+                return []
+            }
+            res[deth] || (res[deth] = []);
+            res[deth].push(root.val)
+            root.left && levelOrder2(root.left, res, deth + 1)
+            root.right && levelOrder2(root.right, res, deth + 1)
+            return res
+         }
 
         var res = levelOrder(root);
         console.log(res)
 
+        
+        var res1 = levelOrder1(root);
+        console.log('1',res1)
+        var res2 = levelOrder2(root);
+        console.log('2',res2)
     </script>
 </body>
 

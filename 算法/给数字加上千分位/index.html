@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        给定一个数字，返回$开头并且带千分位符号的字符串
+        123456 -> $123,456
+        12345678.21 -> $12,345,678.21*/
+        function toThousands(num) {
+            var result = '', counter = 0;
+            num = (num || 0).toString();
+            for (var i = num.length - 1; i >= 0; i--) {
+                counter++;
+                console.log(counter)
+                result = num.charAt(i) + result;
+                if (!(counter % 3) && i != 0) {
+                    result = ',' + result;
+                }
+            }
+            return result;
+        }
+        let num = 1231154321324651312
+        let res = toThousands(num)
+        console.log(res)
+    </script>
+</body>
+
+</html>

@@ -10,7 +10,20 @@
 <body>
     <script>
 
+        var obj = {
+            a: '我是a',
+            b: '我是b',
+            newObj: {
+                color: 'black',
+            },
+            color: ['red', 'blue', 'green', 'yellow'],
+            func: function () {
 
+            }
+        }
+
+
+        obj.c = obj  //对象环绕问题
         // 一、浅拷贝
 
         //1、 object.assign
@@ -20,7 +33,7 @@
         // function shallowClone(soure = {}) {
         //     let result = {},
         //         key;
-        //     for(key in soure){
+        //     for (key in soure) {
         //         if (soure.hasOwnProperty(key)) {
         //             result[key] = soure[key]
         //         }
@@ -28,26 +41,37 @@
         //     return result;
         // }
 
-        // var obj1 = shallowClone(obj);
-        // obj.a = '我是b'
+        // 1.1
+        function shallowClone(src) {
+            let res = {};
+            for (let key in src) {
+                if (obj.hasOwnProperty(key)) {
+                    res[key] = obj[key]
+                }
+            }
+            return res
+        }
 
-        // console.log(obj.a)  //我是b
-        // console.log(obj1.a) //我是a
+        var obj1 = shallowClone(obj);
+        // var obj2 = Object.assign({}, obj);
+
+        obj.a = '我是b'
+        console.log('浅拷贝', obj, obj1)
+        obj1.color.push('123')
         // 拷贝成功
-
-
 
         // 深拷贝
         // var cloneObject = JSON.parse(JSON.stringify(obj))
         // obj.newObj.color = 'white'
 
         // console.log(obj)  //  里面的 obj.newObj.color = 'white'
-        // console.log(cloneObject) // obj.newObj.color = 'black'(深拷贝成功)             与上面对比发现没有讲func拷贝下来
+        // console.log(cloneObject) // obj.newObj.color = 'black'(深拷贝成功)           
+        //   与上面对比发现没有讲func拷贝下来
 
         // 1、深度优先遍历
         /**
  * 深拷贝-DFS
- * 
+ *
  * 使用WeakMap来解决对象环绕问题
  */
 
@@ -186,62 +210,31 @@
         //     return res
         // }
 
-        // function deepClone(src = {}, map = new Map()){
-        //     if(typeof src !== 'object' || src == null){
-        //         return src
-        //     }
 
-        //     if(map.has(src)){
-        //         return map.get(src)
-        //     }
-        //     let res;
-        //     if(src instanceof Array){
-        //         res = []
-        //     }else{
-        //         res = {}
-        //     }
-        //     map.set(src, res)
-        //     for(let key in src){
-        //         res[key] = deepClone(src[key], map)
-        //     }
-        //     return res
-        // }
-
-        var obj = {
-            a: '我是a',
-            b: '我是b',
-            newObj: {
-                color: 'black',
-            },
-            color: ['red', 'blue', 'green', 'yellow'],
-            func: function () {
-
+        //1.1
+        function deepClone(src = {}, map = new Map()) {
+            if (typeof src !== "object" || src == null) {
+                return src
             }
-        }
-        obj.c = obj  //对象环绕问题
-
-        function deepClone(obj = {}, map = new Map()) {
-            debugger
-            if (typeof obj != 'object' || obj == null) {
-                return obj
+            if (map.has(src)) {
+                return map.get(src)
             }
-            if (map.has(obj)) {
-                return map.get(obj)
-            }
-            var res;
-            if (obj instanceof Array) {
+            let res;
+            if (src instanceof Array) {
                 res = [];
             } else {
-                res = {}
+                res = {};
             }
-            map.set(obj, res)
-            for (let key in obj) {
-                res[key] = deepClone(obj[key], map)
+            map.set(src, res)
+            for (let key in src) {
+                res[key] = deepClone(src[key], map)
             }
-            return res;
+            return res
         }
         var newobj = deepClone(obj)
-        console.log(newobj)
+        newobj.newObj.color = '123'
+        newobj.color.push('321')
+        console.log('深拷贝', newobj, obj)
     </script>
 </body>
 

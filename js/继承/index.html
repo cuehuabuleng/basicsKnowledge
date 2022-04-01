@@ -233,62 +233,162 @@
         // // console.log(child1)
         // // console.log(child2)
 
-        class Point { // 定义了一个名字为Point的类
-            constructor(x, y) { // constructor是一个构造方法，用来接收参数
-                this.x = x;
-                this.y = y;
-                this.z = 1;
-                this.a = 3;
-            }
-            toString() {
-                return "颜色";
-            }
-            print() {
-                console.log('print',this.z);
-            }
+        // class Point { // 定义了一个名字为Point的类
+        //     constructor(x, y) { // constructor是一个构造方法，用来接收参数
+        //         this.x = x;
+        //         this.y = y;
+        //         this.z = 1;
+        //         this.a = 3;
+        //     }
+        //     toString() {
+        //         return "颜色";
+        //     }
+        //     print() {
+        //         console.log('print',this.z);
+        //     }
 
-            myMethod(msg) {
-                console.log('instance', msg);
-            }
-            static myMethod(msg) {
-                console.log('static', msg);
-            }
+        //     myMethod(msg) {
+        //         console.log('instance', msg);
+        //     }
+        //     static myMethod(msg) {
+        //         console.log('static', msg);
+        //     }
 
+        // }
+        // class ColorPoint extends Point {
+        //     constructor(x, y, color) {
+        //         super(x, y); // 调用父类的constructor(x,y)
+        //         this.z = 2;
+        //         this.a = 4;
+        //         super.a = 5;
+        //         this.color = color;
+        //         console.log('super a',super.a);
+        //         console.log('this a',this.a);
+        //     }
+        //     toString() { // 这是一个类的方法,注意前面没有function
+        //         return this.color + ' ' + super.toString(); // 调用父类的toString()
+        //     }
+        //     m() {
+        //         super.print();
+        //     }
+        //     static myMethod(msg) {
+        //         super.myMethod(msg);
+        //     }
+        //     myMethod(msg) {
+        //         super.myMethod(msg);
+        //     }
+        // }
+        // let color1 = new ColorPoint(1, 1, "red");
+        // let color2 = new ColorPoint(2, 2, "blue");
+        // console.log(color1);
+        // console.log(color1.toString());
+        // color1.m();
+        // ColorPoint.myMethod("你好");
+        // color1.myMethod("你好");
+        // console.log("===================");
+        // console.log(color2);
+        // console.log(color2.toString());
+        // color2.m();
+
+        // function Foo(){
+        //     Foo.a = function(){
+        //         console.log(1)
+        //     }
+        //     this.a = function(){
+        //         console.log(this)
+        //         console.log(2)
+        //     }
+        // }
+        // Foo.prototype.a = function(){
+        //     console.log(3)
+        // }
+        // Foo.a = function(){
+        //     console.log(4)
+        // }
+
+        // console.log('Foo 1',Foo.a)
+        // Foo.a();//4
+        // let obj = new Foo();
+        // console.log('Foo 2',Foo.a, obj.a)
+        // obj.a();  //2
+        // Foo.a();  //1
+
+
+
+
+
+
+        /*
+        js实现一个类Person
+        name、age
+        getName 所有实例共享（内存指向同一块）
+        getAge  每个实例独享
+        ES5、ES6
+        实现一个子类Man   tall，getTall
+        继承Person，ES5、6两种
+        new Man('zhangsan', 18, 170);
+        */
+
+    //    es5
+    function Person(name, age){
+        this.name = name;
+        this.age = age;
+        this.getAge = function(){
+            console.log('getAge', this.age)
         }
-        class ColorPoint extends Point {
-            constructor(x, y, color) {
-                super(x, y); // 调用父类的constructor(x,y)
-                this.z = 2;
-                this.a = 4;
-                super.a = 5;
-                this.color = color;
-                console.log('super a',super.a);
-                console.log('this a',this.a);
-            }
-            toString() { // 这是一个类的方法,注意前面没有function
-                return this.color + ' ' + super.toString(); // 调用父类的toString()
-            }
-            m() {
-                super.print();
-            }
-            static myMethod(msg) {
-                super.myMethod(msg);
-            }
-            myMethod(msg) {
-                super.myMethod(msg);
-            }
-        }
-        let color1 = new ColorPoint(1, 1, "red");
-        let color2 = new ColorPoint(2, 2, "blue");
-        console.log(color1);
-        console.log(color1.toString());
-        color1.m();
-        ColorPoint.myMethod("你好");
-        color1.myMethod("你好");
-        console.log("===================");
-        console.log(color2);
-        console.log(color2.toString());
-        color2.m();
+    }
+    Person.prototype.getName = function(){
+        console.log('getName', this.name)
+    }
+
+    // es6
+    // class Person{
+    //     constructor(name, age){
+    //         this.name = name;
+    //         this.age = age;
+    //         this.getAge = function(){
+    //             console.log('getAge', this.age)
+    //         }
+    //     }
+    //     getName(){
+    //         console.log('getName',this.name)
+    //     }
+    // }
+
+
+    // let p1 = new Person('cwj1', 18);
+    // let p2 = new Person('cwj2', 19);
+    // console.log(p1, p2)
+
+
+    //继承 es6
+    // class Man extends Person{
+    //     constructor(name, age, tall){
+    //         super(name, age);
+    //         this.tall = tall;
+    //     }
+    //     getTall(){
+    //         console.log('getTall', this.tall)
+    //     }
+    // }
+
+    // let man1 = new Man('cwj', 18, 170)
+
+    // console.log(man1)
+
+    // es5继承
+    function Man(name, age, tall){
+        this.tall = tall;
+        Person.call(this, name, age);
+    }
+    Man.prototype = Object.create(Person.prototype);
+    Man.prototype.costructor = Man;
+    Man.prototype.getTall = function(){
+        console.log('gettall', this.tall)
+    }
+
+    let man1 = new Man('cwj', 18, 180)
+    man1.getTall()
 
     </script>
 </body>

@@ -15,7 +15,6 @@
             }
             let tem = [];
             for (let i = 0; i < s.length; i++) {
-                debugger
                 switch (s[i]) {
                     case '(': tem.push(')')
                         break;
@@ -23,14 +22,17 @@
                         break;
                     case '[': tem.push(']')
                         break;
-                    case ')': if (tem.length <= 0 || tem.pop() !== ')') return false
-                    else if (i === s.length - 1 && tem.length === 0) return true
+                    case ')':
+                        if (tem.length <= 0 || tem.pop() !== ')') return false
+                        else if (i === s.length - 1 && tem.length === 0) return true
                         break;
-                    case '}': if (tem.length <= 0 || tem.pop() !== '}')  return false 
-                    else if (i === s.length - 1 && tem.length === 0) return true
+                    case '}':
+                        if (tem.length <= 0 || tem.pop() !== '}') return false
+                        else if (i === s.length - 1 && tem.length === 0) return true
                         break;
-                    case ']': if (tem.length <= 0 || tem.pop() !== ']') return false
-                    else if (i === s.length - 1 && tem.length === 0) return true
+                    case ']':
+                        if (tem.length <= 0 || tem.pop() !== ']') return false
+                        else if (i === s.length - 1 && tem.length === 0) return true
                         break;
                     default:
                         break;

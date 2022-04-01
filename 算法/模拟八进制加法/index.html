@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    
+    // function add(str1, str2) {
+    //     let i = str1.length - 1, j = str2.length - 1;
+    //     let adder = 0;
+    //     let res = '';
+    //     while (i >= 0 && j >= 0) {
+    //         let tem = Number(str1[i]) + Number(str2[j]) + adder;
+    //         let cur = tem - 8;
+    //         if (cur > 0) {
+    //             adder = 1
+    //             res = cur + res;
+    //         } else {
+    //             adder = 0;
+    //             res = adder + tem + res;
+    //         }
+    //         j --;
+    //         i --;
+    //     }
+    //     if (i >= 0) {
+    //         res = str1.slice(0, i + 1) + res
+    //     } else if (j >= 0) {
+    //         res = str2.slice(0, j + 1) + res
+    //     }
+    //     return res
+    // }
+
+    function add(str1, str2){
+        let i = str1.length - 1, j = str2.length - 1;
+        let adder = 0;
+        let res = '';
+        while(i >= 0 && j >= 0){
+            let tem = Number(str1[i]) + Number(str2[j]) + adder;
+            let cur = tem - 8;
+            if(cur > 0){
+                adder = 1;
+                res = cur + res 
+            }else{
+                adder = 0;
+                res = tem + adder + res
+            }
+            j --;
+            i --;
+        }
+        if(i >= 0){
+            res = str1.slice(0, i + 1) + res
+        }else if (j >= 0){
+            res = str2.slice(0, j + 1) + res
+        }
+        return res
+    }
+    console.log(add('12357223','1231343516')) //  1243722741   1243722741
+</script>

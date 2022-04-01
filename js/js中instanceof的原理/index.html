@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // instanceof的原理
+        /*
+        示例： a instanceof B
+        检测a的原型链（__proto__）上是否有B.prototype，若有返回true，否则false。*/
+        // function instance_of(L, R){
+        //     let o = R.prototype; //获取R的显式原型
+        //     L = L.__proto__;
+        //     while(true){
+        //         if(L === o){
+        //             return true
+        //         }
+        //         if(L === null){
+        //             return false
+        //         }
+        //         L = L.__proto__;
+        //     }
+        // }
+        // function instance_of(L, R){
+        //     // 如果是基本引用类型，直接返回false
+        //     if(typeof L !== 'object' && typeof L !== "function" || typeof L === null){
+        //         return false
+        //     }
+        //     let o = R.prototype;
+        //     L = Object.getPrototypeOf(L)
+        //     while(true){
+        //         if(L == null){
+        //             return false
+        //         }
+        //         if(L === o){
+        //             return true
+        //         }
+        //         L = Object.getPrototypeOf(L)
+        //     }
+        // }
+        function instance_of(L, R){
+            if(typeof L !="object" && typeof L != "function" && L == null){
+                return false
+            }
+            let o = R.prototype;
+            L = Object.getPrototypeOf(L);
+            while(true){
+                if(L == null){
+                    return false
+                }
+                if(L== o){
+                    return true
+                }
+                L = Object.getPrototypeOf(L)
+            }
+        }
+        let a = function (){}
+        console.log(typeof a)
+        console.log(instance_of(a, Function))
+        console.log(a instanceof Function)
+    </script>
+</body>
+</html>

@@ -65,19 +65,19 @@ const data = [
 // }
 // console.log(getName2(data))
 
-function getName2(data = []) {
+function getName2(data = []){
     let res = [],
         list = [];
-    list = data;
-    while (list.length > 0) {
-        let item = list.shift();
-        res.push(item.name);
-        let children = item.children || [];
-        for (let i = 0; i < children.length; i++) {
-            list.push(children[i])
-        }
-    }
-    return res;
+        list = data || []
+     while(list.length !== 0){
+         let item = list.shift();
+         res.push(item.name);
+         let children = item.children || [];
+         for(let i = 0; i < children.length; i ++){
+             list.push(children[i])
+         }
+     }
+     return res
 }
 
 console.log(getName2(data))

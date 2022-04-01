@@ -69,3 +69,8 @@ function Human(){
 怎么讲：
 说到底，什么才是原型呢，其实就是当创建一个函数的时候A， 系统就会在内存中创建一个对象B。每个函数都会有一个属性prototype去指向这个B对象，其实这个B对象就是A的原型对象，称为A的原型。原型对象B中也会有constructor属性，指向A。然后A函数作为构造函数用 new 来创建对象的时候，比如创建了一个a1的实例，这个a1中会有一个_proto_，去指向够着函数A中的prototype原型，也就是B。所以说这个_proto_指向的是自己的构造函数的原型对象。
 
+
+原型链是对象的有限链，用于实现继承和共享属性。
+
+
+<!-- http://dmitrysoshnikov.com/ecmascript/javascript-the-core/#execution-context -->

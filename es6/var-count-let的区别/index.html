@@ -18,16 +18,25 @@
         // }
         // console.log(window.test)
 
-        function f() {
-            var a = 4;
-            swap(1, 2);
-            (function swap(a, b) {
-                var tmp;
-                tmp = a;
-                a = b;
-                b = tmp;
-            })(var_a, var_b);
-        }
+        // function f() {
+        //     var a = 4;
+        //     swap(1, 2);
+        //     (function swap(a, b) {
+        //         var tmp;
+        //         tmp = a;
+        //         a = b;
+        //         b = tmp;
+        //     })(var_a, var_b);
+        // }
+        var a = 10;
+        (
+            function(){
+                console.log(a)
+                var a = 20;
+                console.log(window.a)
+                console.log(a)
+            }
+        )()
     </script>
 </body>
 

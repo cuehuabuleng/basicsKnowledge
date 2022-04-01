@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 方法一：在需要中断的地方返回一个“pending”状态的promise对象
+    Promise.resolve().then(() => {
+        console.log('ok1')
+        return new Promise(() => { })  // 返回“pending”状态的Promise对象
+    }).then(() => {
+        // 后续的函数不会被调用
+        console.log('ok2')
+    }).catch(err => {
+        console.log('err->', err)
+    })
+
+    // 方法二：通过抛出一个异常来终止
+
+    let needBreak = true;
+    let p = new Promise((resolve, reject) => {
+        resolve('step1');
+    });
+
+    p.then(data => {
+        console.log(data);
+        return 'step2';
+    }).then(data => {
+        console.log(data);
+        if (needBreak) {
+            throw "we need break";
+        }
+        return 'step3';
+    }).then(data => {
+        console.log(data);
+        return 'step4';
+    }).catch(reason => {
+        console.log('got error:', reason);
+    }).finally(() => {
+        console.log('finished.');
+    });
+
+    // 方法三：通过reject来进行中断
+    let needBreak = true;
+    let p = new Promise((resolve, reject) => {
+        resolve('step1');
+    });
+
+    p.then(data => {
+        console.log(data);
+        return 'step2';
+    }).then(data => {
+        console.log(data);
+        if (needBreak) {
+            return Promise.reject('break without exception.');
+        }
+        return 'step3';
+    }).then(data => {
+        console.log(data);
+        return 'step4';
+    }).catch(reason => {
+        console.log(reason);
+    }).finally(() => {
+        console.log('finished.');
+    });
+</script>
+
+</html>

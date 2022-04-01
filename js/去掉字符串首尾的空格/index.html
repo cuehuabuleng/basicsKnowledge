@@ -9,11 +9,13 @@
 
 <body>
     <script>
+        // let reg = /(^\s*)|(\s*$)/g
         //正则匹配
-        function trim(str) {
-            return str.replace(/(^\s*)|(\s*$)/g, "");
-        }
-        //         　　这段代码看似简单，却内蕴玄机，首先利用/  /来将正则表达式围起来，/g表示全局进行匹配，匹配完成后将内容替换成"";便可以消除空格；
+        // function trim(str) {
+        //     return str.replace(/(^\s*)|(\s*$)/g, "");
+        // }
+        //         　　这段代码看似简单，却内蕴玄机，
+        // 首先利用/  /来将正则表达式围起来，/g表示全局进行匹配，匹配完成后将内容替换成"";便可以消除空格；
 
         // 　　而考虑到可能只有头部有空格，或者只有尾部有空格，或者都有空格，所以采用 | （或）来进行逻辑判断；
 
@@ -22,10 +24,89 @@
         // 　　s代表空格，\s代表对空格的匹配；
 
         // 　　考虑到头部或尾部可能不止有一个空格，所以用 * 。
+        function trim(s){
+            return s.replace(/(^\s*)|(\s*$)/,'')
+        }
 
+
+        // // 循环检查替换
+        // function trim(s) {
+        //     return trimRight(trimLeft(s))
+        // }
+        // function trimLeft(s) {
+        //     if (s == null) {
+        //         return ''
+        //     }
+        //     let whitespace = new String(' \t\n\r')
+        //     let str = new String(s)
+        //     if (whitespace.indexOf(str.charAt(0)) !== -1) {
+
+        //         let i = 0, j = str.length;
+        //         while (i < j && whitespace.indexOf(str.charAt(i)) !== -1) {
+        //             i++
+        //         }
+        //         str = str.substring(i, j)
+        //     }
+        //     return str
+        // }
+        // function trimRight(s) {
+        //     if (s == null) {
+        //         return ''
+        //     }
+        //     let whitespace = new String(' \t\n\r');
+        //     let str = new String(s)
+        //     if (whitespace.indexOf(str.charAt(str.length - 1)) !== -1) {
+        //         let j = str.length - 1;
+        //         while (j >= 0 && whitespace.indexOf(str.charAt(j)) !== -1) {
+        //             j--;
+        //         }
+        //         str = str.substring(0, j + 1)
+        //     }
+        //     return str
+        // }
+
+        // 1.1
+        // 循环检查替换
+        // function trim(str){
+        //     return trimLeft(trimRight(str))
+        // }
+
+        // // 去掉左边的空格
+        // function trimLeft(s){
+        //     if(s == null){
+        //         return ''
+        //     }
+        //     let whiteSpace = new String(' \t\r\n');
+        //     let str = new String(s);
+        //     if(whiteSpace.indexOf(str.charAt(0)) !== -1){
+        //         let i = 0; j = str.length;
+        //         while(i < j && whiteSpace.indexOf(str[i]) !== -1){
+        //             i ++;
+        //         }
+        //         str = str.substring(i, j)
+        //     }
+        //     return str;
+        // }
+        // // 去掉右边的空格
+        // function trimRight(s){
+        //     if(s == null){
+        //         return ''
+        //     }
+        //     let whitespace = new String(' \t\r\n');
+        //     let str = new String(s)
+        //     if(whitespace.indexOf(str[str.length - 1]) !== -1){
+        //         let j = str.length - 1;
+        //         while(j >= 0 && whitespace.indexOf(str[j]) !== -1){
+        //             j --;
+        //         }
+        //         str = str.substring(0, j + 1)
+        //     }
+        //     return str
+        // }
         var str = ' 123   '
+        console.log(str)
         var res = trim(str)
-        console.log(res.length)
+        console.log(res)
     </script>
 </body>
 

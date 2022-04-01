@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        找出一个字符串出现连续重复的字符，例如：输入'aaasfjkjkbbbdjkjssjccc'，
+        输出：['aaa', 'bbb', 'ss', 'ccc'] 
+        */
+
+        // function fn(str) {
+        //     let pre = 0, next = 1;
+        //     let res = [];
+        //     while (next < str.length) {
+        //         while (str[pre] === str[next]) {
+        //             next++;
+        //         }
+        //         if ((next - pre) > 1) {
+        //             res.push(str.slice(pre, next))
+        //         }
+        //         pre = next;
+        //         next = pre + 1;
+        //     }
+        //     return res
+        // }
+
+        function repeateStr(str){
+            let pre = 0, next = 1;
+            let res = [];
+            while(next < str.length){
+                while(str[pre] === str[next]){
+                    next ++;
+                }
+                if((next - pre) > 1){ 
+                    res.push(str.slice(pre, next))
+                }
+                pre = next;
+                next = pre + 1
+            }
+            return res
+            
+        }
+
+
+        let str = 'aasfjkjkbbbdjkjssjccc'
+        let res = repeateStr(str);
+        console.log(res)
+    </script>
+</body>
+
+</html>

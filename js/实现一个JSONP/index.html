@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var Jsonp = function (options) {
+        //     let url = !!options.url ? options.url : "";
+        //     let cbFn = !!options.cbFn ? options.cbFn : "callback";
+        //     let success = !!options.success ? options.success : function () { };
+        //     let error = !!options.error ? options.error : function () { };
+        //     let cbName = !!options.cbName ? options.cbName : "cbName";
+        //     let queryParams = options.queryParams || {};
+        //     // 处理传进来的参数
+        //     let tem = [];
+        //     for(let key in queryParams){
+        //         tem.push(encodeURIComponent(key) + '=' +encodeURIComponent(queryParams[key]));
+        //     }
+        //     queryParams = tem.join('&')
+        //     console.log(queryParams)
+
+        //     // let queryParams = !!options.queryParams ? options.queryParams : "";
+        //         scriptDom = document.createElement('script'),
+        //         oFragment = document.createDocumentFragment();
+
+        //     scriptDom.src = url + "?" + queryParams + "&" + cbFn + "=" + cbName;
+        //     window[cbName] = function (result) {
+        //         try {
+        //             success(result);
+        //         } catch (error) {
+        //             options.error();
+        //         } finally {
+        //             oFragment.appendChild(scriptDom);
+        //             window[cbName] = null;
+        //         }
+        //     }
+        //     document.getElementsByTagName('head')[0].appendChild(scriptDom);
+
+        // }
+
+        var Jsonp = function (options) {
+            let url = !!options.url ? options.url : '';
+            let cbFn = !!options.cbFn ? options.cbFn : 'callback';
+            let cbName = !!options.cbName ? options.cbName : 'cbName';
+            let error = !!options.error ? options.error : function (err) { };
+            let success = !!options.success ? options.success : function (res) { };
+            let queryParams = !!options.queryParams ? options.queryParams : {};
+            let tem = [];
+            for (let key in queryParams) {
+                tem.push(key + '=' + queryParams[key])
+            }
+            queryParams = tem.join('&');
+            console.log(queryParams)
+            let scriptDom = document.createElement('script');
+            let oFragment = document.createDocumentFragment();
+            scriptDom.src = url + '?' + queryParams + '&' + cbFn + '=' + cbName;
+            window[cbName] = function (result) {
+                try {
+                    success(result)
+                } catch (error) {
+                    error(error)
+                } finally {
+                    window[cbName] = null;
+                }
+            }
+            document.getElementsByTagName('head')[0].appendChild(scriptDom);
+        }
+
+
+        // Jsonp.prototype.hash = Math.random();
+        // Jsonp.prototype.getJsonp = function () {}
+
+        // 使用
+        let params = {
+            wd: 'abb'
+        }
+        Jsonp({
+            url: 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+            queryParams: params,
+            cbFn: 'cb',
+            cbName: 'show',
+            success: function (result) {
+                console.log(result);
+            },
+            error: function (result) {
+                alert('error');
+            }
+        });
+    </script>
+</body>
+
+</html>
